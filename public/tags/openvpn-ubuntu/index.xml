@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenVPN ubuntu on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/tags/openvpn-ubuntu/</link>
+    <description>Recent content in OpenVPN ubuntu on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 19 Aug 2016 15:28:48 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/tags/openvpn-ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ubuntu 上部署OpenVPN服务</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Fri, 19 Aug 2016 15:28:48 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 http://www.linuxidc.com/Linux/2014-08/105925p2.htm http://www.linuxidc.com/Linux/2012-01/51702.htm https://help.ubuntu.com/lts/serverguide/openvpn.html http://blog.csdn.net/joyous/article/details/8034132
+OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的：
+ OpenVPN &amp;ndash; An application to securely tunnel IP networks   over a single TCP/UDP port, with support for SSL/TLS-based     session authentication and key exchange,     packet encryption, packet authentication, and     packet compression.    一、安装OpenVPN [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.</description>
+    </item>
+    
+  </channel>
+</rss>

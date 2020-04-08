@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>petalinux on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/tags/petalinux/</link>
+    <description>Recent content in petalinux on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 22 Aug 2018 03:12:29 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/tags/petalinux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>petalinux use guide summarize</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>petalinux 是针对 Xilinx FPGA-based SOC designs 的 embedded linux system development kit 。 包含了:
+ 1. Yocto Extensible SDK 2. Minimal downloads 3. XSCT and tool chains 4. PetaLinux CLI tools  详情参考 PetaLinux Tools Reference Guide。
+ **版本： v2018.2 June 6, 2018 **
+不支持 ubuntu1804, 手贱装了ubuntu1804, 结果 build 的时候出现 Bitbake 运行不起来，google 一遍发现这版本petalinux 还是暂时不支持 ubuntu1804 ，遂重新装回1604. 总结：
+ * * petalinux 安装, 略。 * BSP 安装 * BSP 是petalinux 的一个参考开发板的基础配置。可以把它作为一个模板创建自己的工程。它提供 了一个 installable BSP files，包含了所有必要的 design 和 configuration files ，pre-built 和 tested hardwrae 和 software images.</description>
+    </item>
+    
+  </channel>
+</rss>

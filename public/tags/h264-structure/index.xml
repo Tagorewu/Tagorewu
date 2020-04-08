@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>H264 structure on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/tags/h264-structure/</link>
+    <description>Recent content in H264 structure on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 19 Nov 2018 05:47:12 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/tags/h264-structure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>H.264 codec Note</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Mon, 19 Nov 2018 05:47:12 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>• Elements of a video Sequence
+o Frames
+o Slices
+o MBs (macroblocks)
+• Frame Types
+o I-, P-, B-frames
+o GOP (group of picture), specifies the order in which intra- and inter-frames are arranged.
+o NAL (Network Abstraction Layer)
+v SPS (Sequence parameter set)
+v PPS (Picture parameter set)
+v IDR (Instantaneous Decoder Refresh), every IDR frame is an I-frame, but not vice versa,
+• Coding Tools
+o Entropy Coding</description>
+    </item>
+    
+  </channel>
+</rss>

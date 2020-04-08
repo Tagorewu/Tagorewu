@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MCU on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/categories/mcu/</link>
+    <description>Recent content in MCU on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 15 Aug 2016 00:57:44 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/categories/mcu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>IAR sprintf() 输出不正常的问题</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Mon, 15 Aug 2016 00:57:44 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>前几天调试了一程序，用到sprintf函数，输出结果一直不正常，同样的输出格式用printf打印则没有问题。然后同样的程序在gcc下sprintf也是正常的。怀疑IAR的sprintf函数有问题。后来发现原因是IAR把sprintf函数简化了，在project-options-general options 里面的Library options 的Tabs里有个printf formatter，默认是选成tiny的选项，结果就不支持一些复杂的输出格式。把它设置成auto，输出结果就正常了，o yeah!</description>
+    </item>
+    
+    <item>
+      <title>从PC的总线到ARM内部总线</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Mon, 09 Mar 2015 04:51:50 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>南桥诞生（I*O总线诞生）* 1987年，康柏（Compaq）公司想到一个办法: 将系统总线与I/O总线分开，使得2个不同的总线工作在不同的时钟频率上。CPU和内存工作在系统总线上（the System Bus），独立于所有的I/O设备。这样高速的CPU/RAM组件就摆脱了低速I/O设备的束缚。这里的Bridge，就是现在的南桥（South Bridge）芯片的前身，而它实际起到了降频的作用。 倍频出世 从80486开始，CPU的发展迅猛，频率大幅攀升。内存开始变得跟不上CPU的发展步伐了。Intel 于是决定在80486中引入倍频（Clock Doubler）的概念。内存依旧工作在系统总线上，与系统总线保持同样的工作频率，而CPU的内部工作频率（CPU主频）是： CPU 主频 = 外频（系统总线频率System Bus Frequency）* 倍频 (Clock doubler) 北桥和前端总线的诞生 PC结构的变化趋势是把低速设备与高速设备用隔离总线的方法进行隔离。而发展到后来，就演变出了北桥（North Bridge）芯片。内存与北桥间的总线称为内存总线，把CPU与北桥间连接的这段总线成为前端总线**(Front Side Bus，FSB），**也就是系统总线（System Bus）！ **PC中的I\O总线**** **通过上面的文章，我们知道的总线的演变过程。现在专门来讲讲I\O总线。 总线：用来传送信号或能量的构造器。 系统 I/O 总线将指令从内存传导至与输入\输出处理器(IOP) [url=http://publib.boulder.ibm.com/html/as400/v5r1/ic2989/info/rzajx/rzajxiodevice.htm][/url] 相连的设备。系统 I/O 总线还会将指令从 IOP 传导回内存。 以下的内容来自《认识物理I/O构件- 主机I/O总线(1)》 ，这篇文章写得很好。感谢文章作者！ 在数据离开系统内存总线后，它通常传输到另一条总线：主机I / O总线。现在最常见的主机I / O总线是P C I总线，另外还有如PCI-E总线、ISA总线，E I S A总线及V M E总线等等。主机I / O总线实现了几种重要的功能，包括： 允许加入新的插卡。 允许从内存总线输入和输出数据。 允许在插卡之间传输数据。 主机I / O总线并不是处于设备与系统内存总线间的仅有的中介物，在主机I / O总线和系统内存总线之间还存在着桥控制器芯片（南桥），该芯片负责在两总线之间交换数据。主机I / O总线是在内存和外设之间传送数据的运输工具。 **ARM处理器的内部总线** 认真研究ARM9（以s3c2410为例）的结构框图，你会发现：作为高性能的嵌入式CPU，ARM9可以看成一个高度浓缩的计算机系统，类似于分化出南桥芯片且有倍频的计算机构架！具体见下图： 看了这些，应该可以对计算机的总线有了一些认识，更重要的是对ARM9的体系构架有了更好地认识！这里值得注意的是：ARM 的内存芯片并没有直接接在“内存总线”上，而是通过内存控制器间接地和“内存总线”连接。
+如果你有兴趣更深入地研究ARM的总线结构，推荐你看一下我上面提到的参考资料：《AMBA、AHB、APB总线简介》、《Introduction to AMBA Bus System 》。我就不在这废话了，因为他们讲得已经很全面，很精彩了。你如果是ARM总线的设计者，你应该看看ARM 公司的《AMBA™ Specification (Rev 2.</description>
+    </item>
+    
+    <item>
+      <title>keil 5.0： pack installer Reading one or more Pack discriptions failed 报错的问题</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Fri, 27 Dec 2013 13:31:52 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>http://www.keil.com/support/docs/3646.htm
+按照链接所说的是Keil5.0不支持这些新版本的DFP，需要换Keil5.01.
+http://www.keil.com/dd2/pack/ 有点奇怪这里有V1.0版本的DFP为什么导进去也不成功呢？
+http://www2.keil.com/mdk5/legacy 后来下载了legacy support，包括Cortex M系列和ARM7和ARM9的在Keil4.73版本里面的两个Device 包，这个是Keil5.0支持的。
+然后，果断升级了keil5.1. 发现了一个规律，只要在之前破解版的基础上覆盖安装到V5.01都是不需要再破解的直接就是标准版的了，再加上那两个包就能完全兼容老版本支持的设备。。</description>
+    </item>
+    
+  </channel>
+</rss>

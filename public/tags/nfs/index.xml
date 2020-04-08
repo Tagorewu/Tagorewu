@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nfs on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/tags/nfs/</link>
+    <description>Recent content in nfs on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 22 Aug 2018 11:25:05 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/tags/nfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>嵌入式linux 开发中常用工具安装笔记</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>* Samba server   # apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user [shuji] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart    * Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     * nfs   # vim /etc/exports    /srv/nfs *(rw,sync,nosubtree_check)    # 查看nfs # showmount -e 192.</description>
+    </item>
+    
+  </channel>
+</rss>
