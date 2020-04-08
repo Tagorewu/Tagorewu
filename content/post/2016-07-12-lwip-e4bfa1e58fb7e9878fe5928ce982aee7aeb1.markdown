@@ -1,0 +1,118 @@
+---
+author: wuqt
+date: 2016-07-12 01:42:53+00:00
+draft: false
+title: Lwip 里的信号量、邮箱、线程
+type: post
+url: /
+categories:
+- LwIP
+tags:
+- Lwip 信号量
+- Lwip 邮箱
+---
+
+这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。
+
+[c]
+"sys_arch.c"
+/* An array to hold the memory for the available semaphores. */
+static sem_t sems[SYS_SEM_MAX];
+
+/* An array to hold the memory for the available mailboxes. */
+static mbox_t mboxes[SYS_MBOX_MAX];
+
+"sys_arch.h"
+///* A structure to hold the variables for a sys_sem_t. */
+typedef struct {
+  xQueueHandle queue;
+  signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES];
+} sem_t;
+
+/* A structure to hold the variables for a sys_mbox_t. */
+typedef struct {
+  xQueueHandle queue;
+  signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES];
+} mbox_t;
+[/c]
+
+这里创建了两个全局结构体数组来管理semaphores and mailboxes. 有个不明白的地方是，结构体里的buffer是用来作什么的？
+[c]
+sys_sem_new(sys_sem_t *sem, u8_t count){
+...
+  /* Create a single-entry queue to act as a semaphore. */
+#if RTOS_FREERTOS
+  sem->queue = xQueueCreate(1, sizeof(void *));
+  if(sem->queue == NULL) {
+#endif /* RTOS_FREERTOS */
+...
+}
+sys_mbox_new(sys_mbox_t *mbox, int size){
+...
+#if RTOS_FREERTOS
+  /* Create a queue for this mailbox. */
+  mbox->queue = xQueueCreate(size, sizeof(void *));
+  if(mbox == NULL) {
+#endif /* RTOS_FREERTOS */
+...
+}
+[/c]
+
+这里的semaphore其实用的是长度为1的queue来实现。mbox是长度为size的queue，其中消息对象类型都是void *，由于freertos在把消息送入队列和提取出队列都是复制的方式（应该是类似ringbuf的操作，没深入研究），所以这里为了提高效率，把对象封装一个消息结构体，只传递指针。在作消息传递时要特别注意内存的分配和释放，以免造成内存泄漏。
+这里还要总结的一点是，类似于这种xxx_new, xxx_alloc的函数，用来分配对向内存的函数，传递进去的是指针的地址，因为要将指针指向新分配的内存，所以传进去的为指针的地址。
+如这样调用：
+[c]
+if (sys_sem_new(&conn->op_completed, 0) != ERR_OK) {
+    goto free_and_return;
+  }
+[/c]
+
+Lwip 的Thread是用FreeRTOS的xTaskCreate()来实现的。这里有个问题, TI的sys_arch.c里的sys_thread_new的实现，又用mem_malloc()分配了栈内存，是不是多此一举了，因为xTaskCreate里会为这个任务分配栈内存。这里似乎没有任何用处。
+[c]
+sys_thread_t
+sys_thread_new(const char *name, lwip_thread_fn thread, void *arg,
+               int stacksize, int prio)
+{
+  sys_thread_t created_thread;
+  void *data;
+  u32_t i;
+
+  /* Find a thread that is not in use. */
+  for(i = 0; i < SYS_THREAD_MAX; i++) {
+    if(threads[i].stackstart == NULL) {
+      break;
+    }
+  }
+  if(i == SYS_THREAD_MAX) {
+      return NULL;
+  }
+
+  /* Allocate memory for the thread's stack. */
+  data = mem_malloc(stacksize);
+  if(!data) {
+    return NULL;
+  }
+
+  /* Save the details of this thread. */
+  threads[i].stackstart = data;
+  threads[i].stackend = (void *)((char *)data + stacksize);
+  threads[i].thread = thread;
+  threads[i].arg = arg;
+
+  /* Create a new thread. */
+#if RTOS_FREERTOS
+  if(xTaskCreate(sys_arch_thread, (signed portCHAR *)name,
+                 stacksize/sizeof(int), (void *)i, tskIDLE_PRIORITY+prio,
+                 &threads[i].taskhandle) != pdTRUE){
+    threads[i].stackstart = NULL;
+    threads[i].stackend = NULL;
+    return NULL;
+  }
+  created_thread = threads[i].taskhandle;
+#endif /* RTOS_FREERTOS */
+
+  /* Return this thread. */
+  return created_thread;
+}
+
+[/c]

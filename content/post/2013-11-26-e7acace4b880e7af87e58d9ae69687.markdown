@@ -1,0 +1,12 @@
+---
+author: wuqt
+date: 2013-11-26 14:24:26+00:00
+draft: false
+title: 第一篇博文
+type: post
+url: /
+categories:
+- 未分类
+---
+
+感谢心心蔷薇阁同学的辛勤劳动和大力支持！本工作室终于建成了！

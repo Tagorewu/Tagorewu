@@ -1,0 +1,166 @@
+---
+author: wuqt
+date: 2018-11-19 05:47:12+00:00
+draft: false
+title: H.264 codec Note
+type: post
+url: /
+categories:
+- Software Design
+tags:
+- H264 structure
+---
+
+
+
+
+•       Elements of a video Sequence
+
+
+
+
+o    Frames
+
+
+
+
+o    Slices
+
+
+
+
+o    MBs (macroblocks)
+
+
+
+
+•       Frame Types
+
+
+
+
+o    I-, P-, B-frames
+
+
+
+
+o    [GOP](https://en.wikipedia.org/wiki/Group_of_pictures) (group of picture), specifies the order in which intra- and inter-frames are arranged. 
+
+
+
+
+o    NAL (Network Abstraction Layer) 
+
+
+
+
+v  SPS (Sequence parameter set)
+
+
+
+
+v  PPS (Picture parameter  set)
+
+
+
+
+v  IDR (Instantaneous Decoder Refresh), every IDR frame is an I-frame, but not vice versa,
+
+
+
+
+•       Coding Tools
+
+
+
+
+o    Entropy Coding
+
+
+
+
+v  CAVLC
+
+
+
+
+v  CABAC
+
+
+
+
+o    Integer Transform
+
+
+
+
+v  DCT
+
+
+
+
+o    Quantization
+
+
+
+
+o    Inter-Prediction
+
+
+
+
+o    Intra-Prediction
+
+
+
+
+v  Intra_4x4, Intra_8x8, Intra_16x16
+
+
+
+
+o    Deblocking filter
+
+
+
+
+•       Profiles and Levels
+
+
+
+
+o    Baseline Profile (66)
+
+
+
+
+o    Main Profile (77)
+
+
+
+
+o    Extended Profile (88)
+
+
+
+
+o    High Profile (100)
+
+
+
+
+
+
+* * *
+
+
+
+详细原文参考：[Springer](https://www.springer.com/cda/content/document/cda_downloaddocument/9781461422297-c1.pdf?SGWID=0-0-45-1338306-p174267072)
+
+
+
+
+
+
+
+
