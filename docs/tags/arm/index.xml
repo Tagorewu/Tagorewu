@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARM on Tagore&#39;s Studio</title>
+    <link>http://github.wuquantai.com/tags/arm/</link>
+    <description>Recent content in ARM on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 07 Dec 2018 08:02:10 +0000</lastBuildDate>
+    
+	<atom:link href="http://github.wuquantai.com/tags/arm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ARM NEON Usage Note</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Fri, 07 Dec 2018 08:02:10 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>简介 SIMD, 即Single Instruction Multiple Data（单指令多数据）的并行操作。CPU 在处理向量数据时有它的局限性。CPU的优势在于处理复杂多变的指令，而对于那种大数据量的重复性操作，ARM 为了增加处理效率，增加了这种并行处理模块, 即NEON(Advanced SIMD)。主要是在ARMv7 架构后的处理器使用。
+NEON 的主要 components：
+ NEON register file * NEON integer execute pipeline * NEON single-precision floating-point execute pipeline * NEON load/store and permute pipeline  NEON 指令和 floating-point 指令使用的是相同的 register file。不同于ARM core的register file。此 register file 可以以 32-bit, 64-bit, 128-bit 方式访问。 The contents of the NEON registers are vectors of elements of the same data type. A vector is divided into lanes and each lane contains a data value called an element.</description>
+    </item>
+    
+    <item>
+      <title>Eclipse ARM IDE 开发环境搭建</title>
+      <link>http://github.wuquantai.com/</link>
+      <pubDate>Sat, 12 Dec 2015 15:02:24 +0000</pubDate>
+      
+      <guid>http://github.wuquantai.com/</guid>
+      <description>一、Eclipse
+Eclipse的本身只是一个框架平台，但是众多插件的支持，使得Eclipse拥有较好的灵活性。依托于Java 环境运行，所以必须安装 Jre。
+二、CDT
+CDT是Eclipse用于扩展Eclipse支持C/C++开发的插件。可直接下载带CDT的Eclipse。
+三、Zylin CDT
+支持Eclipse用于嵌入式C/C++开发和远程调试的插件。
+四、Yagarto
+Yagarto是整合了GNU arm的交叉编译工具链，是一个跨平台的 ARM 架构开发平台。他们说了，由于基于MinGW的ToolChain 的GDB 跟Eclipse 配合不是很好，所以Yagarto 出现了。目前Yagarto 项目已经完结。此外Yagrato 建议使用免费的
+ * [emIDE](http://www.emide.org/) (free Visual Studio Style IDE including GNU Tools for ARM) 。其集成了GNU Tools。  五、J-LINK GDB Server
+A JTAG GDB Debug agent run on Host
+六、IDE整体结构框图
+安装：
+1、安装Java SE
+下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jre-7u3-download-1501631.html
+设置环境变量:
+如果只安装Jre的话就添加 : JAVA_HOME = C:\Program Files\Java\jre1.8.0_65;
+若是安装JDK的话就添加 : JAVA_HOME = C:\Program Files\Java\jdk1.8.0_65;
+Path = %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
+//安装JDK时，JDK内部有个jre目录，外部也默认安装了一个jre目录。一般配置jre环境为内部jre目录。
+CLASSPATH = .</description>
+    </item>
+    
+  </channel>
+</rss>
