@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ubuntu 上部署OpenVPN服务 - Mainroad</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="ubuntu 上部署OpenVPN服务" />
+<meta property="og:description" content="缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 http://www.linuxidc.com/Linux/2014-08/105925p2.htm http://www.linuxidc.com/Linux/2012-01/51702.htm https://help.ubuntu.com/lts/serverguide/openvpn.html http://blog.csdn.net/joyous/article/details/8034132 OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的： * OpenVPN &ndash; An application to securely tunnel IP networks * over a single TCP/UDP port, with support for SSL/TLS-based * session authentication and key exchange, * packet encryption, packet authentication, and * packet compression. 一、安装OpenVPN [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/ubuntu-%e4%b8%8a%e9%83%a8%e7%bd%b2openvpn%e6%9c%8d%e5%8a%a1/" />
+<meta property="article:published_time" content="2016-08-19T15:28:48+00:00" />
+<meta property="article:modified_time" content="2016-08-19T15:28:48+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mainroad" rel="home">
+				<div class="logo__title">Mainroad</div>
+				<div class="logo__tagline">Just another site</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Hugo</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ubuntu 上部署OpenVPN服务</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-19T15:28:48Z">August 19, 2016</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 <a href="http://www.linuxidc.com/Linux/2014-08/105925p2.htm">http://www.linuxidc.com/Linux/2014-08/105925p2.htm</a> <a href="http://www.linuxidc.com/Linux/2012-01/51702.htm">http://www.linuxidc.com/Linux/2012-01/51702.htm</a> <a href="https://help.ubuntu.com/lts/serverguide/openvpn.html">https://help.ubuntu.com/lts/serverguide/openvpn.html</a> <a href="http://blog.csdn.net/joyous/article/details/8034132">http://blog.csdn.net/joyous/article/details/8034132</a> OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的： * OpenVPN &ndash; An application to securely tunnel IP networks * over a single TCP/UDP port, with support for SSL/TLS-based * session authentication and key exchange, * packet encryption, packet authentication, and * packet compression. <strong>一、安装OpenVPN</strong> [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0/ /etc/openvpn/easy-rsa/ [/bash] <strong>二、生成证书和私钥</strong> 包括： 1. 建立一个证书颁发机构(CA)，用来创建其它证书； 2. 为服务端创建一个证书(公钥)和一个私钥； 3. 为客户端创建证书和私钥； 1. 生成CA.key [bash] ~$ vim /etc/openvpn/easy-rsa/2.0/vars [/bash] 编辑vars文件,看自己需要修改这些东西，后面在生成证书的时候也可以实时输入。 [code] export KEY_COUNTRY=&quot;GR&rdquo; export KEY_PROVINCE=&quot;Central Macedonia&rdquo; export KEY_CITY=&quot;Thessaloniki&rdquo; export KEY_ORG=&quot;Parabing Creations&rdquo; export KEY_EMAIL=&quot;nobody@parabing.com&rdquo; export KEY_CN=&quot;VPNsRUS&rdquo; export KEY_NAME=&quot;VPNsRUS&rdquo; export KEY_OU=&quot;Parabing&rdquo; export KEY_ALTNAMES=&quot;VPNsRUS [/code] [bash] # source ./vars NOTE: If you run ./clean-all, I will be doing a rm -rf on /etc/openvpn/easy-rsa/2.0/keys # ./clean-all # ./build-ca [/bash] 2. 生成servername.key [bash] # ./build-key-server servername [/bash] 生成Diffie-Hellman参数 用来在不安全的通信通道里安全的交换密钥。好像用处不大。 [bash] # ./build-dh [/bash] 3. 生成clientname.key [bash] # ./build-key clientname [/bash] 所以我们到现在为止已经有如下7个文件了: 它们都储存在/etc/openvpn/easy-rsa/keys， ca.crt – 证书颁发机构(CA)的证书 ca.key – CA的私钥 servername.crt – OpenVPN服务器的证书 servername.key – OpenVPN服务器的私钥 dh1024.pem – Diffie-Hellman参数文件 clientname.crt clientname.key <strong>三、服务端配置</strong> 1. 解压server.conf, # gzip -d ./server.conf.gz # vim server.conf 配置server.conf,这步很重要 [code] #根据实际修改这些文件路径: ca /etc/openvpn/keys/ca.crt cert /etc/openvpn/keys/servername.crt key /etc/openvpn/keys/servername.key dh /etc/openvpn/keys/dh1024.pem #根据自己放置证书文件的位置修改好，最好用绝对路径。 协议可以选择udp 或者tcp。 # TCP or UDP server? proto tcp ;proto udp #在配置文件的末尾，我们添加下面这两行: push &ldquo;redirect-gateway def1&rdquo; push &ldquo;dhcp-option DNS 10.8.0.1&rdquo; [/code] 最后这两行指示客户端用OpenVPN作为默认的网关，并用10.8.0.1作为DNS服务器。注意10.8.0.1是OpenVPN启动时自动创建的隧道接口的IP。如果客户用别的域名解析服务，那么我们就得提防不安全的DNS服务器。为了避免这种泄露，我们建议所有OpenVPN客户端使用10.8.0.1作为DNS服务器。 [code] 另外可以根据需要开启 client-to-client 让客户端之间可以互相访问 再开启 duplicate-cn 让一个证书支持多地同时登陆 把日志打开，万一不成功可方便调试 log openvpn.log log-append openvpn.log [/code] 再打开ip转发： [bash] #开启ip_forward # vim /etc/sysctl.conf # sysctl -p /etc/sysctl.conf [/bash] <strong>开启服务器</strong> [bash] # service openvpn start * Starting virtual private network daemon(s)&hellip; * Autostarting VPN &lsquo;server&rsquo; # netstat -nl Active Internet connections (servers and established) Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name udp 0 0 10.8.0.1:123 0.0.0.0:* 962/ntpd udp 0 0 172.16.0.1:123 0.0.0.0:* 962/ntpd udp 0 0 127.0.0.1:123 0.0.0.0:* 962/ntpd udp 0 0 0.0.0.0:123 0.0.0.0:* 962/ntpd udp 0 0 0.0.0.0:1194 0.0.0.0:* 5940/openvpn udp6 0 0 :::123 :::* 962/ntpd [/bash] 2. 配置dnsmasq.conf [code] #修改这一行: listen-address=127.0.0.1,10.8.0.1 #uncommon 下一行: bind-interfaces 启动dns [/code] [bash] # service dnsmasq restart [/bash] <strong>四、配置ip_tables</strong> 要配置好路由转发客户端才能通过VPN上网。 [bash] echo 1 &gt; /proc/sys/net/ipv4/ip_forward # iptables -A FORWARD -m state &ndash;state RELATED,ESTABLISHED -j ACCEPT # iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT # iptables -A FORWARD -j REJECT # iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 希望每次Ubuntu启动的时候，这些规则都好用，可以把它们加到/etc/rc.local里。 [/bash] <strong>五、客户端配置</strong> [bash]iptab # cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /etc/openvpn/ # vim client.conf [/bash] 在ssh中可以用scp 命令将远程服务器上的文件拷贝至本地 [bash] scp root@serverip:/etc/openvpn/client.conf /home/ [/bash] 客户端的密钥和证书也一样下载下来。 编辑client.conf remote my-server-1 1194 my-server-1改成 服务器的IP 还要修改两行: cert client.crt key client.key 改成自己生成的证书名。 windows 客户端可以用 openvpn-GUI 将证书和配置文件放置config文件夹下，.conf文件重命名为.ovpn即可。 连接成功后查看公网ip，如果是服务器的IP就成功了！ 终于大功告成！ 再配置一个客户端给家里电脑使用，这样就可以将它跟公司计算机连在一个局域网了。 使用国内服务器的VPN + 海外VPS上的Shadowsocks上网，简直Perfect！ 后记，如果要在手机上用openvpn时，可以将key和crt，放到client.ovpn文件里面，分别贴到 [code] <!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> [/code] 中间即可。openvpn国内app store 已经下架了，可以上国外的store上下。</p>
+<blockquote>
+<p><strong>用户名密码的配置方式</strong> <a href="http://www.cnblogs.com/electron/p/3488033.html">http://www.cnblogs.com/electron/p/3488033.html</a> <strong>[转]OpenVPN使用用户名/密码验证方式</strong> OpenVPN推荐使用证书进行认证，安全性很高，但是配置起来很麻烦。还好它也能像pptp等vpn一样使用用户名/密码进行认证。 不管何种认证方式，服务端的ca.crt, server.crt, server.key, dh1024.pem这四个证书都是要的。使用username/passwd 方式，你需要在服务器配置文件中加入以下语句，取消客户端的证书认证： client-cert-not-required 然后加入auth-user-pass-verify，开启用户密码脚本： auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env 加入script-security消除以下警告 script-security 3 system checkpsw.sh脚本可以通过网络获取 wget <a href="http://openvpn.se/files/other/checkpsw.sh">http://openvpn.se/files/other/checkpsw.sh</a> checkpsw.sh默认从文件/etc/openvpn/psw-file中读取用户名密码。 psw-file中一行是一个账号，用户名和密码之间用空格隔开 username password 到此服务端就配置完成了。 客户端配置文件中去掉于证书相关的配置，加入 auth-user-pass 打开用户名密码验证。 可以加入auth-nocache可以在断线后防止内存中保存用户名和密码来提高安全性。 这样客户端就配好。 下面提供一个我的服务端配置文件。Linux使用该配置文件作为服务端，ROS的openvpn客户端是可以连接上的。 复制代码 port 1194 proto tcp dev tap #不要求客户端有证书 client-cert-not-required username-as-common-name script-security 3 system #使用脚本验证密码 auth-user-pass-verify /etc/openvpn/checkpsw.sh via-env ca /etc/openvpn/keys/ca.crt cert /etc/openvpn/keys/server.crt key /etc/openvpn/keys/server.key dh /etc/openvpn/keys/dh1024.pem server 10.8.6.0 255.255.255.0 #保存已有的用户和ip的对应关系 ifconfig-pool-persist ipp.txt #允许客户端之间互访 client-to-client keepalive 10 120 user nobody group nogroup persist-key persist-tun #保存日志 status openvpn-status.log #日志冗余级别 verb 3 复制代码</p>
+</blockquote>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/network-basis/" rel="tag">Network basis</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/openvpn-ubuntu/" rel="tag">OpenVPN ubuntu</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="John Doe avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About John Doe</span>
+	</div>
+	<div class="authorbox__description">
+		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/lwip-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">Lwip 内存管理</p>
+		</a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/ss%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/" rel="next">
+			<span class="post-nav__caption">Next&thinsp;»</span>
+			<p class="post-nav__post-title">ss安装笔记</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%e5%9f%9f%e5%86%85%e7%9a%84pc-%e8%ae%bf%e9%97%ae%e9%9d%9e%e5%9f%9f%e5%86%85%e7%9a%84samba%e6%9c%8d%e5%8a%a1%e5%99%a8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%bc%80%e5%8f%91%e6%80%bb%e7%bb%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e7%bc%96%e8%af%91pynq-%e5%9c%a8zcu102%e4%b8%8a%e7%9a%84%e9%95%9c%e5%83%8f/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menu_main/" title="Menu_Main">Menu_Main</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%94%9F%E6%B4%BB/" title="生活">生活</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Mainroad.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

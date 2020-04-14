@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lwip 内存管理 on Tagore&#39;s Studio</title>
+    <link>/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in Lwip 内存管理 on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 17 Aug 2016 08:01:24 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lwip 内存管理</title>
+      <link>/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 17 Aug 2016 08:01:24 +0000</pubDate>
+      
+      <guid>/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) 内存堆动态分配方式 [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) &amp;amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr+3)&amp;amp;(~(u32)(0x03))，+3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;amp;0x03)?(addr+1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED + (2*SIZEOF_STRUCT_MEM) + MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &amp;hellip; /** * The heap is made up as a list of structs of this type.</description>
+    </item>
+    
+  </channel>
+</rss>

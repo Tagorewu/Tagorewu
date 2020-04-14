@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池 - Mainroad</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池" />
+<meta property="og:description" content="前段时间有朋友想要了解一下多线程编程，正好有个项目上有这么个例子可以抽出来讲一讲。只要搞清楚这个例子，就一下子掌握了线程间同步、互斥量、条件变量、队列、内存池的概念和使用。
+首先，线程间同步的概念。
+比如，学过数字电路的人都知道，两个时钟域的信号如果没有经过同步直接接到一起的话，会引起亚稳态。原因是如果恰好输入信号在时钟边沿附近变化的话（不满足建立保持时间的情况下），信号可能处于一个中间电平，这样会导致触发器处于一个振荡状态，引起整块数字电路的不稳定。这就是数字电路中异步的概念，两个时钟都是各自free running，彼此没有关系。
+再比如单片机程序中，各个不同的中断程序或者跟主程序间是异步的，因为主程序在执行的过程中随时可能被进来的中断打断，如果中断和主程序之间要通过一个共享的变量传递数据，你就要注意这个共享的变量的保护。假如主程序只读取了一半的数据而被中断打断，然后中断程序中又更新了整个变量，这样的回到主程序继续执行时读到的数据就有一半是上一次的，一半是更新过的。这样的结果显然不是我们想要的。这里只是举了一个很明显的例子。更多的情况可以搜索一下“原子操作”。
+所以在多线程环境下，我们就要注意线程间共享变量的保护，这块敏感区域叫临界区(Critical area)。在单片机中，我们用中断开关来保护共享变量读写操作的完整性。在操作系统中，我们用的是互斥锁（mutex）来占有这个变量，防止它被多个线程同时访问。当一个线程访问当前已经被另一个线程占有的变量时，就会进入阻塞态，直到另一个线程完成解锁操作后，这个线程将得到继续执行。
+互斥锁(mutex)是多线程编程时最重要的一个工具，用来解决多线程竞争同个资源的问题。其最底层的实现都是一个原子操作来界定lock or unlock。
+接下来的例子创建了两个线程，一个是producer, 另一个是cusumer, 它们两个是异步的，中间通过一个队列来通讯。producer 向队列中发送数据，cusumer读取数据。模拟了一个场景：producer 以较快的速度向队列写数据，cusumer 处理数据较慢。这在图像帧处理时经常会碰到CPU处理和发送数据较慢，而外设采集速度较快的情况，这样多余的帧将被丢弃。队列节点使用自己写的一个内存池来分配，在malloc_node 从内存池(free_queue)里取出node; release_node 时把节点放回资源池。当对free_queue 进行操作的时候都要加锁，因为malloc_node 和release_node 可能被不同的线程调用，必须对free_queue 进行保护。这样的函数称之为是线程安全的。同理对enqueue，dequeue的操作也要对队列进行保护。
+然后使用条件变量来通知consumer 队列有新数据到来。条件变量同样是被多个线程调用，也是需要带一个mutex 来进行保护的。当条件不满足时，线程会解锁mutex 进入block状态等待消息，这样才不会一直占有CPU。当条件满足或者超时时，才继续执行下面的程序。
+例子中使用了pthread(POSIX thread) 的实现。其实各大操作系统都有自己的实现，FreeRTOS, Linux kernel等等，都可以拿代码过来看看学习。
+请看这个多线程的例子，可以在online gdb 中运行调试：
+#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;stdint.h&gt; #include &lt;string.h&gt; #include &lt;pthread.h&gt; #include &lt;stdbool.h&gt; #include &lt;assert.h&gt; #include &lt;sys/time.h&gt; #include &lt;errno.h&gt; /\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/ typedef struct Node { void \*data; struct Node \*next; }queue\_node\_t; #define BUFFER\_POOL\_SIZE (640 \* 480) #define BUFFER\_POOL\_NUM 5 struct pbuf{ uint32\_t len; uint8\_t payload\[BUFFER\_POOL\_SIZE\]; }; typedef struct QueueList { int sizeOfQueue; uint16\_t memSize; queue\_node\_t \*head; queue\_node\_t \*tail; }queue\_t; /\* to inform consumer\_thread \*/ static pthread\_cond\_t cap\_cond; static pthread\_mutex\_t cap\_mutex; /\* stream queue for communicate between two threads \*/ static queue\_t strm\_queue; static pthread\_mutex\_t strmq\_mutex; int strm\_queue\_init(){ queue\_t \*q = &amp;strm\_queue; q-&gt;sizeOfQueue = 0; q-&gt;memSize = 0; q-&gt;head = q-&gt;tail = NULL; if (pthread\_cond\_init(&amp;cap\_cond, NULL) !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/" />
+<meta property="article:published_time" content="2019-01-27T12:37:31+00:00" />
+<meta property="article:modified_time" content="2019-01-27T12:37:31+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mainroad" rel="home">
+				<div class="logo__title">Mainroad</div>
+				<div class="logo__tagline">Just another site</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Hugo</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-01-27T12:37:31Z">January 27, 2019</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p><img src="http://www.wuquantai.com/wp-content/uploads/2018/04/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180413232206-1024x768.jpg" alt=""></p>
+<p>前段时间有朋友想要了解一下多线程编程，正好有个项目上有这么个例子可以抽出来讲一讲。只要搞清楚这个例子，就一下子掌握了线程间同步、互斥量、条件变量、队列、内存池的概念和使用。</p>
+<p>首先，线程间同步的概念。</p>
+<p>比如，学过数字电路的人都知道，两个时钟域的信号如果没有经过同步直接接到一起的话，会引起亚稳态。原因是如果恰好输入信号在时钟边沿附近变化的话（不满足建立保持时间的情况下），信号可能处于一个中间电平，这样会导致触发器处于一个振荡状态，引起整块数字电路的不稳定。这就是数字电路中异步的概念，两个时钟都是各自free running，彼此没有关系。</p>
+<p>再比如单片机程序中，各个不同的中断程序或者跟主程序间是异步的，因为主程序在执行的过程中随时可能被进来的中断打断，如果中断和主程序之间要通过一个共享的变量传递数据，你就要注意这个共享的变量的保护。假如主程序只读取了一半的数据而被中断打断，然后中断程序中又更新了整个变量，这样的回到主程序继续执行时读到的数据就有一半是上一次的，一半是更新过的。这样的结果显然不是我们想要的。这里只是举了一个很明显的例子。更多的情况可以搜索一下“原子操作”。</p>
+<p>所以在多线程环境下，我们就要注意线程间共享变量的保护，这块敏感区域叫临界区(Critical area)。在单片机中，我们用中断开关来保护共享变量读写操作的完整性。在操作系统中，我们用的是互斥锁（mutex）来占有这个变量，防止它被多个线程同时访问。当一个线程访问当前已经被另一个线程占有的变量时，就会进入阻塞态，直到另一个线程完成解锁操作后，这个线程将得到继续执行。</p>
+<p>互斥锁(mutex)是多线程编程时最重要的一个工具，用来解决多线程竞争同个资源的问题。其最底层的实现都是一个原子操作来界定lock or unlock。</p>
+<p>接下来的例子创建了两个线程，一个是producer, 另一个是cusumer, 它们两个是异步的，中间通过一个队列来通讯。producer 向队列中发送数据，cusumer读取数据。模拟了一个场景：producer 以较快的速度向队列写数据，cusumer 处理数据较慢。这在图像帧处理时经常会碰到CPU处理和发送数据较慢，而外设采集速度较快的情况，这样多余的帧将被丢弃。队列节点使用自己写的一个内存池来分配，在malloc_node 从内存池(free_queue)里取出node; release_node 时把节点放回资源池。当对free_queue 进行操作的时候都要加锁，因为malloc_node 和release_node 可能被不同的线程调用，必须对free_queue 进行保护。这样的函数称之为是线程安全的。同理对enqueue，dequeue的操作也要对队列进行保护。</p>
+<p>然后使用条件变量来通知consumer 队列有新数据到来。条件变量同样是被多个线程调用，也是需要带一个mutex 来进行保护的。当条件不满足时，线程会解锁mutex 进入block状态等待消息，这样才不会一直占有CPU。当条件满足或者超时时，才继续执行下面的程序。</p>
+<p>例子中使用了<a href="https://www.gnu.org/software/hurd/libpthread.html">pthread</a>(POSIX thread) 的实现。其实各大操作系统都有自己的实现，FreeRTOS, Linux kernel等等，都可以拿代码过来看看学习。</p>
+<p>请看这个多线程的例子，可以在<a href="https://onlinegdb.com/Byo5Xwu7N">online gdb</a> 中运行调试：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;sys/time.h&gt;
+#include &lt;errno.h&gt;
+
+/\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/
+typedef struct Node
+{
+    void \*data;
+    struct Node \*next;
+}queue\_node\_t;
+
+#define BUFFER\_POOL\_SIZE  (640 \* 480)
+#define BUFFER\_POOL\_NUM   5
+
+struct pbuf{
+    uint32\_t len;
+    uint8\_t payload\[BUFFER\_POOL\_SIZE\];
+};
+
+typedef struct QueueList
+{
+    int sizeOfQueue;
+    uint16\_t memSize;
+    queue\_node\_t \*head;
+    queue\_node\_t \*tail;
+}queue\_t;
+
+/\* to inform consumer\_thread \*/
+static pthread\_cond\_t cap\_cond;
+static pthread\_mutex\_t cap\_mutex;
+
+/\* stream queue for communicate between two threads \*/
+static queue\_t strm\_queue;
+static pthread\_mutex\_t strmq\_mutex;
+
+int strm\_queue\_init(){
+    queue\_t \*q = &amp;strm\_queue;
+    q-&gt;sizeOfQueue = 0;
+    q-&gt;memSize = 0;
+    q-&gt;head = q-&gt;tail = NULL;
+
+    if (pthread\_cond\_init(&amp;cap\_cond, NULL) != 0) {
+        printf(&quot;pthread\_cond\_init failed\\n&quot;);
+        exit(-1);
+    }
+    if (pthread\_mutex\_init(&amp;cap\_mutex, NULL) != 0) {
+        printf(&quot;pthread\_mutex\_init failed\\n&quot;);
+        pthread\_cond\_destroy(&amp;cap\_cond);
+        exit(-1);
+    }
+
+    if (pthread\_mutex\_init(&amp;strmq\_mutex, NULL) != 0) {
+        printf(&quot;pthread\_mutex\_init failed\\n&quot;);
+        exit(-1);
+    }
+
+    return 0;
+}
+
+int malloc\_node(queue\_node\_t \*\*newNode);
+
+int frame\_enqueue(void \*data, uint32\_t len){
+    queue\_t \*q = &amp;strm\_queue;
+    queue\_node\_t \*newNode = NULL;
+    struct pbuf \*p;
+	assert(len &lt; BUFFER\_POOL\_SIZE);
+	if (malloc\_node(&amp;newNode) != true) {
+		//printf(&quot;no node available!\\n&quot;);
+		return -1;
+	}
+	p = (struct pbuf \*)newNode-&gt;data;
+	memcpy(p-&gt;payload, data, len);
+	p-&gt;len = len;
+
+	pthread\_mutex\_lock(&amp;strmq\_mutex);
+	if (q-&gt;sizeOfQueue == 0) {
+		q-&gt;head = q-&gt;tail = newNode;
+	} else {
+		q-&gt;tail-&gt;next = newNode;
+		q-&gt;tail = newNode;
+	}
+	
+	q-&gt;sizeOfQueue++;
+	pthread\_mutex\_unlock(&amp;strmq\_mutex);
+	
+	pthread\_mutex\_lock(&amp;cap\_mutex);
+	pthread\_cond\_signal(&amp;cap\_cond);
+	pthread\_mutex\_unlock(&amp;cap\_mutex);
+
+	return 0;
+}
+
+int frame\_dequeue(queue\_node\_t \*\*newNode){
+    queue\_t \*q = &amp;strm\_queue;
+    bool ret = false;
+    pthread\_mutex\_lock(&amp;strmq\_mutex);
+    if (q-&gt;sizeOfQueue &lt;= 0) {
+        pthread\_mutex\_unlock(&amp;strmq\_mutex);
+        \*newNode = NULL;
+        ret = false;
+    }else{
+        \*newNode = q-&gt;head;
+        if (q-&gt;sizeOfQueue &gt; 1) {
+            q-&gt;head = q-&gt;head-&gt;next;
+        } else {
+            q-&gt;head = NULL;
+            q-&gt;tail = NULL;
+        }
+        q-&gt;sizeOfQueue--;
+        ret = true;
+    }
+    pthread\_mutex\_unlock(&amp;strmq\_mutex);
+
+    return ret;
+}
+
+/\*\*\*\*\* node pool manage \*\*\*\*\*/
+static struct pbuf buffer\_pool\[BUFFER\_POOL\_NUM\];
+static queue\_node\_t queue\_node\[BUFFER\_POOL\_NUM\];
+/\* mutex for free\_queue when malloc and release node \*/
+pthread\_mutex\_t freeq\_mutex;
+queue\_t free\_queue;
+
+int node\_pool\_init(){
+    int i;
+    queue\_t \*q = &amp;free\_queue;
+    queue\_node\_t \*newNode; 
+
+    newNode = &amp;queue\_node\[0\];
+    newNode-&gt;data = (void \*)&amp;buffer\_pool\[0\];
+    q-&gt;head = q-&gt;tail = newNode;
+
+    for (i = 1; i &lt; BUFFER\_POOL\_NUM; i++) {   
+       newNode = &amp;queue\_node\[i\];
+       newNode-&gt;data = (void \*)&amp;buffer\_pool\[i\];      
+       q-&gt;tail-&gt;next = newNode;
+       q-&gt;tail = newNode;
+    }
+    q-&gt;sizeOfQueue = i;
+
+    if (pthread\_mutex\_init(&amp;freeq\_mutex, NULL) != 0) {
+        printf(&quot;pthread\_mutex\_init failed\\n&quot;);
+        exit(-1);
+    }
+
+    return 0;
+}
+
+/\* dequeue from free queue \*/
+int malloc\_node(queue\_node\_t \*\*newNode){
+
+    queue\_t \*q = &amp;free\_queue;
+    bool ret = false;
+    pthread\_mutex\_lock(&amp;freeq\_mutex);
+    if (q-&gt;sizeOfQueue &lt;= 0) {
+        pthread\_mutex\_unlock(&amp;freeq\_mutex);
+        \*newNode = NULL;
+        ret = false;
+    }else{
+        \*newNode = q-&gt;head;
+        if (q-&gt;sizeOfQueue &gt; 1) {
+            q-&gt;head = q-&gt;head-&gt;next;
+        } else {
+            q-&gt;head = NULL;
+            q-&gt;tail = NULL;
+        }
+        q-&gt;sizeOfQueue--;
+        ret = true;
+    }
+    pthread\_mutex\_unlock(&amp;freeq\_mutex);
+
+    return ret;
+}
+
+/\* tailed to free queue \*/
+int release\_node(queue\_node\_t \*newNode ){
+
+    queue\_t \*q = &amp;free\_queue;
+    newNode-&gt;next = NULL;
+    pthread\_mutex\_lock(&amp;freeq\_mutex);
+    if (q-&gt;sizeOfQueue == 0) {
+        q-&gt;head = q-&gt;tail = newNode;
+    } else {
+        q-&gt;tail-&gt;next = newNode;
+        q-&gt;tail = newNode;
+    }
+
+    q-&gt;sizeOfQueue++;
+    pthread\_mutex\_unlock(&amp;freeq\_mutex);
+    return 0;
+}
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* test for communication between threads \*\*\*\*\*\*\*\*\*\*\*\*\*/
+void\* producer\_thread(void \*argv\[\]){
+    char message\[100\];
+    printf(&quot;producer start!\\n&quot;);
+    for(int i = 0; i &lt; 100; i++){
+        usleep(100000);
+        sprintf(message, &quot;Hello %d&quot;, i);
+        if(0 != frame\_enqueue((void \*)message, strlen(message))){
+            printf(&quot;drop message: %s!\\n&quot;, message);
+        };
+    }
+    printf(&quot;producer stop!\\n&quot;);
+}
+
+void\* consumer\_thread(void \*argv\[\]){
+    queue\_node\_t \*newNode;
+    int i = 0;
+    struct timeval cur\_tv;
+    struct timespec to;
+    int timeout\_msec = 5000;
+    int ret;
+    
+    while(1){
+        
+        gettimeofday(&amp;cur\_tv, NULL);
+        to.tv\_sec = cur\_tv.tv\_sec + timeout\_msec / 1000;
+        to.tv\_nsec = cur\_tv.tv\_usec \* 1000 + (timeout\_msec % 1000) \* 1000000;
+        
+        printf(&quot;consumer wait!\\n&quot;);        
+        pthread\_mutex\_lock(&amp;cap\_mutex);
+        ret = pthread\_cond\_timedwait(&amp;cap\_cond, &amp;cap\_mutex, &amp;to);
+        pthread\_mutex\_unlock(&amp;cap\_mutex);
+        
+        if((ret == ETIMEDOUT)){
+            printf(&quot;condition wait timeout!\\n&quot;);
+            break;
+        }
+        while(frame\_dequeue(&amp;newNode)){
+            /\* do some process \*/
+            printf(&quot;%s\\n&quot;, ((struct pbuf \*)(newNode-&gt;data))-&gt;payload);
+            usleep(500000);
+            release\_node(newNode);
+            i++;
+        }
+    }
+    printf(&quot;consumer get %d message!\\n&quot;, i);    
+    printf(&quot;consumer exit!\\n&quot;);
+}
+
+int main(int argc, char \*argv\[\])
+{
+    int i;
+    pthread\_t pid1, pid2;
+    printf(&quot;\\n--- test for communication between threads ---\\n&quot;);
+    node\_pool\_init();    
+    strm\_queue\_init();
+
+    if (pthread\_create(&amp;pid2, NULL, consumer\_thread, NULL)){
+        printf(&quot;create consumer failed!\\n&quot;);
+    }
+
+    if (pthread\_create(&amp;pid1, NULL, producer\_thread, NULL)) {
+        printf(&quot;create producer failed!\\n&quot;);
+        return -1;
+    }
+    
+    pthread\_join(pid1, NULL);
+    pthread\_join(pid2, NULL);
+    printf(&quot;\\n--- test exit ---!\\n&quot;);
+    return 0;
+}
+
+
+
+</code></pre><p>例子中模拟了 producer 的生产速度是cosumer 的5倍，所以当队列满了的时候很多数据就会被丢弃。</p>
+<p>若要看其它更简单的使用例子，可以参看libpthread 源码 /tests目录下的小例子。OK！</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/software-design/" rel="tag">Software Design</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" rel="tag">互斥量</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="tag">线程同步</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="John Doe avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About John Doe</span>
+	</div>
+	<div class="authorbox__description">
+		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/linux-%e7%bd%91%e7%bb%9c%e8%ae%be%e7%bd%ae%e7%9b%b8%e5%85%b3/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">Linux 网络设置相关</p>
+		</a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/" rel="next">
+			<span class="post-nav__caption">Next&thinsp;»</span>
+			<p class="post-nav__post-title">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%e5%9f%9f%e5%86%85%e7%9a%84pc-%e8%ae%bf%e9%97%ae%e9%9d%9e%e5%9f%9f%e5%86%85%e7%9a%84samba%e6%9c%8d%e5%8a%a1%e5%99%a8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%bc%80%e5%8f%91%e6%80%bb%e7%bb%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e7%bc%96%e8%af%91pynq-%e5%9c%a8zcu102%e4%b8%8a%e7%9a%84%e9%95%9c%e5%83%8f/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menu_main/" title="Menu_Main">Menu_Main</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%94%9F%E6%B4%BB/" title="生活">生活</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Mainroad.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

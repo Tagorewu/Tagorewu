@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Lwip 内存管理 - Mainroad</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Lwip 内存管理" />
+<meta property="og:description" content="Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) 内存堆动态分配方式 [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) &#43; MEM_ALIGNMENT - 1) &amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr&#43;3)&amp;(~(u32)(0x03))，&#43;3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;0x03)?(addr&#43;1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED &#43; (2*SIZEOF_STRUCT_MEM) &#43; MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &hellip; /** * The heap is made up as a list of structs of this type." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/lwip-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/" />
+<meta property="article:published_time" content="2016-08-17T08:01:24+00:00" />
+<meta property="article:modified_time" content="2016-08-17T08:01:24+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mainroad" rel="home">
+				<div class="logo__title">Mainroad</div>
+				<div class="logo__tagline">Just another site</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Hugo</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Lwip 内存管理</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-17T08:01:24Z">August 17, 2016</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) <strong>内存堆动态分配方式</strong> [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) &amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr+3)&amp;(~(u32)(0x03))，+3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;0x03)?(addr+1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED + (2*SIZEOF_STRUCT_MEM) + MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &hellip; /** * The heap is made up as a list of structs of this type. * This does not have to be aligned since for getting its size, * we only use the macro SIZEOF_STRUCT_MEM, which automatically alignes. */ struct mem { /** index (-&gt; ram[next]) of the next struct */ mem_size_t next; /** index (-&gt; ram[prev]) of the previous struct */ mem_size_t prev; /** 1: this area is used; 0: this area is unused */ u8_t used; }; [/c] 这里申请了一个内存堆ram_heap, 大小包括整个MEM_SIZE + 两个STRUCT_MEM的大小 + 4, 假设申请了MEM_SIZE 为8k。 [c] ** pointer to the heap (ram_heap): for alignment, ram is now a pointer instead of an array */ static u8_t *ram; /** the last entry, always unused! */ static struct mem *ram_end; /** pointer to the lowest free block, this is used for faster search */ static struct mem *lfree; mem_init(void) { &hellip; /* align the heap */ ram = (u8_t *)LWIP_MEM_ALIGN(LWIP_RAM_HEAP_POINTER); /* initialize the start of the heap */ mem = (struct mem *)(void *)ram; mem-&gt;next = MEM_SIZE_ALIGNED; mem-&gt;prev = 0; mem-&gt;used = 0; ram_end = (struct mem *)(void *)&amp;ram[MEM_SIZE_ALIGNED]; ram_end-&gt;used = 1; ram_end-&gt;next = MEM_SIZE_ALIGNED; ram_end-&gt;prev = MEM_SIZE_ALIGNED; /* initialize the lowest-free pointer to the start of the heap */ lfree = (struct mem *)(void *)ram; &hellip; } [/c] 内存初始化。ram 指向了ram_heap开头， 并且在开头初始化了一个struct mem。 ram_end 指向了MEM_SIZE之后的第一个STRUCT_MEM, 这里不知道是不是bug，我觉得应该指向&amp;ram[MEM_SIZE_ALIGNED+SIZEOF_STRUCT_MEM]; 没时间了，以后再慢慢研究。 lfree最开始也指向了开头。 -&gt;next 等这些参数都是相对地址，相对ram的，方便之后用数组的方式访问。 [c] void * mem_malloc(mem_size_t size) { /* Expand the size of the allocated memory region so that we can adjust for alignment. */ size = LWIP_MEM_ALIGN_SIZE(size); if(size &lt; MIN_SIZE_ALIGNED) { /* every data block must be at least MIN_SIZE_ALIGNED long */ size = MIN_SIZE_ALIGNED; } if (size &gt; MEM_SIZE_ALIGNED) { return NULL; } &hellip; /* Scan through the heap searching for a free block that is big enough, * beginning with the lowest free block. */ for (ptr = (mem_size_t)((u8_t *)lfree - ram); ptr &lt; MEM_SIZE_ALIGNED - size; ptr = ((struct mem *)(void *)&amp;ram[ptr])-&gt;next) { mem = (struct mem *)(void *)&amp;ram[ptr]; if ((!mem-&gt;used) &amp;&amp; (mem-&gt;next - (ptr + SIZEOF_STRUCT_MEM)) &gt;= size) { /* mem is not used and at least perfect fit is possible: * mem-&gt;next - (ptr + SIZEOF_STRUCT_MEM) gives us the &lsquo;user data size&rsquo; of mem */ if (mem-&gt;next - (ptr + SIZEOF_STRUCT_MEM) &gt;= (size + SIZEOF_STRUCT_MEM + MIN_SIZE_ALIGNED)) { /* (in addition to the above, we test if another struct mem (SIZEOF_STRUCT_MEM) containing * at least MIN_SIZE_ALIGNED of data also fits in the &lsquo;user data space&rsquo; of &lsquo;mem&rsquo;) * -&gt; split large block, create empty remainder, * remainder must be large enough to contain MIN_SIZE_ALIGNED data: if * mem-&gt;next - (ptr + (2*SIZEOF_STRUCT_MEM)) == size, * struct mem would fit in but no data between mem2 and mem2-&gt;next * @todo we could leave out MIN_SIZE_ALIGNED. We would create an empty * region that couldn&rsquo;t hold data, but when mem-&gt;next gets freed, * the 2 regions would be combined, resulting in more free memory */ ptr2 = ptr + SIZEOF_STRUCT_MEM + size; /* create mem2 struct */ mem2 = (struct mem *)(void *)&amp;ram[ptr2]; mem2-&gt;used = 0; mem2-&gt;next = mem-&gt;next; mem2-&gt;prev = ptr; /* and insert it between mem and mem-&gt;next */ mem-&gt;next = ptr2; mem-&gt;used = 1; if (mem2-&gt;next != MEM_SIZE_ALIGNED) { ((struct mem *)(void *)&amp;ram[mem2-&gt;next])-&gt;prev = ptr2; } MEM_STATS_INC_USED(used, (size + SIZEOF_STRUCT_MEM)); } else { /* (a mem2 struct does no fit into the user data space of mem and mem-&gt;next will always * be used at this point: if not we have 2 unused structs in a row, plug_holes should have * take care of this). * -&gt; near fit or excact fit: do not split, no mem2 creation * also can&rsquo;t move mem-&gt;next directly behind mem, since mem-&gt;next * will always be used at this point! */ mem-&gt;used = 1; MEM_STATS_INC_USED(used, mem-&gt;next - (mem_size_t)((u8_t *)mem - ram)); } } [/c] 内存分配函数。首先对齐size，并且size不能太小或者太大，太小容易产生过多的碎片导致后期内存不足。 然后搜索heap,找到适合的块。lfree指向未分配的内存位置，刚开始它是在开头。 ptr=lfree-ram 即是lfree相对ram的位置，即已经用掉的内存大小。 ptr mem 先指向lfree所指的位置，当这块内存未被使用并且剩下的内存大于size时，&hellip;略复杂，待续&hellip; (二) <strong>内存池的动态分配</strong> 内存池顾名思义就是一个个划分好的池子，不像内存堆一样东西乱堆。 pbuf是协议栈里最常用的数据类型，它有多种类型的存储方式，如下： [code] * - PBUF_RAM: buffer memory for pbuf is allocated as one large * chunk. This includes protocol headers as well. * - PBUF_ROM: no buffer memory is allocated for the pbuf, even for * protocol headers. Additional headers must be prepended * by allocating another pbuf and chain in to the front of * the ROM pbuf. It is assumed that the memory used is really * similar to ROM in that it is immutable and will not be * changed. Memory which is dynamic should generally not * be attached to PBUF_ROM pbufs. Use PBUF_REF instead. * - PBUF_REF: no buffer memory is allocated for the pbuf, even for * protocol headers. It is assumed that the pbuf is only * being used in a single thread. If the pbuf gets queued, * then pbuf_take should be called to copy the buffer. * - PBUF_POOL: the pbuf is allocated as a pbuf chain, with pbufs from * the pbuf pool that is allocated during pbuf_init(). [/code] 我们从pbuf入手研究一下MEM_POOL内存池的<strong>编写方式</strong>。 pbuf_alloc(PBUF_POOL)调用的是: p = (struct pbuf *)memp_malloc(MEMP_PBUF_POOL); 我们来看看MEMP_PBUF_POOL是如何声明的： [c] //memp_std.h /* * A list of pools of pbuf&rsquo;s used by LWIP. * * LWIP_PBUF_MEMPOOL(pool_name, number_elements, pbuf_payload_size, pool_description) * creates a pool name MEMP_pool_name. description is used in stats.c * This allocates enough space for the pbuf struct and a payload. * (Example: pbuf_payload_size=0 allocates only size for the struct) */ LWIP_PBUF_MEMPOOL(PBUF, MEMP_NUM_PBUF, 0, &ldquo;PBUF_REF/ROM&rdquo;) LWIP_PBUF_MEMPOOL(PBUF_POOL, PBUF_POOL_SIZE, PBUF_POOL_BUFSIZE, &ldquo;PBUF_POOL&rdquo;) /* This treats &ldquo;pbuf pools&rdquo; just like any other pool. * Allocates buffers for a pbuf struct AND a payload size */ #define LWIP_PBUF_MEMPOOL(name, num, payload, desc) LWIP_MEMPOOL(name, num, (MEMP_ALIGN_SIZE(sizeof(struct pbuf)) + MEMP_ALIGN_SIZE(payload)), desc) [/c] memp_std.h里定义了各种类型POOL. [c] //memp.c /** This array holds the element sizes of each pool. */ const u16_t memp_sizes[MEMP_MAX] = { #define LWIP_MEMPOOL(name,num,size,desc) LWIP_MEM_ALIGN_SIZE(size), #include &ldquo;lwip/memp_std.h&rdquo; }; /** This array holds the number of elements in each pool. */ static const u16_t memp_num[MEMP_MAX] = { #define LWIP_MEMPOOL(name,num,size,desc) (num), #include &ldquo;lwip/memp_std.h&rdquo; }; /** This is the actual memory used by the pools (all pools in one big block). */ static u8_t memp_memory[MEM_ALIGNMENT - 1 #define LWIP_MEMPOOL(name,num,size,desc) + ( (num) * (MEMP_SIZE + MEMP_ALIGN_SIZE(size) ) ) #include &ldquo;lwip/memp_std.h&rdquo; ]; [/c] memp.c 定义了 几个数组来保存每个pool的元素大小和数量。定义一个memp_memory[]内存块保存所有的pool。 [c] /* Create the list of all memory pools managed by memp. MEMP_MAX represents a NULL pool at the end */ typedef enum { #define LWIP_MEMPOOL(name,num,size,desc) MEMP_##name, #include &ldquo;lwip/memp_std.h&rdquo; MEMP_MAX } memp_t; [/c] ## 是连接符号。这样memp_t的枚举类型里就有各种的POOL名字，如编译之后就成为： [c] typedef enum { MEMP_PBUF, MEMP_PBUF_POOL, &hellip; MEMP_MAX } memp_t; [/c] <strong>总结一下</strong>， memp_std.h里包含许多条POOL的声明： LWIP_PBUF_MEMPOOL(PBUF_POOL, PBUF_POOL_SIZE, PBUF_POOL_BUFSIZE, &ldquo;PBUF_POOL&rdquo;) 然后在memp.c 里面利用这种套路将memp_std.h 里的声明全包进去: [c] static u8_t memp_memory[MEM_ALIGNMENT - 1 #define LWIP_MEMPOOL(name,num,size,desc) + ( (num) * (MEMP_SIZE + MEMP_ALIGN_SIZE(size) ) ) #include &ldquo;lwip/memp_std.h&rdquo; ]; [/c] 就可以生成我们想要的结果。 [c] static u8_t memp_memory[MEM_ALIGNMENT - 1 + ( (num) * (MEMP_SIZE + MEMP_ALIGN_SIZE(size) ) ) + &hellip; ]; [/c] 这是一种很聪明的写法。领教了！ 回过头来我们就明白MEMP_PBUF_POOL内存到底多大了，Demo设置的是48*512byte。 另外前面有一个是MEMP_PBUF的内存池，它的BUFSIZE是0，仅能用来保存结构体指针，所以是专门给PBUF_REF/ROM类型使用的。 声明好内存池后，我们看看p = (struct pbuf *)memp_malloc(MEMP_PBUF_POOL); 是怎么工作的。 [c] /** This array holds the first free element of each pool. * Elements form a linked list. */ static struct memp *memp_tab[MEMP_MAX]; /** * Initialize this module. * * Carves out memp_memory into linked lists for each pool-type. */ void memp_init(void) { struct memp *memp; u16_t i, j; &hellip; /* for every pool: */ for (i = 0; i &lt; MEMP_MAX; ++i) { memp_tab[i] = NULL; /* create a linked list of memp elements */ for (j = 0; j &lt; memp_num[i]; ++j) { memp-&gt;next = memp_tab[i]; memp_tab[i] = memp; memp = (struct memp *)(void *)((u8_t *)memp + MEMP_SIZE + memp_sizes[i] ); } } &hellip; } /** * Get an element from a specific pool. * * @param type the pool to get an element from * * the debug version has two more parameters: * @param file file name calling this function * @param line number of line where this function is called * * @return a pointer to the allocated memory or a NULL pointer on error */ void * #if !MEMP_OVERFLOW_CHECK memp_malloc(memp_t type) #else memp_malloc_fn(memp_t type, const char* file, const int line) #endif { struct memp *memp; SYS_ARCH_DECL_PROTECT(old_level); SYS_ARCH_PROTECT(old_level); memp = memp_tab[type]; if (memp != NULL) { memp_tab[type] = memp-&gt;next; memp = (struct memp*)(void *)((u8_t*)memp + MEMP_SIZE); } else { &hellip; } SYS_ARCH_UNPROTECT(old_level); return memp; } /** * Put an element back into its pool. * * @param type the pool where to put mem * @param mem the memp element to free */ void memp_free(memp_t type, void *mem) { struct memp *memp; SYS_ARCH_DECL_PROTECT(old_level); &hellip; memp = (struct memp *)(void *)((u8_t*)mem - MEMP_SIZE); SYS_ARCH_PROTECT(old_level); memp-&gt;next = memp_tab[type]; memp_tab[type] = memp; SYS_ARCH_UNPROTECT(old_level); } [/c] memp_tab[]在init 函数里初始化，将内存池的每个元素链成链表。做成链表就很简单了，memp_malloc() 的时候直接就是返回memp_tab[]所指向的内存块即可，并把memp_tab指向下一个，相当于从链表中剔除。memp_free()的时候就把它重新链上链表即可。 具体的就去看源代码了，这里不方便贴太多。 <strong>后记之Lwip内存使用</strong> 从网卡驱动部分的源代码看，所有输入的包使用的PBUF_POOL的内存，用户在分配自己包的内存时，千万不要用PBUF_POOL类型的内存，因为如果PBUF_POOL很有可能会被外来的包全部占用，导致一直分配不到内存。这点从netbuf_alloc函数里可以看到，它使用的是PBUF_RAM类型的内存，就是有此意。还有从tcp_write函数中也可以看到，在flag 有WRITE_COPY 标志时，调用的也是PBUF_RAM类型的内存。 从协议栈输入到应用层，都只是pbuf头的层层剥离与指针的传递，没有任何的数据拷贝过程，这正是LwIP的特点所在，为嵌入式系统而写的轻量级协议栈。只有在tcp_write 发送数据时，可以选择一个WRITE_COPY选项，将用户的数据拷贝到tcp层，之后用户即可释放自己的内存，剩下的事就由tcp负责处理。udp的发送过程没有数据拷贝，如果所发送的pbuf前头没有足够的内存放包头的话，会申请一点PBUF_RAM类型的内存放传输层及以下的帧头，把数据chain到其之后。 另外内存分配函数是可以放心在其它线程内存调用的，但NO ISR！用户若想单独想开辟一个内存池，可以在memp_std里定义即可。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/lwip/" rel="tag">LwIP</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="tag">Lwip 内存管理</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="John Doe avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About John Doe</span>
+	</div>
+	<div class="authorbox__description">
+		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/iar-sprintf-%e8%be%93%e5%87%ba%e4%b8%8d%e6%ad%a3%e5%b8%b8%e7%9a%84%e9%97%ae%e9%a2%98/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">IAR sprintf() 输出不正常的问题</p>
+		</a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/ubuntu-%e4%b8%8a%e9%83%a8%e7%bd%b2openvpn%e6%9c%8d%e5%8a%a1/" rel="next">
+			<span class="post-nav__caption">Next&thinsp;»</span>
+			<p class="post-nav__post-title">ubuntu 上部署OpenVPN服务</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%e5%9f%9f%e5%86%85%e7%9a%84pc-%e8%ae%bf%e9%97%ae%e9%9d%9e%e5%9f%9f%e5%86%85%e7%9a%84samba%e6%9c%8d%e5%8a%a1%e5%99%a8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%bc%80%e5%8f%91%e6%80%bb%e7%bb%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e7%bc%96%e8%af%91pynq-%e5%9c%a8zcu102%e4%b8%8a%e7%9a%84%e9%95%9c%e5%83%8f/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menu_main/" title="Menu_Main">Menu_Main</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%94%9F%E6%B4%BB/" title="生活">生活</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Mainroad.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

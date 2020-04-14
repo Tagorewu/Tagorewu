@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FPGA on Tagore&#39;s Studio</title>
+    <link>/tags/fpga/</link>
+    <description>Recent content in FPGA on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 05 Apr 2019 12:46:54 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/fpga/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>编译PYNQ 在ZCU102上的镜像</title>
+      <link>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
+      
+      <guid>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
+      <description>由于PYNQ官方没有编译好的ZCU102的镜像，所以需要自己手动编译。这里记录一下编译过程。
+因为手头上的ZCU102 批次比较新，所以目前只能使用2018.3 版本的SDK才能BOOT起来。（应该是由于换了DDR型号了，所以老版本的镜像是BOOT不起来的。板子版本是REVISION 1.1的 新批号）
+PYNQ 版本Xilinx Tool 版本对应 Release version
+Xilinx Tool Version
+v1.4
+2015.4
+v2.0
+2016.1
+v2.1
+2017.4
+v2.2
+2017.4
+v2.3
+2018.2
+v2.4
+2018.3
+参考：
+https://blog.csdn.net/vacajk/article/details/84728062
+https://github.com/Xilinx/PYNQ/tree/image_v2.4/sdbuild
+https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
+准备工作  使用事先编译好的文件系统: bionic.aarch64.2.4.img ZCU102 BSP: xilinx-zcu102-v2018.3-final.bsp  如果非官方板子，比如黑金的AC7020, 没有BSP, 则可以从vivado 工程导出hdf 文件，给petalinux 生成一个bsp   安装好SDSoc2018.3, PetaLinux2018.3 系统环境 Ubuntu 1604-64  编译步骤 \# 下载 pynq $ git clone https://github.com/Xilinx/PYNQ.git $ cd PYNQ $ git checkout image\_v2.4 # 检查依赖环境，qemu，crosstool-ng $ cd .</description>
+    </item>
+    
+    <item>
+      <title>Libero 安装教程</title>
+      <link>/post/libero-%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Thu, 07 Jan 2016 02:07:03 +0000</pubDate>
+      
+      <guid>/post/libero-%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid>
+      <description>在此记录下各种软件的安装教程，等到重装电脑时就会发现它的好处了。 这里 Libero 的版本是11.5。V11.3的版本有bug，不建议装。 去官网申请一个免费的Gold 1 year 的license. 可使用 Vol C: 查看Disk 序列号。 安装软件完毕后。 1. 放置license.dat文件到C:\flexlm\ 下。 2. 如果license 不是用你的disk序列号申请的，可用硬盘序列号修改器修改C盘序列号 。 3. 添加系统环境变量。 LM_LICENSE_FILE = c:\flexlm\license.dat; SNPSLMD_LICENSE_FILE = c:\flexlm\license.dat; 完成！</description>
+    </item>
+    
+    <item>
+      <title>Verdi201210 安装笔记</title>
+      <link>/post/verdi201210-%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/</link>
+      <pubDate>Fri, 20 Nov 2015 07:02:41 +0000</pubDate>
+      
+      <guid>/post/verdi201210-%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/</guid>
+      <description>Verdi 为Debussy 在linux的底下的版本，windows版本Debussy已经不更新了。前面也在xp下试验过Debussy54 和modelsim联调，Debussy经常出错退出。于是果断放弃了。(Verdi用于查看代码和生成原理图，了解整个设计架构。modelsim主要还是用来进行仿真，获取波形和测试文档vcd，看不了原理图。) 这里在ubuntu 1204下安装Verdi201210。 安装步骤:
+ 下载 Verdi3-201210，及破解工具 novas_single.exe; 解压拷贝到所要安装Verdi的目录。这里要用到 tar -zxvf filename.tar.gz; 将压缩包全部解压。我是放在 /home/xxx/EDA/Verdi3_201210/ 下； 破解。windows 命令行下运行 novas_single -V2012.10 -FVerdi -MXXXXXXXXXXXX 。X为linux网卡的MAC地址，可用 ifconfig -a 查看eth0 的MAC。得到 novas_license_V6.0.txt。打开它，修改主机名为linux的主机名。或者在linux 下使用wine 工具运行破解工具。 在snslmgrd 之后添加snslmgrd的路径。  最后修改保存成license.dat 如下： SERVER ubuntu 000c29ee5f8a 28001 DAEMON snslmgrd /home/xxxx/EDA/Verdi3_201210/bin/snslmgrd FEATURE Verdi snslmgrd 2012.10 1-nov-2016 20 6E178584B60F25C09A15 \ VENDOR_STRING=ES=HJHJDBQQNLQKNNMHHBPP HOSTID=000c29ee5f8a \ ck=224 拷贝至Verdi所在目录的license文件夹下。
+ 修改环境变量 修改 /etc/.bashrc 文件。 ############################ export VERDI_HOME=&amp;rdquo;/home/xxxx/Verdi3_2010&amp;rdquo; export PATH=$VERDI_HOME/bin:$VERDI_HOME/platform/LINUX/bin:$PATH export LM_LICENSE_FILE=&amp;quot;$VERDI_HOME/license/novas_license.dat&amp;rdquo; alias lmgrd=&amp;quot;lmgrd $VERDI_HOME/license/novas_license.</description>
+    </item>
+    
+    <item>
+      <title>基于Altera FPGA的 摄像头&#43;LCD DIY</title>
+      <link>/post/%E5%9F%BA%E4%BA%8Ealtera-fpga%E7%9A%84-%E6%91%84%E5%83%8F%E5%A4%B4&#43;lcd-diy/</link>
+      <pubDate>Sat, 30 Nov 2013 09:54:20 +0000</pubDate>
+      
+      <guid>/post/%E5%9F%BA%E4%BA%8Ealtera-fpga%E7%9A%84-%E6%91%84%E5%83%8F%E5%A4%B4&#43;lcd-diy/</guid>
+      <description>前些日子买了个大家玩得很火的OV7670来玩玩，由于之前没玩过摄像头，也听说不带FIFO的摄像头采集起来是那么困难，所以就买了个不带FIFO的来尝尝鲜。后来看了资料才知道，一幅QVGA的图像按320*240*2Byte来算，也要153.6KB内存，对单片机来说是一比不小的开销。更何况单片机的速率才多少M，就按50M主频来说，捕捉一个8M左右的像素时钟也是相当困难的。当然后面也用STM32F103ZET6来尝试捕捉了一下，结果也是不尽人意。 考虑到时钟的捕捉，当然是用FPGA的硬件电路来实现才是王道了。又想想摄像头和液晶屏的初始化也是相当麻烦的，如果也用硬件电路来实现，那写起代码来就是一大串了，而且改起来也不方便。于是乎，脑子里一直存在的一个想法在这里就能得到真正的应用和实现了。那就是MCU与FPGA结合的方案。手上正有一款Altera 的EP2C8Q208C的开发板。那么我们的DIY就开始了。
+  首先要准备的东西就是 一个OV7670摄像头，一块TFT液晶屏，一块FPGA核心板。使用Nios II做为主控MCU会使你的DIY简洁很多。系统主要的结构就如下：
+  一个Nios II MCU，一个VGA转8080并口的模块VGA_8080，一个MCU与VGA_8080模块分别对LCD控制的总线切换模块。模块分工，MCU负责初始化液晶屏和OV7670。 VGA_8080负责OV7670的VGA输出时序转换成LCD的16bit的8080并口时序 。由于我的LCD是320*240的，所以我们只 使用QVGA输出，并且LCD使用的是565的像素格式，我们也将OV7670配置成565像素格式，这样能够使我们的编程方便很多。 我们的主要任务分为以下几块：1.nios ii MCU的搭建; 2.nios ii软件程序的编写；3.fpga硬件代码的编写。 一、NIOS ii MCU搭建可参考《NIOS ii 那些事儿》，硬件上要求板子上带有SDRAM, 否则内存不够会很麻烦。等系统整体编译通过后可以把代码写入flash当中，这样每次掉电后开机就能直接运行了。主要配置一个LCD的控制口，SDRAM的控制口，OV7670的SCCB控制口。这里有几个注意点：1.FPGA的双向口处理，由于SCCB的SIOD数据口是双向的，所以在配置时要配置成双向口，画顶层Pin时也要用bidir。2.本来液晶屏的数据口也是双向的，但是在FPGA内部没有三态门，按顶层那样的连接无法实现双向，要实现的话只能通过将IO口引出来，再把IO口连接到其它pin脚输入，不过这样很麻烦，就省了，LCD代码中要改动LCD读数据的部分。（不知道各位还有什么好办法能实现内部的双向口？） 二、然后就是LCD代码，和OV7670初始化代码的移植，之前都是在STM32上跑的，想办法把它们移植到NIOS ii当中，基本上只需修改IO口读写部分的代码就行了。 三、关键部分就是FPGA硬件上实现 OV7670的QVGA时序到液晶屏读写时序的转换。Bus_Switcher就是个2选一的多路选择器，负责切换LCD的控制总线。在主MCU初始化液晶屏和OV7670之后，就把液晶屏的控制总线交给VGA_8080控制模块，直接将OV7670的QVGA时序写入到液晶屏的GRAM当中，这样显示的帧频就能达到很高，画面非常流畅。在后期设计中可以再设置一个存储器，将图片保存下来。这里仅仅实现的摄像头信号的高速显示。这里的代码基本上可达到要求了，还有些小细节要优化，后期还可以添加一系列按钮调整OV7670的各种参数，非常之方便。
+ module VGA_8080(iclk, rst_n, XCLK, HREF, VSYNC, PCLK, C_DATA, LCD_CS, LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_DATA); input rst_n; input iclk; // camera IO; output XCLK; input HREF, VSYNC, PCLK; input [7:0] C_DATA; //LCD IO; output LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_CS; output [15:0] LCD_DATA;</description>
+    </item>
+    
+  </channel>
+</rss>

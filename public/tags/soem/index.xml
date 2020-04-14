@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SOEM on Tagore&#39;s Studio</title>
+    <link>/tags/soem/</link>
+    <description>Recent content in SOEM on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 25 Nov 2015 02:52:26 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/soem/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[转]开源EtherCAT Master比较</title>
+      <link>/post/%E8%BD%AC%E5%BC%80%E6%BA%90ethercat-master%E6%AF%94%E8%BE%83/</link>
+      <pubDate>Wed, 25 Nov 2015 02:52:26 +0000</pubDate>
+      
+      <guid>/post/%E8%BD%AC%E5%BC%80%E6%BA%90ethercat-master%E6%AF%94%E8%BE%83/</guid>
+      <description>EtherCAT的主站开发是基于EtherCAT机器人控制系统的开发中非常重要的环节。目前常见开源的主站代码为的RT-LAB开发的SOEM (Simple OpenSource EtherCAT Master)和EtherLab的the IgH EtherCAT® Master。使用起来SOEM的简单一些，而the IgH EtherCAT® Master更复杂一些，但对EtherCAT的实现更为完整。 具体比较如下表：
+功能
+SOME(Simple OpenSource EtherCAT Master)
+IgH EtherCAT Master
+版本
+1.3.0
+1.5.2
+更新日期
+2013-02-26
+2013-02-12
+发布公司
+RT-LAB
+EtherLab
+官方网站
+ethercat.rt-labs.com
+www.etherlab.org
+支持的操作系统
+Linux,Windows
+Linux
+支持RT内核
+RTAI, Xenomai
+RTAI, Xenomai, RT-Preempt
+支持的CPU
+Freescale i.MX53 Blackfin 5xx Blackfin 6xx Intel
+支持Linux内核的所有CPU
+支持的网卡
+-
+8139too - RealTek 8139C (or compatible) Fast-Ethernet chipsets. •e1000 - Intel PRO/1000 Gigabit-Ethernet chipsets (PCI). •e100 - Intel PRO/100 Fast-Ethernet chipsets.</description>
+    </item>
+    
+  </channel>
+</rss>

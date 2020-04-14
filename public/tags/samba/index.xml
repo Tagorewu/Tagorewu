@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>samba on Tagore&#39;s Studio</title>
+    <link>/tags/samba/</link>
+    <description>Recent content in samba on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 22 Aug 2018 11:25:05 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/samba/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>嵌入式linux 开发中常用工具安装笔记</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
+      
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
+      <description>Samba server    \# apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user \[shuji\] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart   Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     nfs   \# vim /etc/exports /srv/nfs *(rw,sync,nosubtree_check)</description>
+    </item>
+    
+  </channel>
+</rss>

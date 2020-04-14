@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SSI Tag的使用 - Mainroad</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="SSI Tag的使用" />
+<meta property="og:description" content="这里先说最原始的使用SSI tag的方式，因为这样做在C开发中最简单。跟后来通用的web服务器的SSI有点不一样，因为后来为了使上层开发更方便，又进行了一些封装。 最原始的SSI是这样规定的，如在html中嵌入SSI tag。使用 [code]&lt;&ndash;#tagname&ndash;&gt;[/code] ;，则当Web服务器生成网页时，会将当前的标签后插入所指定的内容。这就是SSI Tag的作用。 SSI可以说是最初动态生成网页的方法，不仅仅是用来插入一些变量也可以直接插入javascript、json等等你想要发送给客户端的内容！一般用SSI来插入静态变量比较方便，如果是插入input框的当前值的话，可以往SSI中插入一段javascript代码或者是json格式的数据，再用javascript把这些实时的值加载进input框。 [html] Name:IP Address:MAC Address:[/html] 其Tag 在Web 服务端代码中作如下定义,并定义其序号的宏。 [c] static const char *g_pcConfigSSITags[] = { &ldquo;ipaddr&rdquo;, // SSI_INDEX_IPADDR &ldquo;macaddr&rdquo;, // SSI_INDEX_MACADDR &ldquo;p0br&rdquo;, // SSI_INDEX_P0BR &ldquo;p0sb&rdquo;, // SSI_INDEX_P0SB &ldquo;p0p&rdquo;, // SSI_INDEX_P0P &ldquo;p0bc&rdquo;, // SSI_INDEX_P0BC &ldquo;p0fc&rdquo;, // SSI_INDEX_P0FC &ldquo;p0tt&rdquo;, // SSI_INDEX_P0TT &ldquo;p0tlp&rdquo;, // SSI_INDEX_P0TLP &ldquo;p0trp&rdquo;, // SSI_INDEX_P0TRP &ldquo;p0tip&rdquo;, // SSI_INDEX_P0TIP &ldquo;p0tip1&rdquo;, // SSI_INDEX_P0TIP1 &ldquo;p0tip2&rdquo;, // SSI_INDEX_P0TIP2 &ldquo;p0tip3&rdquo;, // SSI_INDEX_P0TIP3 &ldquo;p0tip4&rdquo;, // SSI_INDEX_P0TIP4 &ldquo;p0tnm&rdquo;, // SSI_INDEX_P0TNM &ldquo;p1br&rdquo;, // SSI_INDEX_P1BR &ldquo;p1sb&rdquo;, // SSI_INDEX_P1SB &ldquo;p1p&rdquo;, // SSI_INDEX_P1P &ldquo;p1bc&rdquo;, // SSI_INDEX_P1BC &ldquo;p1fc&rdquo;, // SSI_INDEX_P1FC &ldquo;p1tt&rdquo;, // SSI_INDEX_P1TT &ldquo;p1tlp&rdquo;, // SSI_INDEX_P1TLP &ldquo;p1trp&rdquo;, // SSI_INDEX_P1TRP &ldquo;p1tip&rdquo;, // SSI_INDEX_P1TIP &ldquo;p1tip1&rdquo;, // SSI_INDEX_P1TIP1 &ldquo;p1tip2&rdquo;, // SSI_INDEX_P1TIP2 &ldquo;p1tip3&rdquo;, // SSI_INDEX_P1TIP3 &ldquo;p1tip4&rdquo;, // SSI_INDEX_P1TIP4 &ldquo;p1tnm&rdquo;, // SSI_INDEX_P1TNM &ldquo;modname&rdquo;, // SSI_INDEX_MODNAME &ldquo;pnpport&rdquo;, // SSI_INDEX_PNPPORT &ldquo;disable&rdquo;, // SSI_INDEX_DISABLE &hellip; }; [/c] 然后在SSIHandler里如下解析,当每次serving a page with a ``." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/ssi-tag%e7%9a%84%e4%bd%bf%e7%94%a8/" />
+<meta property="article:published_time" content="2016-04-12T03:00:09+00:00" />
+<meta property="article:modified_time" content="2016-04-12T03:00:09+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mainroad" rel="home">
+				<div class="logo__title">Mainroad</div>
+				<div class="logo__tagline">Just another site</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Hugo</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">SSI Tag的使用</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-12T03:00:09Z">April 12, 2016</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>这里先说最原始的使用SSI tag的方式，因为这样做在C开发中最简单。跟后来通用的web服务器的SSI有点不一样，因为后来为了使上层开发更方便，又进行了一些封装。 最原始的SSI是这样规定的，如在html中嵌入SSI tag。使用 [code]&lt;&ndash;#tagname&ndash;&gt;[/code] ;，则当Web服务器生成网页时，会将当前的标签后插入所指定的内容。这就是SSI Tag的作用。 SSI可以说是最初动态生成网页的方法，不仅仅是用来插入一些变量也可以直接插入javascript、json等等你想要发送给客户端的内容！一般用SSI来插入静态变量比较方便，如果是插入input框的当前值的话，可以往SSI中插入一段javascript代码或者是json格式的数据，再用javascript把这些实时的值加载进input框。 [html] <!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->Name:<!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->IP Address:<!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->MAC Address:<!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> [/html] 其Tag 在Web 服务端代码中作如下定义,并定义其序号的宏。 [c] static const char *g_pcConfigSSITags[] = { &ldquo;ipaddr&rdquo;, // SSI_INDEX_IPADDR &ldquo;macaddr&rdquo;, // SSI_INDEX_MACADDR &ldquo;p0br&rdquo;, // SSI_INDEX_P0BR &ldquo;p0sb&rdquo;, // SSI_INDEX_P0SB &ldquo;p0p&rdquo;, // SSI_INDEX_P0P &ldquo;p0bc&rdquo;, // SSI_INDEX_P0BC &ldquo;p0fc&rdquo;, // SSI_INDEX_P0FC &ldquo;p0tt&rdquo;, // SSI_INDEX_P0TT &ldquo;p0tlp&rdquo;, // SSI_INDEX_P0TLP &ldquo;p0trp&rdquo;, // SSI_INDEX_P0TRP &ldquo;p0tip&rdquo;, // SSI_INDEX_P0TIP &ldquo;p0tip1&rdquo;, // SSI_INDEX_P0TIP1 &ldquo;p0tip2&rdquo;, // SSI_INDEX_P0TIP2 &ldquo;p0tip3&rdquo;, // SSI_INDEX_P0TIP3 &ldquo;p0tip4&rdquo;, // SSI_INDEX_P0TIP4 &ldquo;p0tnm&rdquo;, // SSI_INDEX_P0TNM &ldquo;p1br&rdquo;, // SSI_INDEX_P1BR &ldquo;p1sb&rdquo;, // SSI_INDEX_P1SB &ldquo;p1p&rdquo;, // SSI_INDEX_P1P &ldquo;p1bc&rdquo;, // SSI_INDEX_P1BC &ldquo;p1fc&rdquo;, // SSI_INDEX_P1FC &ldquo;p1tt&rdquo;, // SSI_INDEX_P1TT &ldquo;p1tlp&rdquo;, // SSI_INDEX_P1TLP &ldquo;p1trp&rdquo;, // SSI_INDEX_P1TRP &ldquo;p1tip&rdquo;, // SSI_INDEX_P1TIP &ldquo;p1tip1&rdquo;, // SSI_INDEX_P1TIP1 &ldquo;p1tip2&rdquo;, // SSI_INDEX_P1TIP2 &ldquo;p1tip3&rdquo;, // SSI_INDEX_P1TIP3 &ldquo;p1tip4&rdquo;, // SSI_INDEX_P1TIP4 &ldquo;p1tnm&rdquo;, // SSI_INDEX_P1TNM &ldquo;modname&rdquo;, // SSI_INDEX_MODNAME &ldquo;pnpport&rdquo;, // SSI_INDEX_PNPPORT &ldquo;disable&rdquo;, // SSI_INDEX_DISABLE &hellip; }; [/c] 然后在SSIHandler里如下解析,当每次serving a page with a ``.ssi&rsquo;', ``.shtml&rsquo;&rsquo; or ``.shtm&rsquo;&rsquo; file extension 的时候都会将SSI tag进行替换。 [c] static uint16_t ConfigSSIHandler(int iIndex, char *pcInsert, int iInsertLen) { uint32_t ui32Port; int iCount; const char *pcString; // // Which SSI tag are we being asked to provide content for? // switch(iIndex) { // // The local IP address tag &ldquo;ipaddr&rdquo;. // case SSI_INDEX_IPADDR: { uint32_t ui32IPAddr; ui32IPAddr = lwIPLocalIPAddrGet(); return(usnprintf(pcInsert, iInsertLen, &ldquo;%d.%d.%d.%d&rdquo;, ((ui32IPAddr &gt;&gt; 0) &amp; 0xFF), ((ui32IPAddr &gt;&gt; 8) &amp; 0xFF), ((ui32IPAddr &gt;&gt; 16) &amp; 0xFF), ((ui32IPAddr &gt;&gt; 24) &amp; 0xFF))); } // // The local MAC address tag &ldquo;macaddr&rdquo;. // case SSI_INDEX_MACADDR: { uint8_t pucMACAddr[6]; lwIPLocalMACGet(pucMACAddr); return(usnprintf(pcInsert, iInsertLen, &ldquo;%02X-%02X-%02X-%02X-%02X-%02X&rdquo;, pucMACAddr[0], pucMACAddr[1], pucMACAddr[2], pucMACAddr[3], pucMACAddr[4], pucMACAddr[5])); } &hellip; // // All other tags are unknown. // default: { return(usnprintf(pcInsert, iInsertLen, &ldquo;<!-- raw HTML omitted --><!-- raw HTML omitted -->Tag %d unknown!<!-- raw HTML omitted --><!-- raw HTML omitted -->&rdquo;, iIndex)); } } } [/c] 学习了SSI tag怎么用的，然后可以再深入研究下在文本中检索 SSI tag 的写法。这里用了个状态机，按顺序搜索ssi lead in 和lead out。 [c] /* We have sent all the data that was already parsed so continue parsing * the buffer contents looking for SSI tags. */ while((hs-&gt;parse_left) &amp;&amp; (err == ERR_OK)) { /* @todo: somewhere in this loop, &lsquo;len&rsquo; should grow again&hellip; */ if (len == 0) { return data_to_send; } switch(hs-&gt;tag_state) { case TAG_NONE: /* We are not currently processing an SSI tag so scan for the * start of the lead-in marker. */ if(*hs-&gt;parsed == g_pcTagLeadIn[0]) { /* We found what could be the lead-in for a new tag so change * state appropriately. */ hs-&gt;tag_state = TAG_LEADIN; hs-&gt;tag_index = 1; #if !LWIP_HTTPD_SSI_INCLUDE_TAG hs-&gt;tag_started = hs-&gt;parsed; #endif /* !LWIP_HTTPD_SSI_INCLUDE_TAG */ } /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; break; case TAG_LEADIN: /* We are processing the lead-in marker, looking for the start of * the tag name. */ /* Have we reached the end of the leadin? */ if(hs-&gt;tag_index == LEN_TAG_LEAD_IN) { hs-&gt;tag_index = 0; hs-&gt;tag_state = TAG_FOUND; } else { /* Have we found the next character we expect for the tag leadin? */ if(*hs-&gt;parsed == g_pcTagLeadIn[hs-&gt;tag_index]) { /* Yes - move to the next one unless we have found the complete * leadin, in which case we start looking for the tag itself */ hs-&gt;tag_index++; } else { /* We found an unexpected character so this is not a tag. Move * back to idle state. */ hs-&gt;tag_state = TAG_NONE; } /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; } break; case TAG_FOUND: /* We are reading the tag name, looking for the start of the * lead-out marker and removing any whitespace found. */ /* Remove leading whitespace between the tag leading and the first * tag name character. */ if((hs-&gt;tag_index == 0) &amp;&amp; ((*hs-&gt;parsed == ' &lsquo;) || (*hs-&gt;parsed == &lsquo;\t&rsquo;) || (*hs-&gt;parsed == &lsquo;\n&rsquo;) || (*hs-&gt;parsed == &lsquo;\r&rsquo;))) { /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; break; } /* Have we found the end of the tag name? This is signalled by * us finding the first leadout character or whitespace */ if((*hs-&gt;parsed == g_pcTagLeadOut[0]) || (*hs-&gt;parsed == ' &lsquo;) || (*hs-&gt;parsed == &lsquo;\t&rsquo;) || (*hs-&gt;parsed == &lsquo;\n&rsquo;) || (*hs-&gt;parsed == &lsquo;\r&rsquo;)) { if(hs-&gt;tag_index == 0) { /* We read a zero length tag so ignore it. */ hs-&gt;tag_state = TAG_NONE; } else { /* We read a non-empty tag so go ahead and look for the * leadout string. */ hs-&gt;tag_state = TAG_LEADOUT; LWIP_ASSERT(&ldquo;hs-&gt;tag_index &lt;= 0xff&rdquo;, hs-&gt;tag_index &lt;= 0xff); hs-&gt;tag_name_len = (u8_t)hs-&gt;tag_index; hs-&gt;tag_name[hs-&gt;tag_index] = &lsquo;\0&rsquo;; if(*hs-&gt;parsed == g_pcTagLeadOut[0]) { hs-&gt;tag_index = 1; } else { hs-&gt;tag_index = 0; } } } else { /* This character is part of the tag name so save it */ if(hs-&gt;tag_index &lt; LWIP_HTTPD_MAX_TAG_NAME_LEN) { hs-&gt;tag_name[hs-&gt;tag_index++] = *hs-&gt;parsed; } else { /* The tag was too long so ignore it. */ hs-&gt;tag_state = TAG_NONE; } } /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; break; /* We are looking for the end of the lead-out marker. */ case TAG_LEADOUT: /* Remove leading whitespace between the tag leading and the first * tag leadout character. */ if((hs-&gt;tag_index == 0) &amp;&amp; ((*hs-&gt;parsed == ' &lsquo;) || (*hs-&gt;parsed == &lsquo;\t&rsquo;) || (*hs-&gt;parsed == &lsquo;\n&rsquo;) || (*hs-&gt;parsed == &lsquo;\r&rsquo;))) { /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; break; } /* Have we found the next character we expect for the tag leadout? */ if(*hs-&gt;parsed == g_pcTagLeadOut[hs-&gt;tag_index]) { /* Yes - move to the next one unless we have found the complete * leadout, in which case we need to call the client to process * the tag. */ /* Move on to the next character in the buffer */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; if(hs-&gt;tag_index == (LEN_TAG_LEAD_OUT - 1)) { /* Call the client to ask for the insert string for the * tag we just found. */ #if LWIP_HTTPD_SSI_MULTIPART hs-&gt;tag_part = 0; /* start with tag part 0 */ #endif /* LWIP_HTTPD_SSI_MULTIPART */ get_tag_insert(hs); /* Next time through, we are going to be sending data * immediately, either the end of the block we start * sending here or the insert string. */ hs-&gt;tag_index = 0; hs-&gt;tag_state = TAG_SENDING; hs-&gt;tag_end = hs-&gt;parsed; #if !LWIP_HTTPD_SSI_INCLUDE_TAG hs-&gt;parsed = hs-&gt;tag_started; #endif /* !LWIP_HTTPD_SSI_INCLUDE_TAG*/ /* If there is any unsent data in the buffer prior to the * tag, we need to send it now. */ if (hs-&gt;tag_end &gt; hs-&gt;file) { /* How much of the data can we send? */ #if LWIP_HTTPD_SSI_INCLUDE_TAG if(len &gt; hs-&gt;tag_end - hs-&gt;file) { len = (u16_t)(hs-&gt;tag_end - hs-&gt;file); } #else /* LWIP_HTTPD_SSI_INCLUDE_TAG*/ if(len &gt; hs-&gt;tag_started - hs-&gt;file) { /* we would include the tag in sending */ len = (u16_t)(hs-&gt;tag_started - hs-&gt;file); } #endif /* LWIP_HTTPD_SSI_INCLUDE_TAG*/ err = http_write(pcb, hs-&gt;file, &amp;len, HTTP_IS_DATA_VOLATILE(hs)); if (err == ERR_OK) { data_to_send = true; #if !LWIP_HTTPD_SSI_INCLUDE_TAG if(hs-&gt;tag_started &lt;= hs-&gt;file) { /* pretend to have sent the tag, too */ len += hs-&gt;tag_end - hs-&gt;tag_started; } #endif /* !LWIP_HTTPD_SSI_INCLUDE_TAG*/ hs-&gt;file += len; hs-&gt;left -= len; } } } else { hs-&gt;tag_index++; } } else { /* We found an unexpected character so this is not a tag. Move * back to idle state. */ hs-&gt;parse_left&ndash;; hs-&gt;parsed++; hs-&gt;tag_state = TAG_NONE; } break; /* * We have found a valid tag and are in the process of sending * data as a result of that discovery. We send either remaining data * from the file prior to the insert point or the insert string itself. */ case TAG_SENDING: /* Do we have any remaining file data to send from the buffer prior * to the tag? */ if(hs-&gt;tag_end &gt; hs-&gt;file) { /* How much of the data can we send? */ #if LWIP_HTTPD_SSI_INCLUDE_TAG if(len &gt; hs-&gt;tag_end - hs-&gt;file) { len = (u16_t)(hs-&gt;tag_end - hs-&gt;file); } #else /* LWIP_HTTPD_SSI_INCLUDE_TAG*/ LWIP_ASSERT(&ldquo;hs-&gt;started &gt;= hs-&gt;file&rdquo;, hs-&gt;tag_started &gt;= hs-&gt;file); if (len &gt; hs-&gt;tag_started - hs-&gt;file) { /* we would include the tag in sending */ len = (u16_t)(hs-&gt;tag_started - hs-&gt;file); } #endif /* LWIP_HTTPD_SSI_INCLUDE_TAG*/ if (len != 0) { err = http_write(pcb, hs-&gt;file, &amp;len, HTTP_IS_DATA_VOLATILE(hs)); } else { err = ERR_OK; } if (err == ERR_OK) { data_to_send = true; #if !LWIP_HTTPD_SSI_INCLUDE_TAG if(hs-&gt;tag_started &lt;= hs-&gt;file) { /* pretend to have sent the tag, too */ len += hs-&gt;tag_end - hs-&gt;tag_started; } #endif /* !LWIP_HTTPD_SSI_INCLUDE_TAG*/ hs-&gt;file += len; hs-&gt;left -= len; } } else { #if LWIP_HTTPD_SSI_MULTIPART if(hs-&gt;tag_index &gt;= hs-&gt;tag_insert_len) { /* Did the last SSIHandler have more to send? */ if (hs-&gt;tag_part != HTTPD_LAST_TAG_PART) { /* If so, call it again */ hs-&gt;tag_index = 0; get_tag_insert(hs); } } #endif /* LWIP_HTTPD_SSI_MULTIPART */ /* Do we still have insert data left to send? */ if(hs-&gt;tag_index &lt; hs-&gt;tag_insert_len) { /* We are sending the insert string itself. How much of the * insert can we send? */ if(len &gt; (hs-&gt;tag_insert_len - hs-&gt;tag_index)) { len = (hs-&gt;tag_insert_len - hs-&gt;tag_index); } /* Note that we set the copy flag here since we only have a * single tag insert buffer per connection. If we don&rsquo;t do * this, insert corruption can occur if more than one insert * is processed before we call tcp_output. */ err = http_write(pcb, &amp;(hs-&gt;tag_insert[hs-&gt;tag_index]), &amp;len, HTTP_IS_TAG_VOLATILE(hs)); if (err == ERR_OK) { data_to_send = true; hs-&gt;tag_index += len; /* Don&rsquo;t return here: keep on sending data */ } } else { /* We have sent all the insert data so go back to looking for * a new tag. */ LWIP_DEBUGF(HTTPD_DEBUG, (&ldquo;Everything sent.\n&rdquo;)); hs-&gt;tag_index = 0; hs-&gt;tag_state = TAG_NONE; #if !LWIP_HTTPD_SSI_INCLUDE_TAG hs-&gt;parsed = hs-&gt;tag_end; #endif /* !LWIP_HTTPD_SSI_INCLUDE_TAG*/ } break; } } } [/c] 其实看懂了SSI实现的原理，就可以联想到简单的php引擎是如何处理php代码的。另外也可以看出ssi的处理效率是比较低的，因为需要检索整个文本的ssi tag。php也类似，所以后面会出现编译型的php引擎，预先把php代码和文本分开，这样执行效率就高很多。</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/shtm/" rel="tag">shtm</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/shtml/" rel="tag">shtml</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ssi/" rel="tag">SSI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/web-develop/" rel="tag">Web Develop</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="John Doe avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About John Doe</span>
+	</div>
+	<div class="authorbox__description">
+		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/make%e5%b7%a5%e5%85%b7%e4%bd%bf%e7%94%a8/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">make工具使用</p>
+		</a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/%e8%bd%achttp%e5%8d%8f%e8%ae%ae%e4%b8%8ehttp%e8%a1%a8%e5%8d%95%e4%bc%a0%e8%be%93%e6%a0%bc%e5%bc%8f/" rel="next">
+			<span class="post-nav__caption">Next&thinsp;»</span>
+			<p class="post-nav__post-title">HTTP协议与HTTP表单传输格式</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%e5%9f%9f%e5%86%85%e7%9a%84pc-%e8%ae%bf%e9%97%ae%e9%9d%9e%e5%9f%9f%e5%86%85%e7%9a%84samba%e6%9c%8d%e5%8a%a1%e5%99%a8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%bc%80%e5%8f%91%e6%80%bb%e7%bb%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e7%bc%96%e8%af%91pynq-%e5%9c%a8zcu102%e4%b8%8a%e7%9a%84%e9%95%9c%e5%83%8f/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menu_main/" title="Menu_Main">Menu_Main</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%94%9F%E6%B4%BB/" title="生活">生活</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Mainroad.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

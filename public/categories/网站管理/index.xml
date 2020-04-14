@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网站管理 on Tagore&#39;s Studio</title>
+    <link>/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in 网站管理 on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 14 Apr 2020 21:29:56 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>又折腾网站迁移</title>
+      <link>/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Tue, 14 Apr 2020 21:29:56 +0800</pubDate>
+      
+      <guid>/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</guid>
+      <description>终于把wordpress 的博客用hugo 转成静态网站放到github 了, 不过还很多细节要调整。
+前段时间国内的域名空间备案被注销了，因为域名和空间不在同一家，真是无语。
+之前是因为备案的那家空间续费太贵了，然后就把网站搬到另一家做活动的服务器上了。结果半年后就被警告备案的域名没有指向他家的服务器，要被注销。查了一下它家服务器还是贵，还让不让人活了。索性把网站做成纯静态的搬到github 上了。真是不容易。
+也难怪这几年国内中文搜索的内容质量起来越差了。
+这就有种像住出租房付不起房租，被赶来赶去的感觉。国内这一套真是被玩得越来越溜了。</description>
+    </item>
+    
+  </channel>
+</rss>

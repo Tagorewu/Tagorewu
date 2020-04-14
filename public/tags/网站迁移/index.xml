@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网站迁移 on Tagore&#39;s Studio</title>
+    <link>/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</link>
+    <description>Recent content in 网站迁移 on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 02 Feb 2018 12:27:24 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>网站迁移笔记</title>
+      <link>/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 02 Feb 2018 12:27:24 +0000</pubDate>
+      
+      <guid>/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>迁移参考：
+ https://www.digitalocean.com/community/tutorials/how-to-move-an-apache-web-root-to-a-new-location-on-ubuntu-16-04    Ubuntu1604 安装php5.6
+ 由于Ubuntu1604 默认安装的是php7。由于网站兼容性问题，需要装php5。 步骤参考：https://phpraxis.wordpress.com/2016/05/16/install-php-5-6-or-5-5-in-ubuntu-16-04-lts-xenial-xerus/ &amp;gt; add-apt-repository ppa:ondrej/php &amp;gt; apt-get update &amp;gt; apt-get install php5.6 php5.6-mbstring php5.6-mysql php5.6-sqlite3 &amp;gt; 还有这些按需要装 php5.6-cli php5.6-curl php5.6-json php5.6-mcrypt php5.6-curl php-xdebug libapache2-mod-php5.6 libapache2-mod-php7.0 mysql-server-5.7 apache2 # php 版本切换方法2 &amp;gt; sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart ; echo 1 | sudo update-alternatives &amp;ndash;config php &amp;gt; sudo a2dismod php5.6 ; sudo a2enmod php7.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell completion on Tagore&#39;s Studio</title>
+    <link>/tags/shell-completion/</link>
+    <description>Recent content in shell completion on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Nov 2017 14:40:14 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/shell-completion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux bash shell 像cmd.exe 一样的滚动补齐功能</title>
+      <link>/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Sun, 19 Nov 2017 14:40:14 +0000</pubDate>
+      
+      <guid>/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</guid>
+      <description>有些情况下，比如我们遇到文件名含有一些字符不容易输入时就很着急了，这时候就需要让linux shell像windows cmd.exe 一样自动补全部的文件名，且可自动按顺序一个个滚动切换。方法如下： 在用户目录创建 ~/.inputrc (若不存在则自己创建) 文件里添加一行： [code]TAB: menu-complete[/code] 。 登出再登陆用户就可以了。 For more details see the READLINE section in man bash .</description>
+    </item>
+    
+  </channel>
+</rss>

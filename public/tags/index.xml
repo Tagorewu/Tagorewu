@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Tagore&#39;s Studio</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 14 Apr 2020 21:29:56 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>post</title>
+      <link>/tags/post/</link>
+      <pubDate>Tue, 14 Apr 2020 21:29:56 +0800</pubDate>
+      
+      <guid>/tags/post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>未分类</title>
+      <link>/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/</link>
+      <pubDate>Tue, 23 Apr 2019 01:22:22 +0000</pubDate>
+      
+      <guid>/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Embeded system</title>
+      <link>/tags/embeded-system/</link>
+      <pubDate>Sat, 20 Apr 2019 13:59:51 +0000</pubDate>
+      
+      <guid>/tags/embeded-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zynq linux;</title>
+      <link>/tags/zynq-linux/</link>
+      <pubDate>Sat, 20 Apr 2019 13:59:51 +0000</pubDate>
+      
+      <guid>/tags/zynq-linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AC7020</title>
+      <link>/tags/ac7020/</link>
+      <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
+      
+      <guid>/tags/ac7020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FPGA</title>
+      <link>/tags/fpga/</link>
+      <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
+      
+      <guid>/tags/fpga/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PYNQ</title>
+      <link>/tags/pynq/</link>
+      <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
+      
+      <guid>/tags/pynq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ZCU102</title>
+      <link>/tags/zcu102/</link>
+      <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
+      
+      <guid>/tags/zcu102/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software Design</title>
+      <link>/tags/software-design/</link>
+      <pubDate>Sun, 27 Jan 2019 12:37:31 +0000</pubDate>
+      
+      <guid>/tags/software-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>互斥量</title>
+      <link>/tags/%E4%BA%92%E6%96%A5%E9%87%8F/</link>
+      <pubDate>Sun, 27 Jan 2019 12:37:31 +0000</pubDate>
+      
+      <guid>/tags/%E4%BA%92%E6%96%A5%E9%87%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>线程同步</title>
+      <link>/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Sun, 27 Jan 2019 12:37:31 +0000</pubDate>
+      
+      <guid>/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ARM</title>
+      <link>/tags/arm/</link>
+      <pubDate>Fri, 07 Dec 2018 08:02:10 +0000</pubDate>
+      
+      <guid>/tags/arm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NEON</title>
+      <link>/tags/neon/</link>
+      <pubDate>Fri, 07 Dec 2018 08:02:10 +0000</pubDate>
+      
+      <guid>/tags/neon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>H264 structure</title>
+      <link>/tags/h264-structure/</link>
+      <pubDate>Mon, 19 Nov 2018 05:47:12 +0000</pubDate>
+      
+      <guid>/tags/h264-structure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kernel debug</title>
+      <link>/tags/kernel-debug/</link>
+      <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
+      
+      <guid>/tags/kernel-debug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qemu</title>
+      <link>/tags/qemu/</link>
+      <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
+      
+      <guid>/tags/qemu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>/tags/git/</link>
+      <pubDate>Wed, 22 Aug 2018 12:47:34 +0000</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>image process</title>
+      <link>/tags/image-process/</link>
+      <pubDate>Wed, 22 Aug 2018 12:05:34 +0000</pubDate>
+      
+      <guid>/tags/image-process/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nfs</title>
+      <link>/tags/nfs/</link>
+      <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
+      
+      <guid>/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>samba</title>
+      <link>/tags/samba/</link>
+      <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
+      
+      <guid>/tags/samba/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debug kernel</title>
+      <link>/tags/debug-kernel/</link>
+      <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
+      
+      <guid>/tags/debug-kernel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>petalinux</title>
+      <link>/tags/petalinux/</link>
+      <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
+      
+      <guid>/tags/petalinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c 链接</title>
+      <link>/tags/c-%E9%93%BE%E6%8E%A5/</link>
+      <pubDate>Wed, 04 Apr 2018 07:35:04 +0000</pubDate>
+      
+      <guid>/tags/c-%E9%93%BE%E6%8E%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu16 php5</title>
+      <link>/tags/ubuntu16-php5/</link>
+      <pubDate>Fri, 02 Feb 2018 12:27:24 +0000</pubDate>
+      
+      <guid>/tags/ubuntu16-php5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Website Manage</title>
+      <link>/tags/website-manage/</link>
+      <pubDate>Fri, 02 Feb 2018 12:27:24 +0000</pubDate>
+      
+      <guid>/tags/website-manage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网站迁移</title>
+      <link>/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Fri, 02 Feb 2018 12:27:24 +0000</pubDate>
+      
+      <guid>/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell completion</title>
+      <link>/tags/shell-completion/</link>
+      <pubDate>Sun, 19 Nov 2017 14:40:14 +0000</pubDate>
+      
+      <guid>/tags/shell-completion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gdb</title>
+      <link>/tags/gdb/</link>
+      <pubDate>Wed, 21 Dec 2016 09:41:23 +0000</pubDate>
+      
+      <guid>/tags/gdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>/tags/http/</link>
+      <pubDate>Wed, 14 Dec 2016 14:25:28 +0000</pubDate>
+      
+      <guid>/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>httpd 单片机</title>
+      <link>/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+      <pubDate>Wed, 14 Dec 2016 14:25:28 +0000</pubDate>
+      
+      <guid>/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Develop</title>
+      <link>/tags/web-develop/</link>
+      <pubDate>Wed, 14 Dec 2016 14:25:28 +0000</pubDate>
+      
+      <guid>/tags/web-develop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Http Authorization</title>
+      <link>/tags/http-authorization/</link>
+      <pubDate>Wed, 23 Nov 2016 09:24:20 +0000</pubDate>
+      
+      <guid>/tags/http-authorization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network basis</title>
+      <link>/tags/network-basis/</link>
+      <pubDate>Fri, 19 Aug 2016 15:28:48 +0000</pubDate>
+      
+      <guid>/tags/network-basis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenVPN ubuntu</title>
+      <link>/tags/openvpn-ubuntu/</link>
+      <pubDate>Fri, 19 Aug 2016 15:28:48 +0000</pubDate>
+      
+      <guid>/tags/openvpn-ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LwIP</title>
+      <link>/tags/lwip/</link>
+      <pubDate>Wed, 17 Aug 2016 08:01:24 +0000</pubDate>
+      
+      <guid>/tags/lwip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lwip 内存管理</title>
+      <link>/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 17 Aug 2016 08:01:24 +0000</pubDate>
+      
+      <guid>/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IAR sprintf 不正常</title>
+      <link>/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/</link>
+      <pubDate>Mon, 15 Aug 2016 00:57:44 +0000</pubDate>
+      
+      <guid>/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MCU</title>
+      <link>/tags/mcu/</link>
+      <pubDate>Mon, 15 Aug 2016 00:57:44 +0000</pubDate>
+      
+      <guid>/tags/mcu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp multi-connections</title>
+      <link>/tags/tcp-multi-connections/</link>
+      <pubDate>Thu, 21 Jul 2016 09:37:59 +0000</pubDate>
+      
+      <guid>/tags/tcp-multi-connections/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lwip 信号量</title>
+      <link>/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/</link>
+      <pubDate>Tue, 12 Jul 2016 01:42:53 +0000</pubDate>
+      
+      <guid>/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lwip 邮箱</title>
+      <link>/tags/lwip-%E9%82%AE%E7%AE%B1/</link>
+      <pubDate>Tue, 12 Jul 2016 01:42:53 +0000</pubDate>
+      
+      <guid>/tags/lwip-%E9%82%AE%E7%AE%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SVN服务搭建</title>
+      <link>/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Thu, 02 Jun 2016 08:08:41 +0000</pubDate>
+      
+      <guid>/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ECS</title>
+      <link>/tags/ecs/</link>
+      <pubDate>Wed, 01 Jun 2016 14:58:03 +0000</pubDate>
+      
+      <guid>/tags/ecs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阿里云推荐码</title>
+      <link>/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/</link>
+      <pubDate>Wed, 01 Jun 2016 14:58:03 +0000</pubDate>
+      
+      <guid>/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>get</title>
+      <link>/tags/get/</link>
+      <pubDate>Wed, 13 Apr 2016 07:27:50 +0000</pubDate>
+      
+      <guid>/tags/get/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>表单格式</title>
+      <link>/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Wed, 13 Apr 2016 07:27:50 +0000</pubDate>
+      
+      <guid>/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shtm</title>
+      <link>/tags/shtm/</link>
+      <pubDate>Tue, 12 Apr 2016 03:00:09 +0000</pubDate>
+      
+      <guid>/tags/shtm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shtml</title>
+      <link>/tags/shtml/</link>
+      <pubDate>Tue, 12 Apr 2016 03:00:09 +0000</pubDate>
+      
+      <guid>/tags/shtml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSI</title>
+      <link>/tags/ssi/</link>
+      <pubDate>Tue, 12 Apr 2016 03:00:09 +0000</pubDate>
+      
+      <guid>/tags/ssi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>make</title>
+      <link>/tags/make/</link>
+      <pubDate>Mon, 28 Mar 2016 11:58:59 +0000</pubDate>
+      
+      <guid>/tags/make/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Makefile</title>
+      <link>/tags/makefile/</link>
+      <pubDate>Mon, 28 Mar 2016 11:58:59 +0000</pubDate>
+      
+      <guid>/tags/makefile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>/tags/mac/</link>
+      <pubDate>Thu, 03 Mar 2016 01:57:48 +0000</pubDate>
+      
+      <guid>/tags/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>udp</title>
+      <link>/tags/udp/</link>
+      <pubDate>Thu, 03 Mar 2016 01:57:48 +0000</pubDate>
+      
+      <guid>/tags/udp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ethernet</title>
+      <link>/tags/ethernet/</link>
+      <pubDate>Wed, 27 Jan 2016 06:15:31 +0000</pubDate>
+      
+      <guid>/tags/ethernet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工业以太网</title>
+      <link>/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/</link>
+      <pubDate>Wed, 27 Jan 2016 06:15:31 +0000</pubDate>
+      
+      <guid>/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libero 安装</title>
+      <link>/tags/libero-%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Thu, 07 Jan 2016 02:07:03 +0000</pubDate>
+      
+      <guid>/tags/libero-%E5%AE%89%E8%A3%85/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eclipse</title>
+      <link>/tags/eclipse/</link>
+      <pubDate>Sat, 12 Dec 2015 15:02:24 +0000</pubDate>
+      
+      <guid>/tags/eclipse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emIDE</title>
+      <link>/tags/emide/</link>
+      <pubDate>Sat, 12 Dec 2015 15:02:24 +0000</pubDate>
+      
+      <guid>/tags/emide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yagarto</title>
+      <link>/tags/yagarto/</link>
+      <pubDate>Sat, 12 Dec 2015 15:02:24 +0000</pubDate>
+      
+      <guid>/tags/yagarto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beremiz</title>
+      <link>/tags/beremiz/</link>
+      <pubDate>Thu, 10 Dec 2015 07:36:06 +0000</pubDate>
+      
+      <guid>/tags/beremiz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ethercatmaster</title>
+      <link>/tags/ethercatmaster/</link>
+      <pubDate>Wed, 25 Nov 2015 02:52:26 +0000</pubDate>
+      
+      <guid>/tags/ethercatmaster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MotionControl</title>
+      <link>/tags/motioncontrol/</link>
+      <pubDate>Wed, 25 Nov 2015 02:52:26 +0000</pubDate>
+      
+      <guid>/tags/motioncontrol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SOEM</title>
+      <link>/tags/soem/</link>
+      <pubDate>Wed, 25 Nov 2015 02:52:26 +0000</pubDate>
+      
+      <guid>/tags/soem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tar</title>
+      <link>/tags/tar/</link>
+      <pubDate>Fri, 20 Nov 2015 06:33:12 +0000</pubDate>
+      
+      <guid>/tags/tar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>profinet</title>
+      <link>/tags/profinet/</link>
+      <pubDate>Tue, 27 Oct 2015 06:39:04 +0000</pubDate>
+      
+      <guid>/tags/profinet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FG</title>
+      <link>/tags/fg/</link>
+      <pubDate>Fri, 24 Jul 2015 07:03:09 +0000</pubDate>
+      
+      <guid>/tags/fg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hardware Design</title>
+      <link>/tags/hardware-design/</link>
+      <pubDate>Fri, 24 Jul 2015 07:03:09 +0000</pubDate>
+      
+      <guid>/tags/hardware-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apache</title>
+      <link>/tags/apache/</link>
+      <pubDate>Sun, 21 Jun 2015 09:36:55 +0000</pubDate>
+      
+      <guid>/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tomcat</title>
+      <link>/tags/tomcat/</link>
+      <pubDate>Sun, 21 Jun 2015 09:36:55 +0000</pubDate>
+      
+      <guid>/tags/tomcat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ethernet /IP</title>
+      <link>/tags/ethernet-/ip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ethernet-/ip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp/ip</title>
+      <link>/tags/tcp/ip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tcp/ip/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

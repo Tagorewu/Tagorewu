@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>基于Altera FPGA的 摄像头&#43;LCD DIY - Mainroad</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="基于Altera FPGA的 摄像头&#43;LCD DIY" />
+<meta property="og:description" content="前些日子买了个大家玩得很火的OV7670来玩玩，由于之前没玩过摄像头，也听说不带FIFO的摄像头采集起来是那么困难，所以就买了个不带FIFO的来尝尝鲜。后来看了资料才知道，一幅QVGA的图像按320*240*2Byte来算，也要153.6KB内存，对单片机来说是一比不小的开销。更何况单片机的速率才多少M，就按50M主频来说，捕捉一个8M左右的像素时钟也是相当困难的。当然后面也用STM32F103ZET6来尝试捕捉了一下，结果也是不尽人意。 考虑到时钟的捕捉，当然是用FPGA的硬件电路来实现才是王道了。又想想摄像头和液晶屏的初始化也是相当麻烦的，如果也用硬件电路来实现，那写起代码来就是一大串了，而且改起来也不方便。于是乎，脑子里一直存在的一个想法在这里就能得到真正的应用和实现了。那就是MCU与FPGA结合的方案。手上正有一款Altera 的EP2C8Q208C的开发板。那么我们的DIY就开始了。
+  首先要准备的东西就是 一个OV7670摄像头，一块TFT液晶屏，一块FPGA核心板。使用Nios II做为主控MCU会使你的DIY简洁很多。系统主要的结构就如下：
+  一个Nios II MCU，一个VGA转8080并口的模块VGA_8080，一个MCU与VGA_8080模块分别对LCD控制的总线切换模块。模块分工，MCU负责初始化液晶屏和OV7670。 VGA_8080负责OV7670的VGA输出时序转换成LCD的16bit的8080并口时序 。由于我的LCD是320*240的，所以我们只 使用QVGA输出，并且LCD使用的是565的像素格式，我们也将OV7670配置成565像素格式，这样能够使我们的编程方便很多。 我们的主要任务分为以下几块：1.nios ii MCU的搭建; 2.nios ii软件程序的编写；3.fpga硬件代码的编写。 一、NIOS ii MCU搭建可参考《NIOS ii 那些事儿》，硬件上要求板子上带有SDRAM, 否则内存不够会很麻烦。等系统整体编译通过后可以把代码写入flash当中，这样每次掉电后开机就能直接运行了。主要配置一个LCD的控制口，SDRAM的控制口，OV7670的SCCB控制口。这里有几个注意点：1.FPGA的双向口处理，由于SCCB的SIOD数据口是双向的，所以在配置时要配置成双向口，画顶层Pin时也要用bidir。2.本来液晶屏的数据口也是双向的，但是在FPGA内部没有三态门，按顶层那样的连接无法实现双向，要实现的话只能通过将IO口引出来，再把IO口连接到其它pin脚输入，不过这样很麻烦，就省了，LCD代码中要改动LCD读数据的部分。（不知道各位还有什么好办法能实现内部的双向口？） 二、然后就是LCD代码，和OV7670初始化代码的移植，之前都是在STM32上跑的，想办法把它们移植到NIOS ii当中，基本上只需修改IO口读写部分的代码就行了。 三、关键部分就是FPGA硬件上实现 OV7670的QVGA时序到液晶屏读写时序的转换。Bus_Switcher就是个2选一的多路选择器，负责切换LCD的控制总线。在主MCU初始化液晶屏和OV7670之后，就把液晶屏的控制总线交给VGA_8080控制模块，直接将OV7670的QVGA时序写入到液晶屏的GRAM当中，这样显示的帧频就能达到很高，画面非常流畅。在后期设计中可以再设置一个存储器，将图片保存下来。这里仅仅实现的摄像头信号的高速显示。这里的代码基本上可达到要求了，还有些小细节要优化，后期还可以添加一系列按钮调整OV7670的各种参数，非常之方便。
+ module VGA_8080(iclk, rst_n, XCLK, HREF, VSYNC, PCLK, C_DATA, LCD_CS, LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_DATA); input rst_n; input iclk; // camera IO; output XCLK; input HREF, VSYNC, PCLK; input [7:0] C_DATA; //LCD IO; output LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_CS; output [15:0] LCD_DATA;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/%e3%80%90altera%e5%8d%9a%e5%ae%a2%e5%a4%a7%e8%b5%9b%e3%80%91%e5%9f%ba%e4%ba%8ealtera-fpga%e7%9a%84-%e6%91%84%e5%83%8f%e5%a4%b4lcd-diy/" />
+<meta property="article:published_time" content="2013-11-30T09:54:20+00:00" />
+<meta property="article:modified_time" content="2013-11-30T09:54:20+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mainroad" rel="home">
+				<div class="logo__title">Mainroad</div>
+				<div class="logo__tagline">Just another site</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Hugo</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">基于Altera FPGA的 摄像头&#43;LCD DIY</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-11-30T09:54:20Z">November 30, 2013</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>        前些日子买了个大家玩得很火的OV7670来玩玩，由于之前没玩过摄像头，也听说不带FIFO的摄像头采集起来是那么困难，所以就买了个不带FIFO的来尝尝鲜。后来看了资料才知道，一幅QVGA的图像按320*240*2Byte来算，也要153.6KB内存，对单片机来说是一比不小的开销。更何况单片机的速率才多少M，就按50M主频来说，捕捉一个8M左右的像素时钟也是相当困难的。当然后面也用STM32F103ZET6来尝试捕捉了一下，结果也是不尽人意。 考虑到时钟的捕捉，当然是用FPGA的硬件电路来实现才是王道了。又想想摄像头和液晶屏的初始化也是相当麻烦的，如果也用硬件电路来实现，那写起代码来就是一大串了，而且改起来也不方便。于是乎，脑子里一直存在的一个想法在这里就能得到真正的应用和实现了。那就是MCU与FPGA结合的方案。手上正有一款Altera 的EP2C8Q208C的开发板。那么我们的DIY就开始了。</p>
+<p><a href="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163312.jpg"><img src="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163312-300x220.jpg" alt="QQ图片20131130163312"></a> </p>
+<p>        首先要准备的东西就是 一个OV7670摄像头，一块TFT液晶屏，一块FPGA核心板。使用Nios II做为主控MCU会使你的DIY简洁很多。系统主要的结构就如下：</p>
+<p><a href="http://www.wuquantai.com/wp-content/uploads/2013/11/bdf.jpg"><img src="http://www.wuquantai.com/wp-content/uploads/2013/11/bdf-300x168.jpg" alt="bdf"></a> </p>
+<p>        一个Nios II MCU，一个VGA转8080并口的模块VGA_8080，一个MCU与VGA_8080模块分别对LCD控制的总线切换模块。模块分工，MCU负责初始化液晶屏和OV7670。 VGA_8080负责OV7670的VGA输出时序转换成LCD的16bit的8080并口时序 。由于我的LCD是320*240的，所以我们只 使用QVGA输出，并且LCD使用的是565的像素格式，我们也将OV7670配置成565像素格式，这样能够使我们的编程方便很多。 我们的主要任务分为以下几块：1.nios ii MCU的搭建; 2.nios ii软件程序的编写；3.fpga硬件代码的编写。 一、NIOS ii MCU搭建可参考《NIOS ii 那些事儿》，硬件上要求板子上带有SDRAM, 否则内存不够会很麻烦。等系统整体编译通过后可以把代码写入flash当中，这样每次掉电后开机就能直接运行了。主要配置一个LCD的控制口，SDRAM的控制口，OV7670的SCCB控制口。这里有几个注意点：1.FPGA的双向口处理，由于SCCB的SIOD数据口是双向的，所以在配置时要配置成双向口，画顶层Pin时也要用bidir。2.本来液晶屏的数据口也是双向的，但是在FPGA内部没有三态门，按顶层那样的连接无法实现双向，要实现的话只能通过将IO口引出来，再把IO口连接到其它pin脚输入，不过这样很麻烦，就省了，LCD代码中要改动LCD读数据的部分。（不知道各位还有什么好办法能实现内部的双向口？） 二、然后就是LCD代码，和OV7670初始化代码的移植，之前都是在STM32上跑的，想办法把它们移植到NIOS ii当中，基本上只需修改IO口读写部分的代码就行了。 三、关键部分就是FPGA硬件上实现 OV7670的QVGA时序到液晶屏读写时序的转换。Bus_Switcher就是个2选一的多路选择器，负责切换LCD的控制总线。在主MCU初始化液晶屏和OV7670之后，就把液晶屏的控制总线交给VGA_8080控制模块，直接将OV7670的QVGA时序写入到液晶屏的GRAM当中，这样显示的帧频就能达到很高，画面非常流畅。在后期设计中可以再设置一个存储器，将图片保存下来。这里仅仅实现的摄像头信号的高速显示。这里的代码基本上可达到要求了，还有些小细节要优化，后期还可以添加一系列按钮调整OV7670的各种参数，非常之方便。</p>
+<blockquote>
+<pre><code></code></pre><p>module VGA_8080(iclk, rst_n, XCLK, HREF, VSYNC, PCLK, C_DATA, LCD_CS, LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_DATA);
+input rst_n;
+input iclk;
+//   camera IO;
+output XCLK;
+input HREF, VSYNC, PCLK;
+input [7:0] C_DATA;
+//LCD IO;
+output LCD_WR, LCD_RD, LCD_RS, LCD_RST, LCD_CS;
+output [15:0] LCD_DATA;</p>
+<p>//&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-XCLK &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;//
+reg [3:0] div_cnt;
+reg r_XCLK;
+assign XCLK = r_XCLK;</p>
+<p>always @ (posedge iclk)
+begin
+if(div_cnt &lt; 4&rsquo;b0010)	//50/2/(2+1)=8.33M
+div_cnt &lt;= div_cnt + 1&rsquo;b1;
+else begin
+r_XCLK &lt;= ~r_XCLK;
+div_cnt &lt;= 4&rsquo;b0;
+end
+end</p>
+<p>//&mdash;&mdash;&mdash;&mdash;&mdash;write to LCD&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;//</p>
+<p>reg r_WR, r_RD, r_RS, r_CS;
+reg [3:0] wr_step;
+reg [3:0] disp_state;
+reg [3:0] reset_step;
+reg wr_reg;       //flag show whether need to write reg
+reg [15:0] LCD_Reg;
+reg [15:0] LCD_RegValue;
+assign LCD_WR = r_WR;
+assign LCD_RD = r_RD;
+assign LCD_RS = r_RS;
+assign LCD_CS = r_CS;
+assign LCD_RST = 1&rsquo;b1;
+reg F_LSB;      //flag show LSB or MSB
+reg [8:0] MSB;
+reg [15:0] r_LCD_DATA;</p>
+<p>assign LCD_DATA = r_LCD_DATA;</p>
+<p>always @ (posedge PCLK or negedge rst_n)
+begin
+if(!rst_n)
+begin
+wr_step &lt;=	4&rsquo;b0;     //write reg time series
+disp_state &lt;=	4&rsquo;b0; //write pixel to GRAM
+reset_step &lt;= 4&rsquo;b0;   //reset cursor to 0,0
+r_RS &lt;= 1;
+r_CS &lt;= 1;
+r_WR &lt;= 1;
+r_RD &lt;= 1;
+F_LSB &lt;= 0;
+MSB &lt;= 0;
+r_LCD_DATA &lt;= 0;
+end
+else
+if(!wr_reg)
+begin
+case(disp_state)
+4&rsquo;d0 : 	//state to reset LCD cursur
+case(reset_step)
+4&rsquo;d0 : begin
+r_CS &lt;= 1&rsquo;b1;
+LCD_Reg &lt;= 16&rsquo;h0020 ; // Y pos reg
+LCD_RegValue &lt;= 16&rsquo;d0; //
+wr_reg &lt;= 1; //start to write reg
+reset_step &lt;= reset_step + 4&rsquo;d1;
+end
+4&rsquo;d1 : begin
+r_CS &lt;= 1&rsquo;b1;
+LCD_Reg &lt;= 16&rsquo;h0021; // X pos reg
+LCD_RegValue &lt;= 16&rsquo;d319;
+wr_reg &lt;= 1; //start to write reg
+reset_step &lt;= reset_step + 4&rsquo;d1;
+end
+4&rsquo;d2 : begin
+r_LCD_DATA &lt;= 16&rsquo;h0022;	//write GRAM prepare
+r_RS &lt;= 0; //write reg
+r_CS &lt;= 0;
+r_WR &lt;= 0;
+r_RD &lt;= 1;
+reset_step &lt;= reset_step + 4&rsquo;d1;
+end
+4&rsquo;d3 : begin
+r_WR &lt;= 1;
+reset_step &lt;= reset_step + 4&rsquo;d1;
+end
+4&rsquo;d4 : begin
+r_CS &lt;= 1;
+r_RS &lt;= 1;	//							
+if(!VSYNC) //wait VSYNC over
+begin
+disp_state &lt;= 4&rsquo;d1;  //start new frame
+reset_step &lt;= 4&rsquo;d0;	 //reset for next
+r_CS &lt;= 0;
+end
+end
+default : begin
+disp_state &lt;= 4&rsquo;d0;
+wr_reg &lt;=0;
+reset_step &lt;= 4&rsquo;d0;
+end
+endcase 	
+4&rsquo;d1 :	//wait to display
+if(VSYNC)
+disp_state &lt;= 4&rsquo;d0; // VSYNC need to reset cursor
+else 		
+if(HREF)
+begin
+case(F_LSB)
+1&rsquo;b0 :	begin
+MSB &lt;= C_DATA;
+F_LSB &lt;= 1&rsquo;b1;
+r_WR &lt;= 1&rsquo;b1;
+end
+1&rsquo;b1 :	begin
+r_LCD_DATA &lt;= {MSB, C_DATA};
+F_LSB &lt;= 1&rsquo;b0;
+r_WR &lt;= 1&rsquo;b0;
+end
+default : F_LSB &lt;= 0;
+endcase
+end</p>
+<pre><code>          default : disp\_state &lt;= 4'b0;
+  endcase 
+</code></pre>
+<p>end
+else // write(LCD_Reg,LCD_RegValue);
+case(wr_step)
+4&rsquo;d0 :	begin
+r_LCD_DATA &lt;= LCD_Reg;	//write reg
+r_RS &lt;= 0;
+r_CS &lt;= 0;
+r_WR &lt;= 0;
+r_RD &lt;= 1;
+wr_step &lt;= wr_step + 4&rsquo;d1;
+end
+4&rsquo;d1 : begin
+r_WR &lt;= 1;
+wr_step &lt;= wr_step + 4&rsquo;d1;								
+end
+4&rsquo;d2 : begin
+r_LCD_DATA &lt;= LCD_RegValue; //write value
+r_RS &lt;= 1;
+r_WR &lt;= 0;
+wr_step &lt;= wr_step + 4&rsquo;d1;
+end
+4&rsquo;d3 : begin
+r_WR &lt;= 1;
+wr_step &lt;= wr_step + 4&rsquo;d1;
+end
+4&rsquo;d4 : begin
+r_CS &lt;= 1;
+wr_step &lt;= 0;
+wr_reg &lt;= 0; //write reg over
+end
+default : begin
+wr_step &lt;= 0;
+wr_reg &lt;= 0;
+end		
+endcase
+end
+endmodule</p>
+<pre><code>
+</code></pre></blockquote>
+<p>  这里代码有一个优点就在帧同步信号到来之后将液晶屏的游标指针初始化到（0，0）的位置重新开始写，这样就可以做到一个真正的帧同步。 之前参考了许多代码都只是通过计像素个数到76800之后完成 一帧的显示。 完成之后就能达到如下的效果了。外部连线非常少，只有几根电源线。充分体现了FPGA的厉害之处。由于选的是NIOS II/f 功能最全的软核，整个系统编译下来也只用了大约3300个逻辑单元。</p>
+<p>  <a href="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163243.jpg"><img src="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163243-300x154.jpg" alt="QQ图片20131130163243"></a>   </p>
+<p>未完待续&hellip;</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/fpga/" rel="tag">FPGA</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="John Doe avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About John Doe</span>
+	</div>
+	<div class="authorbox__description">
+		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/%e7%ac%ac%e4%b8%80%e7%af%87%e5%8d%9a%e6%96%87/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">第一篇博文</p>
+		</a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/%e5%85%b3%e4%ba%8e%e6%9c%ac%e5%8d%9a%e5%ae%a2/" rel="next">
+			<span class="post-nav__caption">Next&thinsp;»</span>
+			<p class="post-nav__post-title">About</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%e5%9f%9f%e5%86%85%e7%9a%84pc-%e8%ae%bf%e9%97%ae%e9%9d%9e%e5%9f%9f%e5%86%85%e7%9a%84samba%e6%9c%8d%e5%8a%a1%e5%99%a8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%e5%b5%8c%e5%85%a5%e5%bc%8f%e5%bc%80%e5%8f%91%e6%80%bb%e7%bb%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e7%bc%96%e8%af%91pynq-%e5%9c%a8zcu102%e4%b8%8a%e7%9a%84%e9%95%9c%e5%83%8f/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81-comments/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90%e8%ae%b2%e6%b8%85%e6%a5%9a%e7%ba%bf%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e3%80%81%e4%ba%92%e6%96%a5%e9%87%8f%e3%80%81%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e3%80%81/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menu_main/" title="Menu_Main">Menu_Main</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%94%9F%E6%B4%BB/" title="生活">生活</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Mainroad.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
