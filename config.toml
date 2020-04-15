@@ -9,7 +9,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [Author]
   name = "Tagore Wu"
   bio = "Tagore's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
-  avatar = "img/avatar.png"
+  avatar = "/images/19644026.jpg"
 
 [Params]
   subtitle = "Hi folks. Thanks for visiting my web site!" # Subtitle of your site

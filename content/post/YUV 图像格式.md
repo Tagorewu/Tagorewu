@@ -34,4 +34,4 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg:   YUYVYUYV YYYY
 
   
 
-![](/wp-content/uploads/2018/08/20180822194835_82210.jpg)
+![](/images/uploads/2018/08/20180822194835_82210.jpg)

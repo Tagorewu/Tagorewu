@@ -7,7 +7,7 @@ categories:
 tags: ['未分类']
 ---
 
-![](http://www.wuquantai.com/wp-content/uploads/2018/04/微信图片_20180413232134-1024x768.jpg)
+![](/images/uploads/2018/04/微信图片_20180413232134-1024x768.jpg)
 
 加入某个域内的PC 在登录samba服务器的时候，默认会在USERNAME 前加上DOMAIN\\, 所以一直登录失败。登陆窗口上也无法取消加 DOMAIN\\。
 

@@ -7,7 +7,7 @@ categories:
 tags: ['ARM', 'ARM', 'NEON']
 ---
 
-![](http://www.wuquantai.com/wp-content/uploads/2018/04/微信图片_20180413232200-1024x768.jpg)
+![](/images/uploads/2018/04/微信图片_20180413232200-1024x768.jpg)
 
 **简介**
 ------

@@ -7,7 +7,7 @@ categories:
 tags: ['Embeded system', 'zynq linux;']
 ---
 
-![](http://www.wuquantai.com/wp-content/uploads/2018/04/微信图片_20180413232224-1024x768.jpg)
+![](/images/uploads/2018/04/微信图片_20180413232224-1024x768.jpg)
 
 ### 传统开发步骤
 
