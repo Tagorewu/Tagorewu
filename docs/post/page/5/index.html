@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -45,43 +60,15 @@
 	</header><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="bookmark">
-			Eclipse ARM IDE 开发环境搭建
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-12-12T15:02:24Z">December 12, 2015</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		一、Eclipse Eclipse的本身只是一个框架平台，但是众多插件的支持，使得Eclipse拥有较好的灵活性。依托于Java 环境运行，所以必须安装 Jre。 二、CDT CDT是Eclipse用于扩展Eclipse支持C/C++开发的插件。可直接下载带CDT的Eclipse。 三、Zylin CDT 支持Eclipse用于嵌入式C/C++开发和远程调试的插件。 四、Yagarto Yagarto是整合了GNU arm的交叉编译工具链，是一个跨平台的 ARM 架构开发平台。他们说了，由于基于MinGW的ToolChain 的GDB 跟Eclipse 配合不是很好，所以Yagarto 出现了。目前Yagarto 项目已经完结。此外Yagrato 建议使用免费的
- emIDE (free Visual Studio Style IDE including GNU Tools for ARM) 。其集成了GNU Tools。  五、J-LINK GDB Server A JTAG GDB Debug agent run on Host 六、IDE整体结构框图 安装： 1、安装Java SE 下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jre-7u3-download-1501631.html 设置环境变量: 如果只安装Jre的话就添加 : JAVA_HOME = C:\Program Files\Java\jre1.8.0_65; 若是安装JDK的话就添加 : JAVA_HOME = C:\Program Files\Java\jdk1.8.0_65; Path = %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin; //安装JDK时，JDK内部有个jre目录，外部也默认安装了一个jre目录。一般配置jre环境为内部jre目录。 CLASSPATH = .
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/beremiz-%E7%AE%80%E4%BB%8B/" rel="bookmark">
-			Beremiz 简介
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-12-10T07:36:06Z">December 10, 2015</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Beremiz 是一各为自动化技术提供开放性源代码的软件，它的PLC平台可以支持IEC61131-3 五种开发语言，Beremiz 提供的子项目：
- PLCOpen 编辑器 : 提供自动化技术所需要的多平台 IDE （Integrated Development Environment） ； MatPLC&rsquo;s IEC 编译器 : IEC 61131-3 编译器， 可以将结构化文本和指令表120 直接编译为 C 语言； CanFestival : CANOpen 接口服务于物理的输入/ 输出； SVGUI : 以 SVG为基础的自动化 HMI 工具； 所有软件都是提供源代码的， 使用了 PYTHON MINGW 等语言或者平台。  Beremiz软PLC 开发流程: MatIEC包含两个工具: 1. IEC2IEC工具将标准的IEC61131-3的5种语言统一转成ST格式， 2. IEC2C工具将ST格式用户代码转ANSI-C代码。 然后将所有代码通过GCC 工具编译成机器码运行。 
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
 			<a href="/post/%E8%BD%AC%E5%BC%80%E6%BA%90ethercat-master%E6%AF%94%E8%BE%83/" rel="bookmark">
 			[转]开源EtherCAT Master比较
 			</a>
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-25T02:52:26Z">November 25, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-25T02:52:26Z">November 25, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		EtherCAT的主站开发是基于EtherCAT机器人控制系统的开发中非常重要的环节。目前常见开源的主站代码为的RT-LAB开发的SOEM (Simple OpenSource EtherCAT Master)和EtherLab的the IgH EtherCAT® Master。使用起来SOEM的简单一些，而the IgH EtherCAT® Master更复杂一些，但对EtherCAT的实现更为完整。 具体比较如下表：
@@ -116,13 +103,15 @@ Freescale i.MX53 Blackfin 5xx Blackfin 6xx Intel
 </article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/verdi201210-%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/" rel="bookmark">
+			<a href="/post/verdi201210-%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" rel="bookmark">
 			Verdi201210 安装笔记
 			</a>
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-20T07:02:41Z">November 20, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-20T07:02:41Z">November 20, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/fpga/" rel="category">FPGA</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Verdi 为Debussy 在linux的底下的版本，windows版本Debussy已经不更新了。前面也在xp下试验过Debussy54 和modelsim联调，Debussy经常出错退出。于是果断放弃了。(Verdi用于查看代码和生成原理图，了解整个设计架构。modelsim主要还是用来进行仿真，获取波形和测试文档vcd，看不了原理图。) 这里在ubuntu 1204下安装Verdi201210。 安装步骤:
@@ -138,7 +127,9 @@ Freescale i.MX53 Blackfin 5xx Blackfin 6xx Intel
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-20T06:33:12Z">November 20, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-11-20T06:33:12Z">November 20, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		1. 修改文件夹所有者  chown -R [owner] .. ; 修改当前目录下所有文件夹的所有都为owner, -R表示递归调用。
@@ -155,7 +146,9 @@ Freescale i.MX53 Blackfin 5xx Blackfin 6xx Intel
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-10-27T06:39:04Z">October 27, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-10-27T06:39:04Z">October 27, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Profinet 主要包括8个主要模块：实时通信、分布式现场设备、运动控制、分布式自动化、网络安装、IT标准和信息安全、故障安全和过程自动化。  Profinet 实时通信  PROFINET提供适应各种类型 设备的三种通信通道，而且在同 一个网络或设备上能够同时运行。 1.1 TCP/IP 标准通讯; 标准通道适用于具有100ms典型响应时间的简单设备。它能够用于设备的参数化和组态，例如用于读取诊断数据。 1.2 实时(RT)通讯; 对于典型循环时间低于10ms的场合，RT通道具有与最新现场总线系统相同级别的性能，在设备中RT通道能够采用软件方案实现，通道支持用户数据、事件驱动报文和报警等高性能周期传输。 传感器与执行器之间， 5~10ms。 1.3 同步实时(IRT)通讯; 循环时间小于1ms和抖动低于1μs的IRT通道用于高动态的驱动应用。IRT基于一个以太网芯片，用它在IRT网络中创建高动态特性。 运动控制， 响应时间&lt; 1ms, 抖动误差&lt;1us。
@@ -171,7 +164,9 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-07-24T07:03:09Z">July 24, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-07-24T07:03:09Z">July 24, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/hardware/" rel="category">Hardware</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		FG與LG 都是接地端子 FG(Frame Ground): 是針對基板電路屏蔽用的接地端子, 主要是對高頻游離電磁波的屏蔽接地之用, 理論上應接於大地，一般将金属外壳，散热片，信号线缆屏蔽层等接于此，将噪声导入大地，或者防止触电。就是通常所认为的GR、PG(Protective Ground)，接地电阻要小于等于100欧姆。 LG(Line Ground)又叫(Functional Ground)不是(Logic Ground)： 是針對AC電源側低頻濾波器的接地, 主要是保持輸入電壓的電位準之用, 理論應與中性線連接。如果噪声是错误的主要来源 或者 有电击的问题， 则将FG 接入PG并一同接地，接地电阻要小于等于100欧姆。 所以 FG端是屬於信號端的接地, LG端是屬於電源端的接地, 二者雖都是接地, 在設計上端子仍是要分開的, 但一般在使用上, 除非AC中性線有帶電的現像, 否則你可以將FG及LG併接後一次接地既可。
@@ -185,7 +180,9 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T09:36:55Z">June 21, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T09:36:55Z">June 21, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		经常在用apache和tomcat等这些服务器，可是总感觉还是不清楚他们之间有什么关系，在用tomcat的时候总出现apache，总感到迷惑，到底谁是主谁是次，因此特意在网上查询了一些这方面的资料，总结了一下： 一 apache支持静态页，tomcat支持动态的，比如servlet等，一般使用apache+tomcat的话，apache只是作为一个转发，对jsp的处理是由tomcat来处理的。 apache可以支持php\cgi\perl,但是要使用java的话，你需要tomcat在apache后台支撑，将java请求由apache转发给tomcat处理。 apache是web服务器,Tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 这两个有以下几点可以比较的： 1、两者都是apache组织开发的 2、两者都有HTTP服务的功能 3、两者都是免费的 不同点： Apache是专门用了提供HTTP服务的，以及相关配置的（例如虚拟主机、URL转发等等） Tomcat是Apache组织在符合J2EE的JSP、Servlet标准下开发的一个JSP服务器 二： APACHE是一个web服务器环境程序 启用他可以作为web服务器使用 不过只支持静态网页 如(asp,php,cgi,jsp)等动态网页的就不行 如果要在APACHE环境下运行jsp 的话就需要一个解释器来执行jsp网页 而这个jsp解释器就是TOMCAT, 为什么还要JDK呢？因为jsp需要连接数据库的话 就要jdk来提供连接数据库的驱程，所以要运行jsp的web服务器平台就需要APACHE+TOMCAT+JDK 整合的好处是： 如果客户端请求的是静态页面，则只需要Apache服务器响应请求 如果客户端请求动态页面，则是Tomcat服务器响应请求 因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 三： apache:侧重于http server tomcat:侧重于servlet引擎，如果以standalone方式运行，功能上与apache等效 ， 支持JSP，但对静态网页不太理想； apache是web服务器，tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 换句话说，apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），而这个桶也可以不放在卡车上。
@@ -199,7 +196,9 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T08:51:44Z">June 21, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T08:51:44Z">June 21, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/network/" rel="category">Network</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		通过学习以太网的类型，可以更好的了解以太网的工作原理。 共享式以太网 共享式以太网的典型代表是使用10Base2/10Base5的总线型网络和以集线器为核心的星型网络。在使用集线器的以太网中，集线器将很多以太网设备集中到一台中心设备上，这些设备都连接到集线器中的同一物理总线结构中。从本质上讲，以集线器为核心的以太网同原先的总线型以太网无根本区别。 集线器的工作原理： 集线器并不处理或检查其上的通信量，仅通过将一个端口接收的信号重复分发给其他端口来扩展物理介质。所有连接到集线器的设备共享同一介质，其结果是它们也共享同一冲突域、广播和带宽。因此集线器和它所连接的设备组成了一个单一的冲突域。如果一个节点发出一个广播信息，集线器会将这个广播传播给所有同它相连 的节点，因此它也是一个单一的广播域。 集线器的工作特点： 集线器多用于小规模的以太网，由于集线器一般使用外接电源（有源），对其接收的信号有放大处理。在某些场合，集线器也被称为“多端口中继器”。 集线器同中继器一样都是工作在物理层的网络设备。 共享式以太网存在的弊端：由于所有的节点都接在同一冲突域中，不管一个帧从哪里来或到哪里去，所有的节点都能接受到这个帧。随着节点的增加，大量的冲突将导致网络性能急剧下降。而且集线器同时只能传输一个数据帧，这意味着集线器所 有端口都要共享同一带宽。 交换式以太网 交换式结构： 在交换式以太网中，交换机根据收到的数据帧中的MAC地址决定数据帧应发向交换机的哪个端口。因为端口间的帧传输彼此屏蔽，因此节点就不担心自己发送的帧在通过交换机时是否会与其他节点发送的帧产生冲突。 为什么要用交换式网络替代共享式网络： ·减少冲突：交换机将冲突隔绝在每一个端口（每个端口都是一个冲突域），避免了冲突的扩散。 ·提升带宽：接入交换机的每个节点都可以使用全部的带宽，而不是各个节点共享带宽。
@@ -213,17 +212,53 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T03:37:16Z">June 21, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-06-21T03:37:16Z">June 21, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		1.安装eclipse。 2. TOMCAT依赖JDK运行，必须安装JDK，光有JRE不行。 JDK的环境变量配置： （1）先配置 JAVA_HOME = C:\Program Files\Java\jdk1.8.0_77; （2）然后 PATH 里添加 %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;这两个目录，以便命令行里能直接寻到这里。 注意: 安装 JDK时会默认在外部安装一个JRE，这里TOMCAT是依赖JDK运行的，所以JRE的环境变量目录要用JDK文件夹里的那个JRE，不要配置成外部的JRE目录了。 运行java -version 不出现java版本的一般是这里没配置好。 （2）最后是 CLASSPATH = .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar; 注意：这里有三个目录，第一个是.; //表示当前工作目录，别丢了。运行TOMCAT时一闪而过一般是这个环境变量没设置好。 3. 安装 tomcat ，直接解压即可。 添加环境变量： CATALINA_HOME = D:\WebDev\apache-tomcat-6.0.45-windows-x64\apache-tomcat-6.0.45; //是你的tomcat目录。 PATH 里添加：%CATALINA_HOME%\bin; 点 bin/startup.bat直接可运行tomcat。或者命令行里打startup即可，若不行则是TOMCAT的 PATH变量没设置好。 尝试访问 http://localhost:8080，出现示例页说明配置成功。可以关闭控制台。 平时有要调试的网页文件可以拷到 webapps/ 底下，浏览器输入 http://localhost:8080/foldername/ 即可访问。 3.安装mysql。 eclipse 配置tomacat 路径方法. Window-&gt;Preference-&gt;Server-&gt;Runtime Environments Add : 添加 Tomecat 路径，即可。
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/" rel="bookmark">
+			从PC的总线到ARM内部总线
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-03-09T04:51:50Z">March 09, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		从PC的总线到ARM内部总线
+来源: ChinaUnix博客 日期： 2009.07.18 23:45
+从PC的总线到ARM内部总线 我在学习《Linux设备驱动程序（第3版）》的 第九章 与硬件通信 时，对 I\O总线的概念 不是很清晰，所以查找了有关资料。现在总结如下： 本文的参考资料： 1、 《AMBA、AHB、APB总线简介》 作者 adamzhao 日期 2006-11-16 19:33:00 转载网址： http://www.openhard.org/myspace/blog/show.php?id=75802 2、 《Introduction to AMBA Bus System 》台湾 工研院 / 系統晶片技術中心工程師 吳欣龍，PDF格式 下载地址： http://tpe-wh3.dwins.net/download/member_file/2002/soc/2002-5-1.pdf 3、 《PC架构系列：CPU/RAM/IO总线的发展历史！》 转载网址： http://blog.csdn.net/xport/archive/2006/11/16/1387928.aspx 4、 《认识物理I/O构件- 主机I/O总线(1)》作者：IT168存储频道 2007-04-10 原文网址： http://storage.it168.com/g/2007-04-10/200704101424234.shtml 总线的演变 首先应该讲讲总线的演变历史，这方面《PC架构系列：CPU/RAM/IO总线的发展历史！》这篇文章写得很好！感谢文章的作者！以下内容大量来自这篇文章，可以说是这篇文章的缩减转载。 [#toggle Title=&quot;继续阅读&rdquo;] 公共总线 早期PC中，CPU/RAM/IO都是挂在一条总线上，所有的部件都必须在同步的模式下工作。这样就带来一个&quot;互锁&rdquo; （locked to each other ）效应：所有设备都被限定在一个通用时钟频率（Clock Frequency）上面，整个系统的速度会被系统中最慢的设备限制，系统的整体性能无法提高。 南桥诞生（I\O总线诞生） 1987年，康柏（Compaq）公司想到一个办法: 将系统总线与I/O总线分开，使得2个不同的总线工作在不同的时钟频率上。CPU和内存工作在系统总线上（the System Bus），独立于所有的I/O设备。这样高速的CPU/RAM组件就摆脱了低速I/O设备的束缚。这里的Bridge，就是现在的南桥（South Bridge）芯片的前身，而它实际起到了降频的作用。 倍频出世 从80486开始，CPU的发展迅猛，频率大幅攀升。内存开始变得跟不上CPU的发展步伐了。Intel 于是决定在80486中引入倍频（Clock Doubler）的概念。内存依旧工作在系统总线上，与系统总线保持同样的工作频率，而CPU的内部工作频率（CPU主频）是： CPU 主频 = 外频（系统总线频率System Bus Frequency）* 倍频 (Clock doubler) 北桥和前端总线的诞生 PC结构的变化趋势是把低速设备与高速设备用隔离总线的方法进行隔离。而发展到后来，就演变出了北桥（North Bridge）芯片。内存与北桥间的总线称为内存总线，把CPU与北桥间连接的这段总线成为前端总线**(Front Side Bus，FSB），**也就是系统总线（System Bus）！ **PC中的I\O总线** 通过上面的文章，我们知道的总线的演变过程。现在专门来讲讲I\O总线。 总线：用来传送信号或能量的构造器。 系统 I/O 总线将指令从内存传导至与输入\输出处理器(IOP) [url=http://publib.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/wordpress-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%90%8D%E5%90%8E%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84/" rel="bookmark">
+			Wordpress 修改域名后修改图片路径
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-03-08T15:08:52Z">March 08, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		[hermit auto=&quot;1&rdquo; loop=&quot;0&rdquo; unexpand=&quot;0&rdquo;]netease_songs#:65538[/hermit] WordPress更换域名 主页和图片路径错误 解决办法 首先介绍下SQL替换命令 UPDATE 表名 SET 字段 = REPLACE(字段,’替换内容’,&lsquo;替换值’); eg： UPDATE wp_options SET option_value = REPLACE(option_value,&lsquo;www.59a.cn&rsquo;,&lsquo;m59a.cn&rsquo;); 其中wp_options就是表名，option_value就是表wp_options里的一个字段，wp_options里有siteurl和home的值。 一般只要执行以下命令，就可完成域名的修改： 1.修改option_value里的站点url和主页地址： UPDATE wp_options SET option_value = replace(option_value, &lsquo;http://www.59a.cn&rsquo;, &lsquo;http://www.new-59a.cn&rsquo;) WHERE option_name = &lsquo;home&rsquo; OR option_name = &lsquo;siteurl&rsquo;; 2.更正文章中内部链接及附件的地址, 主要是一些图片路径： UPDATE wp_posts SET post_content = replace(post_content, &lsquo;http://www.59a.cn&rsquo;, &lsquo;http://www.new-59a.cn&rsquo;); 3.更正wordpress文章默认的永久链接： UPDATE wp_posts SET guid = replace(guid, &lsquo;http://www.59a.cn&rsquo;,&lsquo;http://www.new-59a.cn&rsquo;);
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/post/page/4/">«</a>
-	<span class="pagination__item pagination__item--current">5/7</span>
+	<span class="pagination__item pagination__item--current">5/6</span>
 	<a class="pagination__item pagination__item--next btn" href="/post/page/6/">»</a>
 </div>
 
@@ -255,7 +290,31 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

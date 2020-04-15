@@ -2,6 +2,8 @@
 title: '嵌入式linux 开发中常用工具安装笔记'
 date: Wed, 22 Aug 2018 11:25:05 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['nfs', 'samba', '未分类']
 ---
 

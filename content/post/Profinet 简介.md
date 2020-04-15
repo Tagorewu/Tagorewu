@@ -2,6 +2,8 @@
 title: 'Profinet 简介'
 date: Tue, 27 Oct 2015 06:39:04 +0000
 draft: false
+categories:
+  - "Automation"
 tags: ['profinet', '未分类']
 ---
 

@@ -2,6 +2,8 @@
 title: 'make工具使用'
 date: Mon, 28 Mar 2016 11:58:59 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Linux', 'make', 'Makefile']
 ---
 

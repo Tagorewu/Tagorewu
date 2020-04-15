@@ -2,6 +2,8 @@
 title: 'zynq 嵌入式开发总结'
 date: Sat, 20 Apr 2019 13:59:51 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Embeded system', 'zynq linux;']
 ---
 

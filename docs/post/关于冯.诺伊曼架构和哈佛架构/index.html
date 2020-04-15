@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -45,7 +60,9 @@
 			<h1 class="post__title">关于冯.诺伊曼架构和哈佛架构</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-16T15:03:08Z">December 16, 2013</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-16T15:03:08Z">December 16, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 		</header><div class="content post__content clearfix">
 			<p>        典型的冯.诺伊曼架CPU是x86的CPU。pc机cpu在运行的时候程序是存储在RAM即内存中的，需要运行的程序从硬盘、U盘等外存读取加载进内存中供CPU高速运行（CPU不可能从外存中直接读取指令），所以<strong>程序和数据都是放在内存中的</strong>。取指令和取操作数都在同一总线上，通过分时复用的方式进行的。缺点是在高速运行时，不能达到同时取指令和取操作数，从而形成了传输过程的瓶颈。 而大多数单片机等嵌入式系统则是存于flash中，flash逐步取代较古老ROM。单片机的程序是固化在flash中，cpu运行时<strong>直接从flash中读取程序</strong>，<strong>从RAM中读取数据</strong>。即程序和数据分开存储，而且单片的片内RAM资源是相当有限的，内部的RAM过大会带来成本的大幅度提高。 哈佛总线技术应用是以DSP和ARM为代表的。采用哈佛总线体系结构的芯片内部程序空间和数据空间是分开的，这就允许同时取指令和取操作数，从而大大提高了运算能力。它们都有独立的程序地址总线（PAB），数据地址读总线（DRAB）和数据地址写总线（DWRB）。</p>
 
@@ -72,7 +89,7 @@
 		<span class="authorbox__name">About Tagore Wu</span>
 	</div>
 	<div class="authorbox__description">
-		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+		Tagore&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
 	</div>
 </div>
 
@@ -119,7 +136,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

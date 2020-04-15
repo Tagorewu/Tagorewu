@@ -2,6 +2,8 @@
 title: 'SSI Tag的使用'
 date: Tue, 12 Apr 2016 03:00:09 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['shtm', 'shtml', 'SSI', 'Web Develop']
 ---
 

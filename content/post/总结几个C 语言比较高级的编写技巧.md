@@ -2,6 +2,8 @@
 title: '总结几个C 语言比较高级的编写技巧'
 date: Fri, 25 Nov 2016 08:51:40 +0000
 draft: false
+categories:
+  - "Software"
 tags: ['未分类']
 ---
 

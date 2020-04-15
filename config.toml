@@ -8,11 +8,11 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 
 [Author]
   name = "Tagore Wu"
-  bio = "John Doe's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
+  bio = "Tagore's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
   avatar = "img/avatar.png"
 
 [Params]
-  subtitle = "Intrest is the best teacher." # Subtitle of your site
+  subtitle = "Hi folks. Thanks for visiting my web site!" # Subtitle of your site
   description = "Tagore's Personal blog about everything" # Description of your site
   opengraph = true
   twitter_cards = false

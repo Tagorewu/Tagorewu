@@ -2,6 +2,8 @@
 title: 'Eclipse ARM IDE 开发环境搭建'
 date: Sat, 12 Dec 2015 15:02:24 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['ARM', 'Eclipse', 'Embeded system', 'emIDE', 'Yagarto']
 ---
 

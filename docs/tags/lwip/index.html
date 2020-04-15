@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -51,7 +66,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-17T08:01:24Z">August 17, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-17T08:01:24Z">August 17, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) 内存堆动态分配方式 [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) &amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr+3)&amp;(~(u32)(0x03))，+3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;0x03)?(addr+1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED + (2*SIZEOF_STRUCT_MEM) + MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &hellip; /** * The heap is made up as a list of structs of this type.
@@ -65,7 +82,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-21T09:37:59Z">July 21, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-21T09:37:59Z">July 21, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里分享一些一个服务handle多client连接的经验。 (1) 多线程/进程方法 每accept并创建一个新连接之后，就create一个task来处理这个连接的事务。linux使用fork()来创建分支线程。freertos 不支持fork方法，只能创建新的线程来管理连接。此方法内存开销较大。 (2) non-blocking socket 和 select 此方法由单线程处理并发事务，即最原始的轮询方式。在系统不支持fork()的情况下经常用到。首先，accpet/recv函数都必须的non-blocking的，需立即返回，否则其它任务就得不到轮询。这种模式在跑单片机裸机程序时经常是这样的，另外在labview里面也经常是这样的轮询的方式。这个例程可以在lwip 1.4.1 contrib下app demo:chargen 里可以学习到。这种方式会占用很多cpu资源，这样的任务优先级要放低，并设置一定的轮询间隔(类比在labview里，while循环通常会插入一个等待时间)。否则 freertos 中低优先级任务就得不到运行，同优先级的任务也只能分时间片轮流运行。 这里简单总结下 select方法。 协议栈内核在每次有accept 或 recv事件到达后都会调用 event_callback(); 增加一个事件记录。在上层接收后都会减掉一个记录。select 函数通过查询socket的对应event来置位fd_set对应的比特位。本质就类似查询一个计数信号量。 (3) 使用 raw api， 基于事件触发(基于回调)方式。 此方式适合编写只进行简单处理的应用，每次接收到包就会调用相应的回调函数。多连接是由协议栈的active_pcb_lists直接管理，每个连接都创建属于自己的state argument。如果需要运算量比较大占用时间较长的服务则不适合此方式，会影响的协议栈对其它服务的响应速度。 后记，从事务的角度来看，一个tcp连接代表一个session，一句udp 请求也代表一个session。一个session从接收到返回就是一条事务线。若不能一气呵成，则就必须用一条线程去管理它，或者说维护一个工作现场，等待它的后台任务完成再回来应答这个事务。一条线程就对应一个事务现场，多任务操作系统就是在不同的工作现场的中交替工作，模拟多个人工作的情况，每一个工作现场都保存的对应工作事务的进展情况和所有需要用到的工具。 或者还有一种做法，就是一件事做完一部分后丢给后台，让它处理完之后调用我给它的办法帮我把剩下的事处理完，节省了任务之间信息传递和任务切换带来的开销。 其实一个session对应一个任务确实有点浪费，我想一般handle几百上千万个连接的服务应该不会这样做的，每个连接只需将它当前的状态变量连同数据包传给每个部门来做就可以了，毕竟每个连接的状态的数据量不是很多，没必要开辟一个专门的任务去Handle.
@@ -79,7 +98,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T01:42:53Z">July 12, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T01:42:53Z">July 12, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。 [c] &ldquo;sys_arch.c&rdquo; /* An array to hold the memory for the available semaphores. */ static sem_t sems[SYS_SEM_MAX]; /* An array to hold the memory for the available mailboxes. */ static mbox_t mboxes[SYS_MBOX_MAX]; &ldquo;sys_arch.h&rdquo; ///* A structure to hold the variables for a sys_sem_t. */ typedef struct { xQueueHandle queue; signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES]; } sem_t; /* A structure to hold the variables for a sys_mbox_t. */ typedef struct { xQueueHandle queue; signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES]; } mbox_t; [/c] 这里创建了两个全局结构体数组来管理semaphores and mailboxes.
@@ -93,7 +114,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&gt;accept(pcb-&gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &hellip; else if (flags &amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;TCP connection request %&ldquo;U16_F&rdquo; -&gt; %&ldquo;U16_F&rdquo;.\n&rdquo;, tcphdr-&gt;src, tcphdr-&gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&gt;accepts_pending &gt;= pcb-&gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;tcp_listen_input: listen backlog exceeded for port %&ldquo;U16_F&rdquo;\n&rdquo;, tcphdr-&gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&gt;prio); &hellip; #if TCP_LISTEN_BACKLOG pcb-&gt;accepts_pending++; #endif &hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;tcp_listen_pcbs.
@@ -130,7 +153,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

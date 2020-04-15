@@ -2,6 +2,8 @@
 title: 'IAR sprintf() 输出不正常的问题'
 date: Mon, 15 Aug 2016 00:57:44 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['IAR sprintf 不正常', 'MCU']
 ---
 

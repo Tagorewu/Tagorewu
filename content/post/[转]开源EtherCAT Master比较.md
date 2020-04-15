@@ -2,6 +2,8 @@
 title: '[转]开源EtherCAT Master比较'
 date: Wed, 25 Nov 2015 02:52:26 +0000
 draft: false
+categories:
+  - "Automation"
 tags: ['ethercatmaster', 'MotionControl', 'SOEM']
 ---
 

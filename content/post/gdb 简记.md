@@ -2,6 +2,8 @@
 title: 'gdb 简记'
 date: Wed, 21 Dec 2016 09:41:23 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Embeded system', 'gdb']
 ---
 

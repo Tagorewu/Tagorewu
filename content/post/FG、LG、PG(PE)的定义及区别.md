@@ -2,6 +2,8 @@
 title: 'FG、LG、PG(PE)的定义及区别'
 date: Fri, 24 Jul 2015 07:03:09 +0000
 draft: false
+categories:
+  - "Hardware"
 tags: ['FG', 'Hardware Design']
 ---
 

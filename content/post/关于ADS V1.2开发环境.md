@@ -2,6 +2,8 @@
 title: '关于ADS V1.2开发环境'
 date: Sun, 15 Dec 2013 15:42:59 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Software Design']
 ---
 

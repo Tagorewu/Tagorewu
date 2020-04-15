@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -45,7 +60,9 @@
 			<h1 class="post__title">嵌入式系统分层（转自电子发烧友）</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-26T15:36:37Z">December 26, 2013</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-26T15:36:37Z">December 26, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 		</header><div class="content post__content clearfix">
 			<p><strong>一、嵌入式系统的分层与专业的分类。</strong> 嵌入式系统分为4层，硬件层、驱动层、操作系统层和应用层。 1、硬件层，是整个嵌入式系统的根本，如果现在单片机及接口这块很熟悉，并且能用C和汇编语言来编程的话，从嵌入式系统的硬件层走起来相对容易，硬件 层也是驱动层的基础，一个优秀的驱动工程师是要能够看懂硬件的电路图和自行完成CPLD的逻辑设计的，同时还要对操作系统内核及其调度性相当的熟悉的。但 硬件平台是基础，增值还要靠软件。 硬件层比较适合于，电子、通信、自动化、机电一体、信息工程类专业的人来搞，需要掌握的专业基础知识有，单片机原理及接口技术、微机原理及接口技术、C语言。 2、 驱动层，这部分比较难，驱动工程师不仅要能看懂电路图还要能对操作系统内核十分的精通，以便其所写的驱动程序在系统调用时，不会独占操作系统时间片，而导 至其它任务不能动行，不懂操作系统内核架构和实时调度性，没有良好的驱动编写风格，按大多数书上所说添加的驱动的方式，很多人都能做到，但可能连个初级的 驱动工程师的水平都达不到，这样所写的驱动在应用调用时就如同windows下我们打开一个程序运行后，再打开一个程序时，要不就是中断以前的程序，要不 就是等上一会才能运行后来打开的程序。想做个好的驱动人员没有三、四年功底，操作系统内核不研究上几编，不是太容易成功的，但其工资在嵌入式系统四层中可 是最高的。 驱动层比较适合于电子、通信、自动化、机电一体、信息工程类专业尤其是计算机偏体系结构类专业的人来搞，除硬件层所具备的基础学科外，还要对数据结构与算法、操作系统原理、编译原理都要十分精通了解。 3、操作系统层，对于操作系统层目前可能只能说是简单的移植，而很少有人来自已写操作系统，或者写出缺胳膊少腿的操作系统来，这部分工作大都由驱动工 程师来完成。操作系统是负责系统任务的调试、磁盘和文件的管理，而嵌入式系统的实时性十分重要。据说，XP操作系统是微软投入300人用两年时间才搞定 的，总时工时是600人年，中科院软件所自己的女娲Hopen操作系统估计也得花遇几百人年才能搞定。因此这部分工作相对来讲没有太大意义。 4、应用层，相对来讲较为容易的，如果会在windows下如何进行编程接口函数调用，到操作系统下只是编译和开发环 境有相应的变化而已。如果涉及Jave方面的编程也是如此的。嵌入式系统中涉及算法的由专业算法的人来处理的，不必归结到嵌入式系统范畴内。但如果涉及嵌 入式系统下面嵌入式数据库、基于嵌入式系统的网络编程和基于某此应用层面的协议应用开发（比如基于SIP、H.323、Astrisk）方面又较为复杂， 并且有难度了。</p>
 
@@ -72,7 +89,7 @@
 		<span class="authorbox__name">About Tagore Wu</span>
 	</div>
 	<div class="authorbox__description">
-		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+		Tagore&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
 	</div>
 </div>
 
@@ -119,7 +136,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

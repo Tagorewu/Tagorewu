@@ -2,6 +2,8 @@
 title: 'git 中心服务搭建'
 date: Wed, 22 Aug 2018 12:47:34 +0000
 draft: false
+categories:
+  - "Software"
 tags: ['git', 'Software Design']
 ---
 

@@ -2,6 +2,8 @@
 title: 'Beremiz 简介'
 date: Thu, 10 Dec 2015 07:36:06 +0000
 draft: false
+categories:
+  - "Automation"
 tags: ['Beremiz', '未分类']
 ---
 

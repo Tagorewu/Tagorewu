@@ -2,6 +2,8 @@
 title: '阿里云ECS推荐码9折 : ceyo2p'
 date: Wed, 01 Jun 2016 14:58:03 +0000
 draft: false
+categories:
+  - "Others"
 tags: ['ECS', 'Website Manage', '阿里云推荐码']
 ---
 

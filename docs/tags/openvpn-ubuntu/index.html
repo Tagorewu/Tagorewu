@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -51,7 +66,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-19T15:28:48Z">August 19, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-19T15:28:48Z">August 19, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/network/" rel="category">Network</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 http://www.linuxidc.com/Linux/2014-08/105925p2.htm http://www.linuxidc.com/Linux/2012-01/51702.htm https://help.ubuntu.com/lts/serverguide/openvpn.html http://blog.csdn.net/joyous/article/details/8034132 OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的： * OpenVPN &ndash; An application to securely tunnel IP networks * over a single TCP/UDP port, with support for SSL/TLS-based * session authentication and key exchange, * packet encryption, packet authentication, and * packet compression. 一、安装OpenVPN [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.
@@ -88,7 +105,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

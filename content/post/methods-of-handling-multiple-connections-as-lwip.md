@@ -2,6 +2,8 @@
 title: 'methods of handling multiple connections as lwip'
 date: Thu, 21 Jul 2016 09:37:59 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['LwIP', 'tcp multi-connections']
 ---
 

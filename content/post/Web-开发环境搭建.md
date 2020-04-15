@@ -2,6 +2,8 @@
 title: 'Web 开发环境搭建'
 date: Sun, 21 Jun 2015 03:37:16 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['Website Manage']
 ---
 

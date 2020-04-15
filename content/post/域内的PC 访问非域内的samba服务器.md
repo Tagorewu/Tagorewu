@@ -2,6 +2,8 @@
 title: '域内的PC 访问非域内的samba服务器'
 date: Tue, 23 Apr 2019 01:22:22 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['未分类']
 ---
 

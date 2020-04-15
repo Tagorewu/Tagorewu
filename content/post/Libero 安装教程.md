@@ -2,6 +2,8 @@
 title: 'Libero 安装教程'
 date: Thu, 07 Jan 2016 02:07:03 +0000
 draft: false
+categories:
+  - "FPGA"
 tags: ['FPGA', 'libero 安装']
 ---
 

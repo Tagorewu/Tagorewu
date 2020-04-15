@@ -2,6 +2,8 @@
 title: '基于Altera FPGA的 摄像头+LCD DIY'
 date: Sat, 30 Nov 2013 09:54:20 +0000
 draft: false
+categories:
+  - "FPGA"
 tags: ['FPGA']
 ---
 

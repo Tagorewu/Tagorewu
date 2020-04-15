@@ -2,6 +2,8 @@
 title: '编译PYNQ 在ZCU102上的镜像'
 date: Fri, 05 Apr 2019 12:46:54 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['AC7020', 'FPGA', 'PYNQ', 'ZCU102']
 ---
 

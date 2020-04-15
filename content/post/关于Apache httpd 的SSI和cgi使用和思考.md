@@ -2,6 +2,8 @@
 title: '关于Apache httpd 的SSI和cgi使用和思考'
 date: Wed, 14 Dec 2016 14:25:28 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['httpd 单片机', 'Web Develop']
 ---
 

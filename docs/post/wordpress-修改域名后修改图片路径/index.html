@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -45,7 +60,9 @@
 			<h1 class="post__title">Wordpress 修改域名后修改图片路径</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-03-08T15:08:52Z">March 08, 2015</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-03-08T15:08:52Z">March 08, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 		</header><div class="content post__content clearfix">
 			<p>[hermit auto=&quot;1&rdquo; loop=&quot;0&rdquo; unexpand=&quot;0&rdquo;]netease_songs#:65538[/hermit] WordPress更换域名 主页和图片路径错误 解决办法 首先介绍下SQL替换命令 <strong>UPDATE 表名 SET 字段 = REPLACE(字段,’替换内容’,&lsquo;替换值’);</strong> eg： <strong>UPDATE</strong> wp_options <strong>SET</strong> option_value = <strong>REPLACE</strong>(option_value,&lsquo;<a href="http://www.59a.cn">www.59a.cn</a>&rsquo;,&lsquo;m59a.cn&rsquo;); 其中wp_options就是表名，option_value就是表wp_options里的一个字段，wp_options里有siteurl和home的值。 一般只要执行以下命令，就可完成域名的修改： 1.修改option_value里的站点url和主页地址： UPDATE wp_options SET option_value = replace(option_value, &lsquo;<a href="http://www.59a.cn">http://www.59a.cn</a>&rsquo;, &lsquo;<a href="http://www.new-59a.cn">http://www.new-59a.cn</a>&rsquo;) WHERE option_name = &lsquo;home&rsquo; OR option_name = &lsquo;siteurl&rsquo;; 2.更正文章中内部链接及附件的地址, 主要是一些图片路径： UPDATE wp_posts SET post_content = replace(post_content, &lsquo;<a href="http://www.59a.cn">http://www.59a.cn</a>&rsquo;, &lsquo;<a href="http://www.new-59a.cn">http://www.new-59a.cn</a>&rsquo;); 3.更正wordpress文章默认的永久链接： UPDATE wp_posts SET guid = replace(guid, &lsquo;<a href="http://www.59a.cn">http://www.59a.cn</a>&rsquo;,&lsquo;<a href="http://www.new-59a.cn">http://www.new-59a.cn</a>&rsquo;);</p>
 
@@ -72,7 +89,7 @@
 		<span class="authorbox__name">About Tagore Wu</span>
 	</div>
 	<div class="authorbox__description">
-		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+		Tagore&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
 	</div>
 </div>
 
@@ -119,7 +136,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

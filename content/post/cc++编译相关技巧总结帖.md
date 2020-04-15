@@ -2,6 +2,8 @@
 title: 'c/c++编译相关技巧总结帖'
 date: Wed, 04 Apr 2018 07:35:04 +0000
 draft: false
+categories:
+  - "Software"
 tags: ['c 链接', 'Linux']
 ---
 

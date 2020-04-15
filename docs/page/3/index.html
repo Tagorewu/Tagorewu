@@ -31,10 +31,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -44,29 +59,15 @@
 	<article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/%E5%85%B3%E4%BA%8Eapache-httpd-%E7%9A%84ssi%E5%92%8Ccgi%E4%BD%BF%E7%94%A8%E5%92%8C%E6%80%9D%E8%80%83/" rel="bookmark">
-			关于Apache httpd 的SSI和cgi使用和思考
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-12-14T14:25:28Z">December 14, 2016</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		因为在单片机上的web服务是使用删减版的httpd服务器，只保留最原始的扩展功能，SSI和CGI。无法像pc上的服务器可以使用php,jsp之类的引擎。 SSI主要是为了往网页里面插入实时的变量，CGI主要是处理客户端发送来的请求。这样即使是最古老的浏览器也不会有什么兼容性问题。 但是这样的做法的结果是服务端的编程变繁琐了。作为单片机这种嵌入式web应用，应该尽可能工作量放在客户端来完成，减少服务端的复杂度。而且不需要太考虑兼容古老的浏览器，因为落后的东西就应该被淘汰。 早期的浏览器作为通用的客户端只拥有简单的功能，比如实现get和post等几个方法。大量的跳转和内容生成是在服务端运行的，就造成服务器的负载较大。自从javascript成为浏览器端标准的脚本语言后，各种网站的内容交互方式就变得更加自由了。我这里感受最深的就是使用客户端脚本把动态网页的生成工作放在浏览器端来做，数据由ajax 单独请求更新。嵌入式web经常需要显示一些实时的数据，把单独的数据请求放在后台实时更新，然后由脚本把它填写至网页。不像早期的技术使用SSI，服务端需要检索整个网页的SSI tag，然后查找变量，将数据实时更新至网页，然后发送整张网页。可以想服务端的压力有多大。其实这种思维模式就像网站程序和网站数据分开放一个道理。好处多多！ 因为用单片机的web服务器调试前端代码会比较繁琐，要转码要下载，频繁修改就不方便。所以直接在pc的web服务器上调试前端代码，并且使用SSI和CGI，模仿单片机C后台的动作，这里要有一些技巧。 在Apache httpd web服务器上使用SSI和cgi，可以参考服务器主页上的帮助文档 http://httpd.apache.org/docs/current/howto/ssi.html。这里简单做个记录。
- SSI 按照官方介绍把SSI功能打开。怎么设置httpd.conf就不多说。这里简单记录下其使用规则。 想设置某个SSI tag时，可以使用 [html] [/html] 在需要调用它的地方使用 [html] [/html] 就可以显示出 xxxx 了。 仅仅是这样使用，跟我们在使用最原始的SSI还是有点不一样。 为了方便调试，我们可以在页面上头加上 [html] [/html] 重定义这个未找到SSI时的提示语言，原本的提示语言很长，不方便调试。
- CGI有几个要点： 1. CGI开启后，默认设置ScriptAlias是只执行cgi-bin下的脚本。你可以将自己的web目录添加进去，因为实际请求的路径不一定是/cgi-bin。 2. 这里可以用perl、python或者bash脚本来模仿单片机c的后端应答动作。这样调试好前端代码后，下进单片机后再慢慢调试后端代码就方便了。注意在perl前面要设置好perl.exe的路径。同时可以修改.pl后缀为我们想要的.cgi它也可以得到执行。完美模仿单片机后端逻辑！ Get!
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
 			<a href="/post/%E6%80%BB%E7%BB%93%E5%87%A0%E4%B8%AAc-%E8%AF%AD%E8%A8%80%E6%AF%94%E8%BE%83%E9%AB%98%E7%BA%A7%E7%9A%84%E7%BC%96%E5%86%99%E6%8A%80%E5%B7%A7/" rel="bookmark">
 			总结几个C 语言比较高级的编写技巧
 			</a>
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-25T08:51:40Z">November 25, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-25T08:51:40Z">November 25, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/software/" rel="category">Software</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		看了一些源代码，这里总结几个不常见的，但是比较好用的C 用法。也许这些功能在C++中有扩展，但是个人基本不用C++。其实这些应该是属于预处理器的功能。若是之前没有见过，遇到时会感觉云里雾里的。
@@ -83,7 +84,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-23T09:24:20Z">November 23, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-23T09:24:20Z">November 23, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Basic Authorization 从最初的基本的授权方式说起。 http头里添加：WWW-Authenticate: Basic realm=&quot;xxx&rdquo; 即可要求浏览器输入授权信息。 浏览器发送时会附带授权信息：Authorization:Basic YWRtaW46YWRtaW4= 它是由base64加密的。如上解密后为：admin:admin Basic authorization 的授权方式就是每个请求中在http头里都携带着base64加密的授权信息，服务器在每次收到请求时都要进行权限判断，再执行对应的操作。 由于考虑到授权，那自然涉及到了客户端状态。http /0.9是无状态无连接的协议，一个特定的输入就对应一个特定的输出。由于http 不需要很强的实时性，属于一问一答的对话形式，且有时并发性强，不可能是一对一的专人(线程)负责一个会话。所以如果涉及到状态就不如把状态参数放置在请求中，服务端就要先对请求中携带的状态进行判断，再判断对应的操作是否有权限等等。按数字电路的理论，服务端的业务就变成两段式状态机的组合逻辑部分。状态部分可以保存在客户端或者服务端，这就变成了cookie和session了。 http /1.0增加了keep-alive 选项，http /1.1则默认了所有连接都有keep-alive选项。http keep-alive 选项就是说 发送完响应之后不服务端不主动关闭连接(http /0.9 是会主动关闭连接的)。http 的keep-alive 应该通过是tcp的keep-alive 定时心跳来维持的，不过http的keep-alive 还有一层意思是即使tcp 连接断开了，http的session还是keep alive的，http 可能也维护着一个保活定时器去试探每个连接上的客户端是否仍在线(这个不清楚)。 当http涉及到用户的概念时，就需要识别用户了，可能最早http识别一个客户端的方法跟标识一个tcp连接的方法是一样的，即IP+Port的形式来断定。然后变成 client 的（IP+Port+uid+password)的，也就是Basic Authorization的方式。状态信息可以放在url(GET)，http header(authorizatin, cookie) 或者 post content里面。 对安全性的考虑： 由于每次都携带用户名和密码的这种请求方式极不安全，所以衍生版本就是用cookie来替代每次都携带的用户名和密码，这样就算cookie被人获取利用，也不会泄漏用户名和密码。只有在登陆的时候会传输一次用户名和密码。再者base64是可逆的加密方式，后面也使用不可逆的加密方式如md5（因为它是有损的加密，不可能还原出原密是什么）。但是如果被抓包，还是会被黑客冒名向服务器发出请求。所以早期网上支付等等就需要k宝，动态口令卡之类的东西。现在由于TLS/SSL等技术的出现，http on TLS/SSL 就很安全了。传输层或者socket层之上的信息全部使用密钥加双方证书加密，再靠抓包破解就很难了，所以这几年网络支付又火了起来。 PS: 看了一个wordpress登录的时候是直接POST 明文用户名加密码，好危险。 FAQ: Chrome delete authorization information 在使用 header(&lsquo;WWW-Authenticate: Basic realm=&quot;userlogin&rdquo;'); 调试用户登录授权时，浏览器总是会保存之前输入的授权信息。想输入其它用户测试都不行。 所以有两个方法： 1. 使用隐私窗口调试。 2. 在url之前增加 &ldquo;admin@&rdquo; 就可以输入新的授权信息了。 php 的header函数，和html 中的标签效果的区别 两个都用来产生response header的，不同的是前者应该直接由服务端在http header里的添加值对。后者只是将值对放在html中传送，由浏览器来解析。这可以在浏览器中调试发现它们的区别。 Session and Cookie Session 是服务端维护的会话信息, cookie是用于标识客户对象和携带客户状态参数的变量。最初由客户端发送，服务端即认识了这个访问对象（可能还要加上ip+port信息），每次客户端有相应的操作之后，服务端即会把一些状态参数加入cookie中返回给客户端。这样服务端就不需保存用户操作状态了。session 保存着这次会话的信息，超时无操作之后就会结束这次会话。 以上纯属个人理解，因为目前在应用层的使用经验比较少，只是在嵌入式开发中涉及到一些初级的简单的应用层开发。属于http的一些最初的实现，只求简单可靠，服务端处理只有C语言。不过也有必要了解一下所谓“未来”的解决方案。有高级的框架的比如 jQuery.
@@ -97,7 +100,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-04T09:54:02Z">November 04, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-04T09:54:02Z">November 04, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/network/" rel="category">Network</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		现在的上网安全性越来越差了，感觉随时有人在监视你上网。电信送的政企网关更是漏洞百出，dns经常被劫持，而且电信留有后门，非常不安全。再加上之前出现的同事邮件被监视，诈骗邮件、短信等等的问题，公司的网络真的是问题很大。 之前部署的openvpn服务在手机端用，似乎dns有问题不能用，不用dns的服务则可正常使用。而PC端使用OpenVPN无任何问题。所以打算在国内的服务器上也部署一个SS来上网。 pip安装方式简单记录下： [bash] #apt-get intsall python-pip #pip install shadowsocks #vim /etc/shadowsocks.json 如下 { &ldquo;server&rdquo;:&ldquo;my_server_ip&rdquo;, &ldquo;server_port&rdquo;:8388, &ldquo;local_address&rdquo;: &ldquo;127.0.0.1&rdquo;, &ldquo;local_port&rdquo;:1080, &ldquo;password&rdquo;:&ldquo;mypassword&rdquo;, &ldquo;timeout&rdquo;:300, &ldquo;method&rdquo;:&ldquo;aes-256-cfb&rdquo;, &ldquo;fast_open&rdquo;: false } #ssserver -c /etc/shadowsocks.json -d start 若要开机启动则将本条添加到 /etc/rc.local 里 [/bash] 由于在 pip install 的时候出了问题，估计是国内访问pypi资源很慢，安装失败。于是就打算使用源码安装方式。 1. 用scp 拷贝源码到服务器。 2. [bash] #python setup.py build #python setup.py install #等待安装完成，之后就跟上面的一样配置就可以了。 [/bash] 要赶紧把ss的源码好好学学，不然哪天翻不出去也要会自力更生，嘿嘿。 特别 github 还有python大牛源码解析的版本和其它衍生版本可以下哦！这里不贴出来，以免被封。 tips: 对于长城宽带，ss代理若使用常用的443端口经常遇到出不去的情况，可以用telnet 通一下443端口，然后就神奇的可以出去了。这也是无意中发现的，长宽真是个神奇的存在！电信就很少遇到这个问题，不过有极少情况可能是因为找不到路由，可以tracert 一下服务器应该就能出去了。
@@ -111,7 +116,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-19T15:28:48Z">August 19, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-19T15:28:48Z">August 19, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/network/" rel="category">Network</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 http://www.linuxidc.com/Linux/2014-08/105925p2.htm http://www.linuxidc.com/Linux/2012-01/51702.htm https://help.ubuntu.com/lts/serverguide/openvpn.html http://blog.csdn.net/joyous/article/details/8034132 OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的： * OpenVPN &ndash; An application to securely tunnel IP networks * over a single TCP/UDP port, with support for SSL/TLS-based * session authentication and key exchange, * packet encryption, packet authentication, and * packet compression. 一、安装OpenVPN [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.
@@ -125,7 +132,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-17T08:01:24Z">August 17, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-17T08:01:24Z">August 17, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) 内存堆动态分配方式 [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) &amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr+3)&amp;(~(u32)(0x03))，+3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;0x03)?(addr+1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED + (2*SIZEOF_STRUCT_MEM) + MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &hellip; /** * The heap is made up as a list of structs of this type.
@@ -139,7 +148,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-15T00:57:44Z">August 15, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-08-15T00:57:44Z">August 15, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		前几天调试了一程序，用到sprintf函数，输出结果一直不正常，同样的输出格式用printf打印则没有问题。然后同样的程序在gcc下sprintf也是正常的。怀疑IAR的sprintf函数有问题。后来发现原因是IAR把sprintf函数简化了，在project-options-general options 里面的Library options 的Tabs里有个printf formatter，默认是选成tiny的选项，结果就不支持一些复杂的输出格式。把它设置成auto，输出结果就正常了，o yeah!
@@ -153,7 +164,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-21T09:37:59Z">July 21, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-21T09:37:59Z">July 21, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里分享一些一个服务handle多client连接的经验。 (1) 多线程/进程方法 每accept并创建一个新连接之后，就create一个task来处理这个连接的事务。linux使用fork()来创建分支线程。freertos 不支持fork方法，只能创建新的线程来管理连接。此方法内存开销较大。 (2) non-blocking socket 和 select 此方法由单线程处理并发事务，即最原始的轮询方式。在系统不支持fork()的情况下经常用到。首先，accpet/recv函数都必须的non-blocking的，需立即返回，否则其它任务就得不到轮询。这种模式在跑单片机裸机程序时经常是这样的，另外在labview里面也经常是这样的轮询的方式。这个例程可以在lwip 1.4.1 contrib下app demo:chargen 里可以学习到。这种方式会占用很多cpu资源，这样的任务优先级要放低，并设置一定的轮询间隔(类比在labview里，while循环通常会插入一个等待时间)。否则 freertos 中低优先级任务就得不到运行，同优先级的任务也只能分时间片轮流运行。 这里简单总结下 select方法。 协议栈内核在每次有accept 或 recv事件到达后都会调用 event_callback(); 增加一个事件记录。在上层接收后都会减掉一个记录。select 函数通过查询socket的对应event来置位fd_set对应的比特位。本质就类似查询一个计数信号量。 (3) 使用 raw api， 基于事件触发(基于回调)方式。 此方式适合编写只进行简单处理的应用，每次接收到包就会调用相应的回调函数。多连接是由协议栈的active_pcb_lists直接管理，每个连接都创建属于自己的state argument。如果需要运算量比较大占用时间较长的服务则不适合此方式，会影响的协议栈对其它服务的响应速度。 后记，从事务的角度来看，一个tcp连接代表一个session，一句udp 请求也代表一个session。一个session从接收到返回就是一条事务线。若不能一气呵成，则就必须用一条线程去管理它，或者说维护一个工作现场，等待它的后台任务完成再回来应答这个事务。一条线程就对应一个事务现场，多任务操作系统就是在不同的工作现场的中交替工作，模拟多个人工作的情况，每一个工作现场都保存的对应工作事务的进展情况和所有需要用到的工具。 或者还有一种做法，就是一件事做完一部分后丢给后台，让它处理完之后调用我给它的办法帮我把剩下的事处理完，节省了任务之间信息传递和任务切换带来的开销。 其实一个session对应一个任务确实有点浪费，我想一般handle几百上千万个连接的服务应该不会这样做的，每个连接只需将它当前的状态变量连同数据包传给每个部门来做就可以了，毕竟每个连接的状态的数据量不是很多，没必要开辟一个专门的任务去Handle.
@@ -167,7 +180,9 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T11:19:36Z">July 12, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T11:19:36Z">July 12, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		从Lwip Netconn接口的代码中，我们可以学到与Lwip 协议栈规范的交互方式和这种接口的封装方法。 这里总结出一个看代码的技巧，第一步先是只看正常处理的流程，忽略异常处理的部分，这样代码就可以非常简洁，可以很快把代码流程搞清楚，第二步再看重要的异常情况的处理过程。 连接的建立过程前面已经简单总结过，这里就只说我们比较关心的recv_xxx()过程。 recv_xxx() 函数是在accept_func里注册的,并且pcb-&gt;callback_arg = new_netconn。 其回调原型： [c] #define TCP_EVENT_RECV(pcb,p,err,ret) \ do { \ if((pcb)-&gt;recv != NULL) { \ (ret) = (pcb)-&gt;recv((pcb)-&gt;callback_arg,(pcb),(p),(err));\ } else { \ &hellip; \ } \ } while (0) [/c] 函数原型： recv_tcp(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) { struct netconn *conn; u16_t len; conn = (struct netconn *)arg; if (sys_mbox_trypost(&amp;conn-&gt;recvmbox, p) != ERR_OK) { &hellip; } 这里从tcpip_thread抛出的是pbuf。 netconn 接收部分如下： [c] netconn_recv_data(struct netconn *conn, void **new_buf) { void *buf = NULL; if (sys_arch_mbox_fetch(&amp;conn-&gt;recvmbox, &amp;buf, conn-&gt;recv_timeout) == SYS_ARCH_TIMEOUT) &hellip; } [/c] 这里buf 是void 类型的指针，因为上头可能会用pbuf类型或者netbuf类型来接收邮箱里的pbuf。 netbuf的封装方式：
@@ -181,17 +196,35 @@ puts( HELLO WORLD );
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T01:42:53Z">July 12, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-12T01:42:53Z">July 12, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。 [c] &ldquo;sys_arch.c&rdquo; /* An array to hold the memory for the available semaphores. */ static sem_t sems[SYS_SEM_MAX]; /* An array to hold the memory for the available mailboxes. */ static mbox_t mboxes[SYS_MBOX_MAX]; &ldquo;sys_arch.h&rdquo; ///* A structure to hold the variables for a sys_sem_t. */ typedef struct { xQueueHandle queue; signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES]; } sem_t; /* A structure to hold the variables for a sys_mbox_t. */ typedef struct { xQueueHandle queue; signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES]; } mbox_t; [/c] 这里创建了两个全局结构体数组来管理semaphores and mailboxes.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/some-notes-about-lwip/" rel="bookmark">
+			LwIP TCP Layer Simple analysis
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&gt;accept(pcb-&gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &hellip; else if (flags &amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;TCP connection request %&ldquo;U16_F&rdquo; -&gt; %&ldquo;U16_F&rdquo;.\n&rdquo;, tcphdr-&gt;src, tcphdr-&gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&gt;accepts_pending &gt;= pcb-&gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;tcp_listen_input: listen backlog exceeded for port %&ldquo;U16_F&rdquo;\n&rdquo;, tcphdr-&gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&gt;prio); &hellip; #if TCP_LISTEN_BACKLOG pcb-&gt;accepts_pending++; #endif &hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;tcp_listen_pcbs.
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/page/2/">«</a>
-	<span class="pagination__item pagination__item--current">3/7</span>
+	<span class="pagination__item pagination__item--current">3/6</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/4/">»</a>
 </div>
 
@@ -222,7 +255,31 @@ puts( HELLO WORLD );
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

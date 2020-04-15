@@ -2,6 +2,8 @@
 title: 'ARM NEON Usage Note'
 date: Fri, 07 Dec 2018 08:02:10 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['ARM', 'ARM', 'NEON']
 ---
 

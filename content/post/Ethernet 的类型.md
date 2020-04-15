@@ -2,6 +2,8 @@
 title: 'Ethernet 的类型'
 date: Sun, 21 Jun 2015 08:51:44 +0000
 draft: false
+categories:
+  - "Network"
 tags: ['Ethernet', 'Network basis']
 ---
 

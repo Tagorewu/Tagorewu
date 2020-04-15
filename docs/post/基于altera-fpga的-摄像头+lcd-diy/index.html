@@ -33,10 +33,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -48,7 +63,9 @@
 			<h1 class="post__title">基于Altera FPGA的 摄像头&#43;LCD DIY</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-11-30T09:54:20Z">November 30, 2013</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-11-30T09:54:20Z">November 30, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/fpga/" rel="category">FPGA</a>
+	</span>
+</div></div>
 		</header><div class="content post__content clearfix">
 			<p>        前些日子买了个大家玩得很火的OV7670来玩玩，由于之前没玩过摄像头，也听说不带FIFO的摄像头采集起来是那么困难，所以就买了个不带FIFO的来尝尝鲜。后来看了资料才知道，一幅QVGA的图像按320*240*2Byte来算，也要153.6KB内存，对单片机来说是一比不小的开销。更何况单片机的速率才多少M，就按50M主频来说，捕捉一个8M左右的像素时钟也是相当困难的。当然后面也用STM32F103ZET6来尝试捕捉了一下，结果也是不尽人意。 考虑到时钟的捕捉，当然是用FPGA的硬件电路来实现才是王道了。又想想摄像头和液晶屏的初始化也是相当麻烦的，如果也用硬件电路来实现，那写起代码来就是一大串了，而且改起来也不方便。于是乎，脑子里一直存在的一个想法在这里就能得到真正的应用和实现了。那就是MCU与FPGA结合的方案。手上正有一款Altera 的EP2C8Q208C的开发板。那么我们的DIY就开始了。</p>
 <p><a href="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163312.jpg"><img src="http://www.wuquantai.com/wp-content/uploads/2013/11/QQ%E5%9B%BE%E7%89%8720131130163312-300x220.jpg" alt="QQ图片20131130163312"></a> </p>
@@ -248,7 +265,7 @@ endmodule</p>
 		<span class="authorbox__name">About Tagore Wu</span>
 	</div>
 	<div class="authorbox__description">
-		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+		Tagore&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
 	</div>
 </div>
 
@@ -295,7 +312,31 @@ endmodule</p>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

@@ -2,6 +2,8 @@
 title: 'ubuntu 上部署OpenVPN服务'
 date: Fri, 19 Aug 2016 15:28:48 +0000
 draft: false
+categories:
+  - "Network"
 tags: ['Network basis', 'OpenVPN ubuntu']
 ---
 

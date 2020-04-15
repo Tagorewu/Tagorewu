@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Embedded - Tagore&#39;s Studio</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Embedded" />
+<meta property="og:description" content="Tagore&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/categories/embedded/" />
+<meta property="og:updated_time" content="2019-04-20T13:59:51+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="alternate" type="application/rss+xml" href="/categories/embedded/index.xml" title="Tagore's Studio">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
+				<div class="logo__title">Tagore&#39;s Studio</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Embedded</h1>
+	</header><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E5%85%B3%E4%BA%8E%E5%86%AF.%E8%AF%BA%E4%BC%8A%E6%9B%BC%E6%9E%B6%E6%9E%84%E5%92%8C%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84/" rel="bookmark">
+			关于冯.诺伊曼架构和哈佛架构
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-16T15:03:08Z">December 16, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		典型的冯.诺伊曼架CPU是x86的CPU。pc机cpu在运行的时候程序是存储在RAM即内存中的，需要运行的程序从硬盘、U盘等外存读取加载进内存中供CPU高速运行（CPU不可能从外存中直接读取指令），所以程序和数据都是放在内存中的。取指令和取操作数都在同一总线上，通过分时复用的方式进行的。缺点是在高速运行时，不能达到同时取指令和取操作数，从而形成了传输过程的瓶颈。 而大多数单片机等嵌入式系统则是存于flash中，flash逐步取代较古老ROM。单片机的程序是固化在flash中，cpu运行时直接从flash中读取程序，从RAM中读取数据。即程序和数据分开存储，而且单片的片内RAM资源是相当有限的，内部的RAM过大会带来成本的大幅度提高。 哈佛总线技术应用是以DSP和ARM为代表的。采用哈佛总线体系结构的芯片内部程序空间和数据空间是分开的，这就允许同时取指令和取操作数，从而大大提高了运算能力。它们都有独立的程序地址总线（PAB），数据地址读总线（DRAB）和数据地址写总线（DWRB）。
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="bookmark">
+			关于ADS V1.2开发环境
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-15T15:42:59Z">December 15, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		从开始用freescale 的CodeWarrior起到这个ADS V1.2 ,一直认为这个开发环境做得不好。有几个问题。 1.当make完之后在xx.o文件报错有不明物体，双击这条error, 它没帮你定位到xx.c里。以至于你还得打开xx.c CTRL+F，找出这个不明物体。这很烦，有时候会觉得这个编译器很无语。 2.ADS V1.2的工程管理不能靠边？dock，至今没找到这个功能。。以至于窗口管理乱糟糟的。
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/" rel="bookmark">
+			嵌入式开学-先认识硬件
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2013-12-15T15:28:03Z">December 15, 2013</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		这里使用的是TQ2440开发板，CPU 一般运行在400M的时钟频率。核心板载有两片Hynix(海力士,又叫现代内存)256Mb的SDRAM合64MB的内存，256MB SAMSUNG 的Nand flash，2MB 的Eon（宜扬） 的Nor flash。 首先，Nor flash 和 Nand flash 的区别？ Nor flash的有自己的地址线和数据线，操作以字为单位，可以采用类似于memory的随机访问方式，在nor flash上可以直接运行程序，所以nor flash可以直接用来做boot，采用nor flash启动的时候会把地址映射到0x00上。类似于计算机内BIOS的存放位置。 Nand flash是IO设备，类似于计算机的硬盘，数据、地址、控制线都是共用的，需要软件区控制读取时序，更**无法挂在ARM的程序空间，**所以不能像nor flash、内存一样随机访问，不能EIP（片上运行），因此不能直接作为boot。一般Nand flash 用来存储系统程序，系统上电后由Nor flash中的BootLoader将系统加载进RAM中的可执行地址中运行，然后跳到主程序中运行。（这有点像冯.诺伊曼架构，程序和数据都在RAM中）。Nand flash在读取数据量较大的成块数据时，速度较快。
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-gui-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/" rel="bookmark">
+			嵌入式 GUI 设计心得
+			</a>
+		</h3>
+		<div class="list__meta meta"><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		GUI，（Graphic User Interface) 为图形用户接口。其从用户角度出发进行程序设计。主要包括输入事件，如：按键、触屏、定时触发事件、动作事件等。输出接口，如显示、振动等。
+emWin GUI, GUI 主任务负责检查处理输入事件、更新对应输出。其核心是给用户显示出其当前操作的状态结果。相对其它实时性要求很高的任务，GUI的任务优先级应该是最低的。
+嵌入式系统裁剪的是代码，增加的是开发者呕心沥血的工作量。若不是量特别大，是不建议深入开发的，只能停留在Demo 阶段，玩玩是可以。因为开发者良苦用心的工作，等几年后硬件升级了，这些工作全部都没有价值了。当时费心费力的省内存，省空间，优化CPU，这些价值全部归零。想想当年的51单片机就是这样。所以觉得做嵌入式一直不被开发者看好。能坚持下去的都是一些有独特爱好的玩家。
+	</div>
+</article>
+</main>
+
+<div class="pagination">
+	<a class="pagination__item pagination__item--prev btn" href="/categories/embedded/page/2/">«</a>
+	<span class="pagination__item pagination__item--current">3/3</span>
+</div>
+
+			</div>
+			
+<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">又折腾网站迁移</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%E5%9F%9F%E5%86%85%E7%9A%84pc-%E8%AE%BF%E9%97%AE%E9%9D%9E%E5%9F%9F%E5%86%85%E7%9A%84samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">域内的PC 访问非域内的samba服务器</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">zynq 嵌入式开发总结</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/">编译PYNQ 在ZCU102上的镜像</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ac7020/" title="AC7020">AC7020</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet/" title="Ethernet">Ethernet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ethernet-/ip/" title="Ethernet /IP">Ethernet /IP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fg/" title="FG">FG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fpga/" title="FPGA">FPGA</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gdb/" title="gdb">gdb</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/get/" title="get">get</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/h264-structure/" title="H264 structure">H264 structure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-design/" title="Hardware Design">Hardware Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http/" title="http">http</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/http-authorization/" title="Http Authorization">Http Authorization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/httpd-%E5%8D%95%E7%89%87%E6%9C%BA/" title="httpd 单片机">httpd 单片机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iar-sprintf-%E4%B8%8D%E6%AD%A3%E5%B8%B8/" title="IAR sprintf 不正常">IAR sprintf 不正常</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/image-process/" title="image process">image process</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kernel-debug/" title="kernel debug">kernel debug</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/libero-%E5%AE%89%E8%A3%85/" title="libero 安装">libero 安装</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip/" title="LwIP">LwIP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E4%BF%A1%E5%8F%B7%E9%87%8F/" title="Lwip 信号量">Lwip 信号量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Lwip 内存管理">Lwip 内存管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/lwip-%E9%82%AE%E7%AE%B1/" title="Lwip 邮箱">Lwip 邮箱</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mac/" title="mac">mac</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/make/" title="make">make</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/makefile/" title="Makefile">Makefile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mcu/" title="MCU">MCU</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/motioncontrol/" title="MotionControl">MotionControl</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neon/" title="NEON">NEON</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/network-basis/" title="Network basis">Network basis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nfs/" title="nfs">nfs</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openvpn-ubuntu/" title="OpenVPN ubuntu">OpenVPN ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/petalinux/" title="petalinux">petalinux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/post/" title="post">post</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/profinet/" title="profinet">profinet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pynq/" title="PYNQ">PYNQ</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/qemu/" title="qemu">qemu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/samba/" title="samba">samba</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-completion/" title="shell completion">shell completion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtm/" title="shtm">shtm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shtml/" title="shtml">shtml</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/soem/" title="SOEM">SOEM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/software-design/" title="Software Design">Software Design</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssi/" title="SSI">SSI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/svn%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" title="SVN服务搭建">SVN服务搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tar/" title="tar">tar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/website-manage/" title="Website Manage">Website Manage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/yagarto/" title="Yagarto">Yagarto</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zcu102/" title="ZCU102">ZCU102</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zynq-linux/" title="zynq linux;">zynq linux;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E4%BA%92%E6%96%A5%E9%87%8F/" title="互斥量">互斥量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91/" title="工业以太网">工业以太网</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" title="未分类">未分类</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Tagore&#39;s Studio.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

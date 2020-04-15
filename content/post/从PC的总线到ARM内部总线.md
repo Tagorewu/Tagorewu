@@ -2,6 +2,8 @@
 title: '从PC的总线到ARM内部总线'
 date: Mon, 09 Mar 2015 04:51:50 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['MCU']
 ---
 

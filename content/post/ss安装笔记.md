@@ -2,6 +2,8 @@
 title: 'ss安装笔记'
 date: Fri, 04 Nov 2016 09:54:02 +0000
 draft: false
+categories:
+  - "Network"
 tags: ['未分类']
 ---
 

@@ -106,18 +106,6 @@ https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
     </item>
     
     <item>
-      <title>Untitled Reusable Block</title>
-      <link>/post/untitled-reusable-block/</link>
-      <pubDate>Fri, 07 Dec 2018 09:20:24 +0000</pubDate>
-      
-      <guid>/post/untitled-reusable-block/</guid>
-      <description>  v SPS (Sequence parameter set)
-  v PPS (Picture parameter set)
-  v IDR (Instantaneous Decoder Refresh), every IDR frame is an I-frame, but not vice versa,
-  </description>
-    </item>
-    
-    <item>
       <title>ARM NEON Usage Note</title>
       <link>/post/arm-neon-usage-note/</link>
       <pubDate>Fri, 07 Dec 2018 08:02:10 +0000</pubDate>
@@ -449,15 +437,6 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
     </item>
     
     <item>
-      <title>音乐</title>
-      <link>/post/%E9%9F%B3%E4%B9%90/</link>
-      <pubDate>Sun, 14 Feb 2016 03:00:31 +0000</pubDate>
-      
-      <guid>/post/%E9%9F%B3%E4%B9%90/</guid>
-      <description>每一首音乐里都有着一个回忆。 [hermit auto=&amp;quot;1&amp;rdquo; loop=&amp;quot;0&amp;rdquo; unexpand=&amp;quot;0&amp;rdquo; fullheight=&amp;quot;0&amp;rdquo;]netease_playlist#:25031762[/hermit]</description>
-    </item>
-    
-    <item>
       <title>[转]各种工业以太网比较（EtherCAT,EtherNet/IP,ProfiNet,Modbus-TCP,Powerlink）</title>
       <link>/post/%E8%BD%AC%E5%90%84%E7%A7%8D%E5%B7%A5%E4%B8%9A%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%AF%94%E8%BE%83ethercatethernetipprofinetmodbus-tcppowerlink/</link>
       <pubDate>Wed, 27 Jan 2016 06:15:31 +0000</pubDate>
@@ -535,10 +514,10 @@ Freescale i.MX53 Blackfin 5xx Blackfin 6xx Intel
     
     <item>
       <title>Verdi201210 安装笔记</title>
-      <link>/post/verdi201210-%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/</link>
+      <link>/post/verdi201210-%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 20 Nov 2015 07:02:41 +0000</pubDate>
       
-      <guid>/post/verdi201210-%e5%ae%89%e8%a3%85%e7%ac%94%e8%ae%b0/</guid>
+      <guid>/post/verdi201210-%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
       <description>Verdi 为Debussy 在linux的底下的版本，windows版本Debussy已经不更新了。前面也在xp下试验过Debussy54 和modelsim联调，Debussy经常出错退出。于是果断放弃了。(Verdi用于查看代码和生成原理图，了解整个设计架构。modelsim主要还是用来进行仿真，获取波形和测试文档vcd，看不了原理图。) 这里在ubuntu 1204下安装Verdi201210。 安装步骤:
  下载 Verdi3-201210，及破解工具 novas_single.exe; 解压拷贝到所要安装Verdi的目录。这里要用到 tar -zxvf filename.tar.gz; 将压缩包全部解压。我是放在 /home/xxx/EDA/Verdi3_201210/ 下； 破解。windows 命令行下运行 novas_single -V2012.10 -FVerdi -MXXXXXXXXXXXX 。X为linux网卡的MAC地址，可用 ifconfig -a 查看eth0 的MAC。得到 novas_license_V6.0.txt。打开它，修改主机名为linux的主机名。或者在linux 下使用wine 工具运行破解工具。 在snslmgrd 之后添加snslmgrd的路径。  最后修改保存成license.dat 如下： SERVER ubuntu 000c29ee5f8a 28001 DAEMON snslmgrd /home/xxxx/EDA/Verdi3_201210/bin/snslmgrd FEATURE Verdi snslmgrd 2012.10 1-nov-2016 20 6E178584B60F25C09A15 \ VENDOR_STRING=ES=HJHJDBQQNLQKNNMHHBPP HOSTID=000c29ee5f8a \ ck=224 拷贝至Verdi所在目录的license文件夹下。
  修改环境变量 修改 /etc/.bashrc 文件。 ############################ export VERDI_HOME=&amp;rdquo;/home/xxxx/Verdi3_2010&amp;rdquo; export PATH=$VERDI_HOME/bin:$VERDI_HOME/platform/LINUX/bin:$PATH export LM_LICENSE_FILE=&amp;quot;$VERDI_HOME/license/novas_license.dat&amp;rdquo; alias lmgrd=&amp;quot;lmgrd $VERDI_HOME/license/novas_license.</description>
@@ -711,23 +690,14 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
     </item>
     
     <item>
-      <title>Tagore Studio</title>
-      <link>/post/sample-page-comments/</link>
-      <pubDate>Tue, 26 Nov 2013 13:21:19 +0000</pubDate>
+      <title>嵌入式 GUI 设计心得</title>
+      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-gui-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/sample-page-comments/</guid>
-      <description>uaoldti - May 1, 2019Спасибо за информацию!!!!!</description>
-    </item>
-    
-    <item>
-      <title>Tagore Studio</title>
-      <link>/post/sample-page/</link>
-      <pubDate>Tue, 26 Nov 2013 13:21:19 +0000</pubDate>
-      
-      <guid>/post/sample-page/</guid>
-      <description>Hi folks. Thanks for visiting my web site!
-我白天是个EE，晚上就是个有抱负的演员。这是我的博客。我住在天朝的魔都,没有条叫做杰克的狗。
-请静下来听听音乐。</description>
+      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-gui-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/</guid>
+      <description>GUI，（Graphic User Interface) 为图形用户接口。其从用户角度出发进行程序设计。主要包括输入事件，如：按键、触屏、定时触发事件、动作事件等。输出接口，如显示、振动等。
+emWin GUI, GUI 主任务负责检查处理输入事件、更新对应输出。其核心是给用户显示出其当前操作的状态结果。相对其它实时性要求很高的任务，GUI的任务优先级应该是最低的。
+嵌入式系统裁剪的是代码，增加的是开发者呕心沥血的工作量。若不是量特别大，是不建议深入开发的，只能停留在Demo 阶段，玩玩是可以。因为开发者良苦用心的工作，等几年后硬件升级了，这些工作全部都没有价值了。当时费心费力的省内存，省空间，优化CPU，这些价值全部归零。想想当年的51单片机就是这样。所以觉得做嵌入式一直不被开发者看好。能坚持下去的都是一些有独特爱好的玩家。</description>
     </item>
     
   </channel>

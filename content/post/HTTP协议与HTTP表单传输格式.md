@@ -2,6 +2,8 @@
 title: 'HTTP协议与HTTP表单传输格式'
 date: Wed, 13 Apr 2016 07:27:50 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['get', 'http', 'post', 'Web Develop', '表单格式']
 ---
 

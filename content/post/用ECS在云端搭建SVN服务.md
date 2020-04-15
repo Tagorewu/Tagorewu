@@ -2,6 +2,8 @@
 title: '用ECS在云端搭建SVN服务'
 date: Thu, 02 Jun 2016 08:08:41 +0000
 draft: false
+categories:
+  - "Software"
 tags: ['SVN服务搭建', 'Website Manage']
 ---
 

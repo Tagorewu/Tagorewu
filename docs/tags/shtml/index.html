@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -51,7 +66,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-12T03:00:09Z">April 12, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-12T03:00:09Z">April 12, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里先说最原始的使用SSI tag的方式，因为这样做在C开发中最简单。跟后来通用的web服务器的SSI有点不一样，因为后来为了使上层开发更方便，又进行了一些封装。 最原始的SSI是这样规定的，如在html中嵌入SSI tag。使用 [code]&lt;&ndash;#tagname&ndash;&gt;[/code] ;，则当Web服务器生成网页时，会将当前的标签后插入所指定的内容。这就是SSI Tag的作用。 SSI可以说是最初动态生成网页的方法，不仅仅是用来插入一些变量也可以直接插入javascript、json等等你想要发送给客户端的内容！一般用SSI来插入静态变量比较方便，如果是插入input框的当前值的话，可以往SSI中插入一段javascript代码或者是json格式的数据，再用javascript把这些实时的值加载进input框。 [html] Name:IP Address:MAC Address:[/html] 其Tag 在Web 服务端代码中作如下定义,并定义其序号的宏。 [c] static const char *g_pcConfigSSITags[] = { &ldquo;ipaddr&rdquo;, // SSI_INDEX_IPADDR &ldquo;macaddr&rdquo;, // SSI_INDEX_MACADDR &ldquo;p0br&rdquo;, // SSI_INDEX_P0BR &ldquo;p0sb&rdquo;, // SSI_INDEX_P0SB &ldquo;p0p&rdquo;, // SSI_INDEX_P0P &ldquo;p0bc&rdquo;, // SSI_INDEX_P0BC &ldquo;p0fc&rdquo;, // SSI_INDEX_P0FC &ldquo;p0tt&rdquo;, // SSI_INDEX_P0TT &ldquo;p0tlp&rdquo;, // SSI_INDEX_P0TLP &ldquo;p0trp&rdquo;, // SSI_INDEX_P0TRP &ldquo;p0tip&rdquo;, // SSI_INDEX_P0TIP &ldquo;p0tip1&rdquo;, // SSI_INDEX_P0TIP1 &ldquo;p0tip2&rdquo;, // SSI_INDEX_P0TIP2 &ldquo;p0tip3&rdquo;, // SSI_INDEX_P0TIP3 &ldquo;p0tip4&rdquo;, // SSI_INDEX_P0TIP4 &ldquo;p0tnm&rdquo;, // SSI_INDEX_P0TNM &ldquo;p1br&rdquo;, // SSI_INDEX_P1BR &ldquo;p1sb&rdquo;, // SSI_INDEX_P1SB &ldquo;p1p&rdquo;, // SSI_INDEX_P1P &ldquo;p1bc&rdquo;, // SSI_INDEX_P1BC &ldquo;p1fc&rdquo;, // SSI_INDEX_P1FC &ldquo;p1tt&rdquo;, // SSI_INDEX_P1TT &ldquo;p1tlp&rdquo;, // SSI_INDEX_P1TLP &ldquo;p1trp&rdquo;, // SSI_INDEX_P1TRP &ldquo;p1tip&rdquo;, // SSI_INDEX_P1TIP &ldquo;p1tip1&rdquo;, // SSI_INDEX_P1TIP1 &ldquo;p1tip2&rdquo;, // SSI_INDEX_P1TIP2 &ldquo;p1tip3&rdquo;, // SSI_INDEX_P1TIP3 &ldquo;p1tip4&rdquo;, // SSI_INDEX_P1TIP4 &ldquo;p1tnm&rdquo;, // SSI_INDEX_P1TNM &ldquo;modname&rdquo;, // SSI_INDEX_MODNAME &ldquo;pnpport&rdquo;, // SSI_INDEX_PNPPORT &ldquo;disable&rdquo;, // SSI_INDEX_DISABLE &hellip; }; [/c] 然后在SSIHandler里如下解析,当每次serving a page with a ``.
@@ -88,7 +105,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

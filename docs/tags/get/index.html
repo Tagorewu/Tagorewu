@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -51,7 +66,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-13T07:27:50Z">April 13, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-13T07:27:50Z">April 13, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		HTTP请求 从使用者的角度看，一个HTTP请求起始于 用户端浏览器上输入的一个URL地址； 网页中的一个超链接； 提交一个HTML表单。 但本质上说，一个HTTP请求起始于用户端向HTTP服务器发送的一个URL请求。 一个标准的HTTP请求由以下几个部分组成 [code] [] [/code] 在HTTP请求中，第一行是请求行（request-line），用来说明请求类型、要访问的资源（URL）以及使用的HTTP版本； 紧接着是多行头部（headers）信息，用来说明服务器要使用的附加信息； 头部信息之后是一个回车换行符（/r/n），用于标明头部信息的结束。 以上是必须内容，根据需要可在头部信息结束之后增加主体数据（request-body）； 主体数据之后是一个回车换行符（/r/n），用于标明主体数据的结束。 需要注意的是 请求行（request-line）中的URL部分必须以application/x-www-form-urlencoded方式编码。 主体数据（request-body）的编码方式由头部（headers）信息中的Content-Type指定。 主体数据（request-body）的长度由头部（headers）信息中的Content-Length指定。 例如，我们可以在IE浏览器上输入下面的网址： http://localhost:8000/hello/index.html HTTP请求的头部信息如下： [code] GET /hello/index.html HTTP/1.1 Accept: */* Accept-Language: zh-cn Accept-Encoding: gzip, deflate Host: localhost:8000 Connection: Keep-Alive Cookie: JSESSIONID=BBBA54D519F7A320A54211F0107F5EA6 [/code] 上述信息没有request-body部分，这是以GET方式发送的HTTP请求。如果请求中需要附加主体数据，即增加request-body部分，则必须使用POST方式发送HTTP请求。HTML超链接（）只能用GET方式提交HTTP请求，HTML表单(
@@ -89,7 +106,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

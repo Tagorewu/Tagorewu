@@ -2,6 +2,8 @@
 title: '使用 qemu 调试 linux kernel'
 date: Tue, 04 Sep 2018 11:06:50 +0000
 draft: false
+categories:
+  - "Linux"
 tags: ['kernel debug', 'Linux', 'qemu']
 ---
 

@@ -30,10 +30,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -45,7 +60,9 @@
 			<h1 class="post__title">用ECS在云端搭建SVN服务</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-02T08:08:41Z">June 02, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-02T08:08:41Z">June 02, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/software/" rel="category">Software</a>
+	</span>
+</div></div>
 		</header><div class="content post__content clearfix">
 			<p>应用环境： ECS 云端系统：Ubuntu 14.04-x64 本地系统：window 使用工具：cygwin + ssh 原版文档： <a href="http://www.shayanderson.com/linux/install-and-setup-subversion-server-on-ubuntu-1210-server-with-multiple-repositories.htm">http://www.shayanderson.com/linux/install-and-setup-subversion-server-on-ubuntu-1210-server-with-multiple-repositories.htm</a> <strong>一、安装及目录配置</strong> 1. 登录云端服务器 ssh xxx@[IP] 2. 安装subversion <code>apt-get install subversion</code> 检查是否安装完成 <code>svn --version</code> 3. 先建立一个Repositories 目录放置工程 <code>mkdir /home/repos</code> 在目录底下再建立工程 <code>svnadmin create /home/repos/project1</code> <code>svnadmin create /home/repos/project2</code> 注：删除则用 svnadmin deltify 4. 修改目录组权限让一用户组都可管理此目录 <code>chmod -R g+rws /home/repos</code> //设置组权限 <code>sudo groupadd svn</code> //添加组 <code>chgrp -R svn /home/repos</code> //修改group ownership <code>usermod -a -G svn [username]</code> //添加用户进组 <code>groups</code> // 检查用户是否被添加进组 <strong>二、云端上测试SVN服务</strong> 1. 新建一个文件夹 <code>mkdir /home/tmp</code> <code>svn checkout file:///home/repos/project1 /home/tmp</code> // checkout到目录tmp 2. 在tmp目录新建文件，commit到服务 <code>echo 'this is test' &gt; /home/tmp/test.txt</code> <code>svn commit -m &quot;initial test commit&quot; /home/tmp</code> success! <strong>三、远端接入SVN服务，需开启SVNServe服务</strong> 1. 编辑对应svn工程下的conf/svnserve.conf 文件 <code>vi /home/repos/project1/conf/svnserve.conf</code> <code>[general] anon-access = none auth-access = write password-db = passwd realm = Development Team</code> 注意：每行前不要有空格 2. 配置svn用户组及权限:(这里可以配置不同组的读写权限及访问目录权限) <code>vi /home/repos/project1/conf/authz</code> [gourps] Developers = Developer1, Developer2 readers = reader1, reader [/] Developer = rw reader = r 3. 设置用户密码 <code>vi /home/repos/project1/conf/passwd</code> Developer1 = 12345 Developer2 = 23456 &hellip; 这里也可以使用原参考文档里的方式，单独用一个passwd-users文件来设置用户和密码。 4. 开户svn服务 <code>sudo svnserve -d -r /home/repos</code> -d 表示daemon，用后台服务方式 -r 表示指定root路径为 /home/repos 注： 若已开启过svnserve，可以用killall svnserve 将其关闭。查询svn相关进程可以用：ps aux | grep svn。 在云端测试： <code>mkdir /home/tmp2</code> <code>svn checkout svn://[server IP address]/project1 --username [username]</code> 在本地window测试,使用TortoiseSVN。 1.新建文件夹 2.右键checkout, 填入路径svn://[server IP address]/project1，填写用户名和密码。 complete! 成功！ 配置过程中遇到许多的问题都在“注”里说明并解决了！ <strong>附其它知识：</strong> SVN在服务器端的存储方式和客户端是不一样的，所以在服务器端是看不到源文件的。服务器端有两种存储方式FSFS和BDB，目前默认都是FSFS。 要导入文件有两种做法： 1、用import指令，将客户端文件夹导入到服务器端。重新在其它地方建立文件夹再checkout下来。 2、先checkout空库到客户端，然后将要导入的文件夹放入客户端checkout产生的空文件夹，然后执行add将这些文件夹纳入SVN控制，最后执行commit上传到服务器 建议用后一种方法，因为前一种方法如果操作失误容易导致文件夹层次混乱</p>
 
@@ -75,7 +92,7 @@
 		<span class="authorbox__name">About Tagore Wu</span>
 	</div>
 	<div class="authorbox__description">
-		John Doe&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
+		Tagore&#39;s true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it.
 	</div>
 </div>
 
@@ -122,7 +139,31 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

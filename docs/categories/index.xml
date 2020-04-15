@@ -12,11 +12,83 @@
     
     
     <item>
-      <title>网站管理</title>
-      <link>/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/</link>
+      <title>Web</title>
+      <link>/categories/web/</link>
       <pubDate>Tue, 14 Apr 2020 21:29:56 +0800</pubDate>
       
-      <guid>/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/</guid>
+      <guid>/categories/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Embedded</title>
+      <link>/categories/embedded/</link>
+      <pubDate>Sat, 20 Apr 2019 13:59:51 +0000</pubDate>
+      
+      <guid>/categories/embedded/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software</title>
+      <link>/categories/software/</link>
+      <pubDate>Sun, 27 Jan 2019 12:37:31 +0000</pubDate>
+      
+      <guid>/categories/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/categories/linux/</link>
+      <pubDate>Sun, 09 Dec 2018 15:06:59 +0000</pubDate>
+      
+      <guid>/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>/categories/network/</link>
+      <pubDate>Fri, 04 Nov 2016 09:54:02 +0000</pubDate>
+      
+      <guid>/categories/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Others</title>
+      <link>/categories/others/</link>
+      <pubDate>Wed, 01 Jun 2016 14:58:03 +0000</pubDate>
+      
+      <guid>/categories/others/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automation</title>
+      <link>/categories/automation/</link>
+      <pubDate>Wed, 27 Jan 2016 06:15:31 +0000</pubDate>
+      
+      <guid>/categories/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FPGA</title>
+      <link>/categories/fpga/</link>
+      <pubDate>Thu, 07 Jan 2016 02:07:03 +0000</pubDate>
+      
+      <guid>/categories/fpga/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hardware</title>
+      <link>/categories/hardware/</link>
+      <pubDate>Fri, 24 Jul 2015 07:03:09 +0000</pubDate>
+      
+      <guid>/categories/hardware/</guid>
       <description></description>
     </item>
     

@@ -2,6 +2,8 @@
 title: 'Lwip 里的信号量、邮箱、线程'
 date: Tue, 12 Jul 2016 01:42:53 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['LwIP', 'Lwip 信号量', 'Lwip 邮箱']
 ---
 

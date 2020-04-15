@@ -2,6 +2,8 @@
 title: 'linux bash shell 像cmd.exe 一样的滚动补齐功能'
 date: Sun, 19 Nov 2017 14:40:14 +0000
 draft: false
+categories:
+  - "Linux"
 tags: ['Linux', 'shell completion']
 ---
 

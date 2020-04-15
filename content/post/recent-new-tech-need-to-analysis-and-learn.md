@@ -2,6 +2,8 @@
 title: 'recent new tech need to analysis and learn'
 date: Fri, 01 Jun 2018 02:44:51 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Embeded system', '未分类']
 ---
 

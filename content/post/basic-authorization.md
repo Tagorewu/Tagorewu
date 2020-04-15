@@ -2,6 +2,8 @@
 title: 'Http Authorization'
 date: Wed, 23 Nov 2016 09:24:20 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['Http Authorization', 'Web Develop']
 ---
 

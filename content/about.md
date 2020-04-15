@@ -2,6 +2,8 @@
 title: 'About'
 date: Sun, 01 Dec 2013 15:50:13 +0000
 draft: false
+sidebar: false
+menu: main
 ---
 
 [![u=364108947,670700884&fm=21&gp=0](http://www.wuquantai.com/wp-content/uploads/2016/02/u364108947670700884fm21gp0-300x62.gif)](http://www.wuquantai.com/wp-content/uploads/2016/02/u364108947670700884fm21gp0.gif)

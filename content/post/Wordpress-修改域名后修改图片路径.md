@@ -2,6 +2,8 @@
 title: 'Wordpress 修改域名后修改图片路径'
 date: Sun, 08 Mar 2015 15:08:52 +0000
 draft: false
+categories:
+  - "Web"
 tags: ['Website Manage']
 ---
 

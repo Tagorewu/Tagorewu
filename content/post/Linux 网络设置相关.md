@@ -2,6 +2,8 @@
 title: 'Linux 网络设置相关'
 date: Sun, 09 Dec 2018 15:06:59 +0000
 draft: false
+categories:
+  - "Linux"
 tags: ['未分类']
 ---
 

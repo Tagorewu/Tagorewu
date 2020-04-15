@@ -2,6 +2,8 @@
 title: 'YUV 图像格式'
 date: Wed, 22 Aug 2018 12:05:34 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['image process']
 ---
 

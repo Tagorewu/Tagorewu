@@ -31,10 +31,25 @@
 		<div class="logo">
 			<a class="logo__link" href="/" title="Tagore&#39;s Studio" rel="home">
 				<div class="logo__title">Tagore&#39;s Studio</div>
-				<div class="logo__tagline">Intrest is the best teacher.</div>
+				<div class="logo__tagline">Hi folks. Thanks for visiting my web site!</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -44,27 +59,15 @@
 	<article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/some-notes-about-lwip/" rel="bookmark">
-			LwIP TCP Layer Simple analysis
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&gt;accept(pcb-&gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &hellip; else if (flags &amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;TCP connection request %&ldquo;U16_F&rdquo; -&gt; %&ldquo;U16_F&rdquo;.\n&rdquo;, tcphdr-&gt;src, tcphdr-&gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&gt;accepts_pending &gt;= pcb-&gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;tcp_listen_input: listen backlog exceeded for port %&ldquo;U16_F&rdquo;\n&rdquo;, tcphdr-&gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&gt;prio); &hellip; #if TCP_LISTEN_BACKLOG pcb-&gt;accepts_pending++; #endif &hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;tcp_listen_pcbs.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
 			<a href="/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/" rel="bookmark">
 			用ECS在云端搭建SVN服务
 			</a>
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-02T08:08:41Z">June 02, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-02T08:08:41Z">June 02, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/software/" rel="category">Software</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		应用环境： ECS 云端系统：Ubuntu 14.04-x64 本地系统：window 使用工具：cygwin + ssh 原版文档： http://www.shayanderson.com/linux/install-and-setup-subversion-server-on-ubuntu-1210-server-with-multiple-repositories.htm 一、安装及目录配置 1. 登录云端服务器 ssh xxx@[IP] 2. 安装subversion apt-get install subversion 检查是否安装完成 svn --version 3. 先建立一个Repositories 目录放置工程 mkdir /home/repos 在目录底下再建立工程 svnadmin create /home/repos/project1 svnadmin create /home/repos/project2 注：删除则用 svnadmin deltify 4. 修改目录组权限让一用户组都可管理此目录 chmod -R g+rws /home/repos //设置组权限 sudo groupadd svn //添加组 chgrp -R svn /home/repos //修改group ownership usermod -a -G svn [username] //添加用户进组 groups // 检查用户是否被添加进组 二、云端上测试SVN服务 1. 新建一个文件夹 mkdir /home/tmp svn checkout file:///home/repos/project1 /home/tmp // checkout到目录tmp 2.
@@ -78,7 +81,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-01T14:58:03Z">June 01, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-01T14:58:03Z">June 01, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/others/" rel="category">Others</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		阿里云ECS云服务器推荐码9折 : ceyo2p
@@ -92,7 +97,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-13T07:27:50Z">April 13, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-13T07:27:50Z">April 13, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		HTTP请求 从使用者的角度看，一个HTTP请求起始于 用户端浏览器上输入的一个URL地址； 网页中的一个超链接； 提交一个HTML表单。 但本质上说，一个HTTP请求起始于用户端向HTTP服务器发送的一个URL请求。 一个标准的HTTP请求由以下几个部分组成 [code] [] [/code] 在HTTP请求中，第一行是请求行（request-line），用来说明请求类型、要访问的资源（URL）以及使用的HTTP版本； 紧接着是多行头部（headers）信息，用来说明服务器要使用的附加信息； 头部信息之后是一个回车换行符（/r/n），用于标明头部信息的结束。 以上是必须内容，根据需要可在头部信息结束之后增加主体数据（request-body）； 主体数据之后是一个回车换行符（/r/n），用于标明主体数据的结束。 需要注意的是 请求行（request-line）中的URL部分必须以application/x-www-form-urlencoded方式编码。 主体数据（request-body）的编码方式由头部（headers）信息中的Content-Type指定。 主体数据（request-body）的长度由头部（headers）信息中的Content-Length指定。 例如，我们可以在IE浏览器上输入下面的网址： http://localhost:8000/hello/index.html HTTP请求的头部信息如下： [code] GET /hello/index.html HTTP/1.1 Accept: */* Accept-Language: zh-cn Accept-Encoding: gzip, deflate Host: localhost:8000 Connection: Keep-Alive Cookie: JSESSIONID=BBBA54D519F7A320A54211F0107F5EA6 [/code] 上述信息没有request-body部分，这是以GET方式发送的HTTP请求。如果请求中需要附加主体数据，即增加request-body部分，则必须使用POST方式发送HTTP请求。HTML超链接（）只能用GET方式提交HTTP请求，HTML表单(
@@ -107,7 +114,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-12T03:00:09Z">April 12, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-04-12T03:00:09Z">April 12, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		这里先说最原始的使用SSI tag的方式，因为这样做在C开发中最简单。跟后来通用的web服务器的SSI有点不一样，因为后来为了使上层开发更方便，又进行了一些封装。 最原始的SSI是这样规定的，如在html中嵌入SSI tag。使用 [code]&lt;&ndash;#tagname&ndash;&gt;[/code] ;，则当Web服务器生成网页时，会将当前的标签后插入所指定的内容。这就是SSI Tag的作用。 SSI可以说是最初动态生成网页的方法，不仅仅是用来插入一些变量也可以直接插入javascript、json等等你想要发送给客户端的内容！一般用SSI来插入静态变量比较方便，如果是插入input框的当前值的话，可以往SSI中插入一段javascript代码或者是json格式的数据，再用javascript把这些实时的值加载进input框。 [html] Name:IP Address:MAC Address:[/html] 其Tag 在Web 服务端代码中作如下定义,并定义其序号的宏。 [c] static const char *g_pcConfigSSITags[] = { &ldquo;ipaddr&rdquo;, // SSI_INDEX_IPADDR &ldquo;macaddr&rdquo;, // SSI_INDEX_MACADDR &ldquo;p0br&rdquo;, // SSI_INDEX_P0BR &ldquo;p0sb&rdquo;, // SSI_INDEX_P0SB &ldquo;p0p&rdquo;, // SSI_INDEX_P0P &ldquo;p0bc&rdquo;, // SSI_INDEX_P0BC &ldquo;p0fc&rdquo;, // SSI_INDEX_P0FC &ldquo;p0tt&rdquo;, // SSI_INDEX_P0TT &ldquo;p0tlp&rdquo;, // SSI_INDEX_P0TLP &ldquo;p0trp&rdquo;, // SSI_INDEX_P0TRP &ldquo;p0tip&rdquo;, // SSI_INDEX_P0TIP &ldquo;p0tip1&rdquo;, // SSI_INDEX_P0TIP1 &ldquo;p0tip2&rdquo;, // SSI_INDEX_P0TIP2 &ldquo;p0tip3&rdquo;, // SSI_INDEX_P0TIP3 &ldquo;p0tip4&rdquo;, // SSI_INDEX_P0TIP4 &ldquo;p0tnm&rdquo;, // SSI_INDEX_P0TNM &ldquo;p1br&rdquo;, // SSI_INDEX_P1BR &ldquo;p1sb&rdquo;, // SSI_INDEX_P1SB &ldquo;p1p&rdquo;, // SSI_INDEX_P1P &ldquo;p1bc&rdquo;, // SSI_INDEX_P1BC &ldquo;p1fc&rdquo;, // SSI_INDEX_P1FC &ldquo;p1tt&rdquo;, // SSI_INDEX_P1TT &ldquo;p1tlp&rdquo;, // SSI_INDEX_P1TLP &ldquo;p1trp&rdquo;, // SSI_INDEX_P1TRP &ldquo;p1tip&rdquo;, // SSI_INDEX_P1TIP &ldquo;p1tip1&rdquo;, // SSI_INDEX_P1TIP1 &ldquo;p1tip2&rdquo;, // SSI_INDEX_P1TIP2 &ldquo;p1tip3&rdquo;, // SSI_INDEX_P1TIP3 &ldquo;p1tip4&rdquo;, // SSI_INDEX_P1TIP4 &ldquo;p1tnm&rdquo;, // SSI_INDEX_P1TNM &ldquo;modname&rdquo;, // SSI_INDEX_MODNAME &ldquo;pnpport&rdquo;, // SSI_INDEX_PNPPORT &ldquo;disable&rdquo;, // SSI_INDEX_DISABLE &hellip; }; [/c] 然后在SSIHandler里如下解析,当每次serving a page with a ``.
@@ -121,7 +130,9 @@
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-03-28T11:58:59Z">March 28, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-03-28T11:58:59Z">March 28, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Makefile 正如其名作为一个制作文件的工具，大大方便了进行大批量文件编译时的工作流程。这里简单的记录一个make 工具的基本使用规则。
@@ -145,24 +156,12 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-03-03T01:57:48Z">March 03, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-03-03T01:57:48Z">March 03, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/network/" rel="category">Network</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		引用：http://zoufengfu168.blog.163.com/blog/static/5461055200991333616451/ 一、MAC帧头定义 [c] typedef struct _MAC_FRAME_HEADER { char m_cDstMacAddress[6]; //目的mac地址 char m_cSrcMacAddress[6]; //源mac地址 /* 如0x0800代表上一层是IP协议，0x0806为arp, 0x88a4为Ethercat */ short m_cType; //上一层协议类型， }__attribute__((packed))MAC_FRAME_HEADER,*PMAC_FRAME_HEADER; Etherne II 长度为14 byte; typedef struct _MAC_FRAME_TAIL { unsigned int m_sCheckSum; //数据帧尾校验和 }__attribute__((packed))MAC_FRAME_TAIL, *PMAC_FRAME_TAIL; [/c] 补充VLAN 和ARP： [c] // #define ETHTYPE_ARP 0x0806U #define ETHTYPE_IP 0x0800U #define ETHTYPE_VLAN 0x8100U #define ETHTYPE_PPPOEDISC 0x8863U /* PPP Over Ethernet Discovery Stage */ #define ETHTYPE_PPPOE 0x8864U /* PPP Over Ethernet Session Stage */ /** VLAN header inserted between ethernet header and payload * if &lsquo;type&rsquo; in ethernet header is ETHTYPE_VLAN.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/%E9%9F%B3%E4%B9%90/" rel="bookmark">
-			音乐
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-02-14T03:00:31Z">February 14, 2016</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		每一首音乐里都有着一个回忆。 [hermit auto=&quot;1&rdquo; loop=&quot;0&rdquo; unexpand=&quot;0&rdquo; fullheight=&quot;0&rdquo;]netease_playlist#:25031762[/hermit]
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -173,7 +172,9 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-27T06:15:31Z">January 27, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-27T06:15:31Z">January 27, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		EtherCAT（以太网控制自动化技术）是一个以以太网为基础的开放架构的现场总线系统，EterCAT名称中的CAT为ControlAutomation Technology（控制自动化技术）首字母的缩写。最初由德国倍福自动化有限公司(Beckhoff AutomationGmbH)研发。EtherCAT为系统的实时性能和拓扑的灵活性树立了新的标准，同时，它还符合甚至降低了现场总线的使用成本。EtherCAT的特点还包括高精度设备同步，可选线缆冗余，和功能性安全协议(SIL3)。 Ethernet/IP是一个面向工业自动化应用的工业应用层协议。它建立在标准UDP/IP与TCP/IP协议之上，利用固定的以太网硬件和软件，为配置、访问和控制工业自动化设备定义了一个应用层协议西蒙公司开发 PROFINET由PROFIBUS国际组织（PROFIBUS International，PI）推出，是新一代基于工业以太网技术的自动化总线标准。作为一项战略性的技术创新，PROFINET为自动化通信领域提供了一个完整的网络解决方案，囊括了诸如实时以太网、运动控制、分布式自动化、故障安全以及网络安全等当前自动化领域的热点话题，并且，作为跨供应商的技术，可以完全兼容工业以太网和现有的现场总线（如PROFIBUS）技术，保护现有投资。
@@ -189,17 +190,53 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 		</h3>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-07T02:07:03Z">January 07, 2016</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-07T02:07:03Z">January 07, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/fpga/" rel="category">FPGA</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		在此记录下各种软件的安装教程，等到重装电脑时就会发现它的好处了。 这里 Libero 的版本是11.5。V11.3的版本有bug，不建议装。 去官网申请一个免费的Gold 1 year 的license. 可使用 Vol C: 查看Disk 序列号。 安装软件完毕后。 1. 放置license.dat文件到C:\flexlm\ 下。 2. 如果license 不是用你的disk序列号申请的，可用硬盘序列号修改器修改C盘序列号 。 3. 添加系统环境变量。 LM_LICENSE_FILE = c:\flexlm\license.dat; SNPSLMD_LICENSE_FILE = c:\flexlm\license.dat; 完成！
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="bookmark">
+			Eclipse ARM IDE 开发环境搭建
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-12-12T15:02:24Z">December 12, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		一、Eclipse Eclipse的本身只是一个框架平台，但是众多插件的支持，使得Eclipse拥有较好的灵活性。依托于Java 环境运行，所以必须安装 Jre。 二、CDT CDT是Eclipse用于扩展Eclipse支持C/C++开发的插件。可直接下载带CDT的Eclipse。 三、Zylin CDT 支持Eclipse用于嵌入式C/C++开发和远程调试的插件。 四、Yagarto Yagarto是整合了GNU arm的交叉编译工具链，是一个跨平台的 ARM 架构开发平台。他们说了，由于基于MinGW的ToolChain 的GDB 跟Eclipse 配合不是很好，所以Yagarto 出现了。目前Yagarto 项目已经完结。此外Yagrato 建议使用免费的
+ emIDE (free Visual Studio Style IDE including GNU Tools for ARM) 。其集成了GNU Tools。  五、J-LINK GDB Server A JTAG GDB Debug agent run on Host 六、IDE整体结构框图 安装： 1、安装Java SE 下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jre-7u3-download-1501631.html 设置环境变量: 如果只安装Jre的话就添加 : JAVA_HOME = C:\Program Files\Java\jre1.8.0_65; 若是安装JDK的话就添加 : JAVA_HOME = C:\Program Files\Java\jdk1.8.0_65; Path = %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin; //安装JDK时，JDK内部有个jre目录，外部也默认安装了一个jre目录。一般配置jre环境为内部jre目录。 CLASSPATH = .
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/beremiz-%E7%AE%80%E4%BB%8B/" rel="bookmark">
+			Beremiz 简介
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-12-10T07:36:06Z">December 10, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Beremiz 是一各为自动化技术提供开放性源代码的软件，它的PLC平台可以支持IEC61131-3 五种开发语言，Beremiz 提供的子项目：
+ PLCOpen 编辑器 : 提供自动化技术所需要的多平台 IDE （Integrated Development Environment） ； MatPLC&rsquo;s IEC 编译器 : IEC 61131-3 编译器， 可以将结构化文本和指令表120 直接编译为 C 语言； CanFestival : CANOpen 接口服务于物理的输入/ 输出； SVGUI : 以 SVG为基础的自动化 HMI 工具； 所有软件都是提供源代码的， 使用了 PYTHON MINGW 等语言或者平台。  Beremiz软PLC 开发流程: MatIEC包含两个工具: 1. IEC2IEC工具将标准的IEC61131-3的5种语言统一转成ST格式， 2. IEC2C工具将ST格式用户代码转ANSI-C代码。 然后将所有代码通过GCC 工具编译成机器码运行。 
 	</div>
 </article>
 </main>
 
 <div class="pagination">
 	<a class="pagination__item pagination__item--prev btn" href="/page/3/">«</a>
-	<span class="pagination__item pagination__item--current">4/7</span>
+	<span class="pagination__item pagination__item--current">4/6</span>
 	<a class="pagination__item pagination__item--next btn" href="/page/5/">»</a>
 </div>
 
@@ -230,7 +267,31 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86/">网站管理</a>
+				<a class="widget__link" href="/categories/automation/">Automation</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/embedded/">Embedded</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/fpga/">FPGA</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/network/">Network</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/others/">Others</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/software/">Software</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/web/">Web</a>
 			</li>
 		</ul>
 	</div>

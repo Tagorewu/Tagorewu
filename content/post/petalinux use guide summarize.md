@@ -2,6 +2,8 @@
 title: 'petalinux use guide summarize'
 date: Wed, 22 Aug 2018 03:12:29 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['debug kernel', 'Linux', 'petalinux', 'qemu']
 ---
 

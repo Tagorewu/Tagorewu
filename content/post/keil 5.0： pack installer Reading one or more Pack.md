@@ -2,6 +2,8 @@
 title: 'keil 5.0： pack installer Reading one or more Pack discriptions failed 报错的问题'
 date: Fri, 27 Dec 2013 13:31:52 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['MCU']
 ---
 

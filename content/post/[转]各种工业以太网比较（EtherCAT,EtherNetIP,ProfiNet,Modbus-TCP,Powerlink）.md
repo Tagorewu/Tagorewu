@@ -2,6 +2,8 @@
 title: '[转]各种工业以太网比较（EtherCAT,EtherNet/IP,ProfiNet,Modbus-TCP,Powerlink）'
 date: Wed, 27 Jan 2016 06:15:31 +0000
 draft: false
+categories:
+  - "Automation"
 tags: ['Ethernet /IP', '工业以太网', '未分类']
 ---
 

@@ -2,6 +2,8 @@
 title: 'S3C2440外围设备（peripherals）'
 date: Sun, 22 Dec 2013 15:08:09 +0000
 draft: false
+categories:
+  - "Embedded"
 tags: ['Hardware Design']
 ---
 

@@ -2,6 +2,8 @@
 title: 'linux 常用命令笔记'
 date: Fri, 20 Nov 2015 06:33:12 +0000
 draft: false
+categories:
+  - "Linux"
 tags: ['Linux', 'tar']
 ---
 
