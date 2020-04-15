@@ -71,7 +71,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Samba server    \# apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user \[shuji\] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart   Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     nfs   \# vim /etc/exports /srv/nfs *(rw,sync,nosubtree_check)
+		Samba server    \# apt install samba samba-common# vim /etc/samba/smb.conf 添加：security = user\[shuji\]comment = share dirpath = /srv/sambabrowseable = yeswritable = yes# useradd public (不要用adduser, 否则还要禁用shell）# smbpasswd –a public # service smbd restart  Samba client   smbclient -L //192.168.1.10 -U devsmbclient //192.168.1.10 -U dev    nfs   \# vim /etc/exports/srv/nfs *(rw,sync,nosubtree_check)
 	</div>
 </article>
 </main>

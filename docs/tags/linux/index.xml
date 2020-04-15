@@ -20,8 +20,8 @@
       <description>在 Ubuntu 中build kernel 参考如下：
  [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
  所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。
-   尝试使用 qemu 直接启动主机上的kernel   $ sudo qemu-system-x86\_64 -kernel /boot/vmlinuz-\`uname -r\`   这会提示缺少文件系统
- 可以使用 debootstrap 构建一个rootfs ``` IMG=qemu-image.img DIR=mount-point.dir qemu-img create $IMG 1g mkfs.ext2 $IMG mkdir $DIR sudo mount -o loop $IMG $DIR sudo debootstrap &amp;ndash;arch amd64 jessie $DIR sudo umount $DIR rmdir $DIR    这里最好用一下 chroot 和 passwd 更新一下文件系统里的密码，以免启动之后登不进去。</description>
+   尝试使用 qemu 直接启动主机上的kernel   $ sudo qemu-system-x86\_64 -kernel /boot/vmlinuz-\`uname -r\`  这会提示缺少文件系统
+ 可以使用 debootstrap 构建一个rootfs ``` IMG=qemu-image.img DIR=mount-point.dir qemu-img create $IMG 1g mkfs.ext2 $IMG mkdir $DIR sudo mount -o loop $IMG $DIR sudo debootstrap &amp;ndash;arch amd64 jessie $DIR sudo umount $DIR rmdir $DIR   这里最好用一下 chroot 和 passwd 更新一下文件系统里的密码，以免启动之后登不进去。</description>
     </item>
     
     <item>
@@ -43,7 +43,7 @@
       <pubDate>Wed, 04 Apr 2018 07:35:04 +0000</pubDate>
       
       <guid>/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</guid>
-      <description>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.</description>
+      <description>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       
       <guid>/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
       <description>Makefile 正如其名作为一个制作文件的工具，大大方便了进行大批量文件编译时的工作流程。这里简单的记录一个make 工具的基本使用规则。
-1. Makefile 基本规则：  target... : prerequisites ... command ... ... ------------------------------------------------------------------------------- target: 为目标文件，即所要生成的对象;
+1. Makefile 基本规则：  target... : prerequisites ...command......-------------------------------------------------------------------------------target: 为目标文件，即所要生成的对象;
 prerequisites : 为要生成target所需要的文件或是目标;
 command: 即make需要执行的命令，(任意的shell命令，即对应编译器或者平台的命令)。
 第一行表示依赖关系，第二行是规则。( 第二行必须由Tab键开头 )。
@@ -70,8 +70,8 @@ command: 即make需要执行的命令，(任意的shell命令，即对应编译�
 a. 只敲入make命令默认执行第一个target。
 b. command 要用Tab键缩进
 2. 比如有源文件：main.c api.c api.h 用gcc 作编译的过程：
-gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
- main: main.o api.o gcc -o main main.o api.o main.o: main.c gcc -c main.c api.o: api.c api.h gcc -c api.c 另外Makefile简化格式：</description>
+gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
+ main: main.o api.ogcc -o main main.o api.omain.o: main.cgcc -c main.capi.o: api.c api.hgcc -c api.c 另外Makefile简化格式：</description>
     </item>
     
     <item>

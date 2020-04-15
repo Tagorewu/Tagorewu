@@ -18,7 +18,7 @@
 然后使用条件变量来通知consumer 队列有新数据到来。条件变量同样是被多个线程调用，也是需要带一个mutex 来进行保护的。当条件不满足时，线程会解锁mutex 进入block状态等待消息，这样才不会一直占有CPU。当条件满足或者超时时，才继续执行下面的程序。
 例子中使用了pthread(POSIX thread) 的实现。其实各大操作系统都有自己的实现，FreeRTOS, Linux kernel等等，都可以拿代码过来看看学习。
 请看这个多线程的例子，可以在online gdb 中运行调试：
-#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;stdint.h&gt; #include &lt;string.h&gt; #include &lt;pthread.h&gt; #include &lt;stdbool.h&gt; #include &lt;assert.h&gt; #include &lt;sys/time.h&gt; #include &lt;errno.h&gt; /\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/ typedef struct Node { void \*data; struct Node \*next; }queue\_node\_t; #define BUFFER\_POOL\_SIZE (640 \* 480) #define BUFFER\_POOL\_NUM 5 struct pbuf{ uint32\_t len; uint8\_t payload\[BUFFER\_POOL\_SIZE\]; }; typedef struct QueueList { int sizeOfQueue; uint16\_t memSize; queue\_node\_t \*head; queue\_node\_t \*tail; }queue\_t; /\* to inform consumer\_thread \*/ static pthread\_cond\_t cap\_cond; static pthread\_mutex\_t cap\_mutex; /\* stream queue for communicate between two threads \*/ static queue\_t strm\_queue; static pthread\_mutex\_t strmq\_mutex; int strm\_queue\_init(){ queue\_t \*q = &amp;strm\_queue; q-&gt;sizeOfQueue = 0; q-&gt;memSize = 0; q-&gt;head = q-&gt;tail = NULL; if (pthread\_cond\_init(&amp;cap\_cond, NULL) !" />
+#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;stdint.h&gt;#include &lt;string.h&gt;#include &lt;pthread.h&gt;#include &lt;stdbool.h&gt;#include &lt;assert.h&gt;#include &lt;sys/time.h&gt;#include &lt;errno.h&gt;/\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/typedef struct Node{void \*data;struct Node \*next;}queue\_node\_t;#define BUFFER\_POOL\_SIZE (640 \* 480)#define BUFFER\_POOL\_NUM 5struct pbuf{uint32\_t len;uint8\_t payload\[BUFFER\_POOL\_SIZE\];};typedef struct QueueList{int sizeOfQueue;uint16\_t memSize;queue\_node\_t \*head;queue\_node\_t \*tail;}queue\_t;/\* to inform consumer\_thread \*/static pthread\_cond\_t cap\_cond;static pthread\_mutex\_t cap\_mutex;/\* stream queue for communicate between two threads \*/static queue\_t strm\_queue;static pthread\_mutex\_t strmq\_mutex;int strm\_queue\_init(){queue\_t \*q = &amp;strm\_queue;q-&gt;sizeOfQueue = 0;q-&gt;memSize = 0;q-&gt;head = q-&gt;tail = NULL;if (pthread\_cond\_init(&amp;cap\_cond, NULL) !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/" />
 <meta property="article:published_time" content="2019-01-27T12:37:31+00:00" />
@@ -74,7 +74,7 @@
 	</span>
 </div></div>
 		</header><div class="content post__content clearfix">
-			<p><img src="http://www.wuquantai.com/wp-content/uploads/2018/04/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180413232206-1024x768.jpg" alt=""></p>
+			<p><img src="/images/uploads/2018/04/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180413232206-1024x768.jpg" alt=""></p>
 <p>前段时间有朋友想要了解一下多线程编程，正好有个项目上有这么个例子可以抽出来讲一讲。只要搞清楚这个例子，就一下子掌握了线程间同步、互斥量、条件变量、队列、内存池的概念和使用。</p>
 <p>首先，线程间同步的概念。</p>
 <p>比如，学过数字电路的人都知道，两个时钟域的信号如果没有经过同步直接接到一起的话，会引起亚稳态。原因是如果恰好输入信号在时钟边沿附近变化的话（不满足建立保持时间的情况下），信号可能处于一个中间电平，这样会导致触发器处于一个振荡状态，引起整块数字电路的不稳定。这就是数字电路中异步的概念，两个时钟都是各自free running，彼此没有关系。</p>
@@ -383,7 +383,7 @@ int main(int argc, char \*argv\[\])
 
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Tagore Wu avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+		<img alt="Tagore Wu avatar" src="/images/19644026.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Tagore Wu</span>

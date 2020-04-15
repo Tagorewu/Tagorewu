@@ -18,10 +18,10 @@
       
       <guid>/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
       <description>传统开发步骤 基础设计
-# 使用Vidado 设计硬件工程，导出硬件设计 bitstream. $ File-&amp;gt; Export-&amp;gt; Export Hardware... # 使用SDK 生成 fsbl.elf # 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。 即: fsbl.elf + system_wrapper.bit + u-boot.elf 编译kernel
-$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage 编译device tree
-$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts 制作文件系统
-$ 基于RAM 的 ramdisk $ 基于Flash 的 jffs2 $ 基于network 的 NFS 将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
+# 使用Vidado 设计硬件工程，导出硬件设计 bitstream.$ File-&amp;gt; Export-&amp;gt; Export Hardware...# 使用SDK 生成 fsbl.elf# 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。即: fsbl.elf + system_wrapper.bit + u-boot.elf编译kernel
+$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage编译device tree
+$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts制作文件系统
+$ 基于RAM 的 ramdisk$ 基于Flash 的 jffs2$ 基于network 的 NFS将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@ v2.4
 https://blog.csdn.net/vacajk/article/details/84728062
 https://github.com/Xilinx/PYNQ/tree/image_v2.4/sdbuild
 https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
-准备工作  使用事先编译好的文件系统: bionic.aarch64.2.4.img ZCU102 BSP: xilinx-zcu102-v2018.3-final.bsp  如果非官方板子，比如黑金的AC7020, 没有BSP, 则可以从vivado 工程导出hdf 文件，给petalinux 生成一个bsp   安装好SDSoc2018.3, PetaLinux2018.3 系统环境 Ubuntu 1604-64  编译步骤 \# 下载 pynq $ git clone https://github.com/Xilinx/PYNQ.git $ cd PYNQ $ git checkout image\_v2.4 # 检查依赖环境，qemu，crosstool-ng $ cd .</description>
+准备工作  使用事先编译好的文件系统: bionic.aarch64.2.4.img ZCU102 BSP: xilinx-zcu102-v2018.3-final.bsp  如果非官方板子，比如黑金的AC7020, 没有BSP, 则可以从vivado 工程导出hdf 文件，给petalinux 生成一个bsp   安装好SDSoc2018.3, PetaLinux2018.3 系统环境 Ubuntu 1604-64  编译步骤 \# 下载 pynq$ git clone https://github.com/Xilinx/PYNQ.git$ cd PYNQ$ git checkout image\_v2.4# 检查依赖环境，qemu，crosstool-ng$ cd .</description>
     </item>
     
     <item>
@@ -87,7 +87,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
       <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
       
       <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
-      <description>Samba server    \# apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user \[shuji\] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart   Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     nfs   \# vim /etc/exports /srv/nfs *(rw,sync,nosubtree_check)</description>
+      <description>Samba server    \# apt install samba samba-common# vim /etc/samba/smb.conf 添加：security = user\[shuji\]comment = share dirpath = /srv/sambabrowseable = yeswritable = yes# useradd public (不要用adduser, 否则还要禁用shell）# smbpasswd –a public # service smbd restart  Samba client   smbclient -L //192.168.1.10 -U devsmbclient //192.168.1.10 -U dev    nfs   \# vim /etc/exports/srv/nfs *(rw,sync,nosubtree_check)</description>
     </item>
     
     <item>
@@ -184,7 +184,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
       
       <guid>/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
       <description>Makefile 正如其名作为一个制作文件的工具，大大方便了进行大批量文件编译时的工作流程。这里简单的记录一个make 工具的基本使用规则。
-1. Makefile 基本规则：  target... : prerequisites ... command ... ... ------------------------------------------------------------------------------- target: 为目标文件，即所要生成的对象;
+1. Makefile 基本规则：  target... : prerequisites ...command......-------------------------------------------------------------------------------target: 为目标文件，即所要生成的对象;
 prerequisites : 为要生成target所需要的文件或是目标;
 command: 即make需要执行的命令，(任意的shell命令，即对应编译器或者平台的命令)。
 第一行表示依赖关系，第二行是规则。( 第二行必须由Tab键开头 )。
@@ -192,8 +192,8 @@ command: 即make需要执行的命令，(任意的shell命令，即对应编译�
 a. 只敲入make命令默认执行第一个target。
 b. command 要用Tab键缩进
 2. 比如有源文件：main.c api.c api.h 用gcc 作编译的过程：
-gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
- main: main.o api.o gcc -o main main.o api.o main.o: main.c gcc -c main.c api.o: api.c api.h gcc -c api.c 另外Makefile简化格式：</description>
+gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
+ main: main.o api.ogcc -o main main.o api.omain.o: main.cgcc -c main.capi.o: api.c api.hgcc -c api.c 另外Makefile简化格式：</description>
     </item>
     
     <item>

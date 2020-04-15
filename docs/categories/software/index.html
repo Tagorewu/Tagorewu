@@ -81,7 +81,7 @@
 然后使用条件变量来通知consumer 队列有新数据到来。条件变量同样是被多个线程调用，也是需要带一个mutex 来进行保护的。当条件不满足时，线程会解锁mutex 进入block状态等待消息，这样才不会一直占有CPU。当条件满足或者超时时，才继续执行下面的程序。
 例子中使用了pthread(POSIX thread) 的实现。其实各大操作系统都有自己的实现，FreeRTOS, Linux kernel等等，都可以拿代码过来看看学习。
 请看这个多线程的例子，可以在online gdb 中运行调试：
-#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;stdint.h&gt; #include &lt;string.h&gt; #include &lt;pthread.h&gt; #include &lt;stdbool.h&gt; #include &lt;assert.h&gt; #include &lt;sys/time.h&gt; #include &lt;errno.h&gt; /\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/ typedef struct Node { void \*data; struct Node \*next; }queue\_node\_t; #define BUFFER\_POOL\_SIZE (640 \* 480) #define BUFFER\_POOL\_NUM 5 struct pbuf{ uint32\_t len; uint8\_t payload\[BUFFER\_POOL\_SIZE\]; }; typedef struct QueueList { int sizeOfQueue; uint16\_t memSize; queue\_node\_t \*head; queue\_node\_t \*tail; }queue\_t; /\* to inform consumer\_thread \*/ static pthread\_cond\_t cap\_cond; static pthread\_mutex\_t cap\_mutex; /\* stream queue for communicate between two threads \*/ static queue\_t strm\_queue; static pthread\_mutex\_t strmq\_mutex; int strm\_queue\_init(){ queue\_t \*q = &amp;strm\_queue; q-&gt;sizeOfQueue = 0; q-&gt;memSize = 0; q-&gt;head = q-&gt;tail = NULL; if (pthread\_cond\_init(&amp;cap\_cond, NULL) !
+#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;stdint.h&gt;#include &lt;string.h&gt;#include &lt;pthread.h&gt;#include &lt;stdbool.h&gt;#include &lt;assert.h&gt;#include &lt;sys/time.h&gt;#include &lt;errno.h&gt;/\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/typedef struct Node{void \*data;struct Node \*next;}queue\_node\_t;#define BUFFER\_POOL\_SIZE (640 \* 480)#define BUFFER\_POOL\_NUM 5struct pbuf{uint32\_t len;uint8\_t payload\[BUFFER\_POOL\_SIZE\];};typedef struct QueueList{int sizeOfQueue;uint16\_t memSize;queue\_node\_t \*head;queue\_node\_t \*tail;}queue\_t;/\* to inform consumer\_thread \*/static pthread\_cond\_t cap\_cond;static pthread\_mutex\_t cap\_mutex;/\* stream queue for communicate between two threads \*/static queue\_t strm\_queue;static pthread\_mutex\_t strmq\_mutex;int strm\_queue\_init(){queue\_t \*q = &amp;strm\_queue;q-&gt;sizeOfQueue = 0;q-&gt;memSize = 0;q-&gt;head = q-&gt;tail = NULL;if (pthread\_cond\_init(&amp;cap\_cond, NULL) !
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -105,9 +105,9 @@
   只用ssh git 用户管理
 开一个git 用户，设定好权限，也比较方便。但是缺少管理issue 功能。
 参考：https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server
-  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host”  将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
-$ git clone git@IP:/srv/git/test.git 有几个注意点：
- 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILE git clean -n //演习 git ls-files git ls-files | xargs -n 1 dirname | uniq git diff master sync --name-only git config --global core.
+  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host” 将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
+$ git clone git@IP:/srv/git/test.git有几个注意点：
+ 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILEgit clean -n //演习git ls-filesgit ls-files | xargs -n 1 dirname | uniqgit diff master sync --name-onlygit config --global core.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -123,7 +123,7 @@ $ git clone git@IP:/srv/git/test.git 有几个注意点：
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.
+		链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -142,7 +142,7 @@ $ git clone git@IP:/srv/git/test.git 有几个注意点：
 		看了一些源代码，这里总结几个不常见的，但是比较好用的C 用法。也许这些功能在C++中有扩展，但是个人基本不用C++。其实这些应该是属于预处理器的功能。若是之前没有见过，遇到时会感觉云里雾里的。
   直接定义字符串：  我们可以用#define 定义字符串常量，比如： #define HELLO &ldquo;hello&rdquo; 这样就相当于是： char *HELLO= &ldquo;hello&rdquo;; 而且使用#define 来定义的好处是可以直接拼接字符串，这些应该都是由预处理器来帮我们处理的（没有仔细考证，但想像其中原理应该是这样）。比如：``` #define HELLO &ldquo;hello&rdquo; #define WORLD &ldquo;world&rdquo;
 puts( HELLO WORLD );
- * * * * **定义内存池：** 在嵌入式系统中一般不用内存堆的动态分配，因为容易产生内存碎片导致大块内存分配不到（可以用带小块内存合并功能内存管理方式），或者是会因为某个模块把内存堆耗尽了导致其它模块不能工作。通常会使用内存池的方式，而且每个软件模块有自己的不同大小固定数量内存池，这样可以做到每个模块内存互不干扰。说白一点就是一系列的分配好空间的数组。这可以参考lwip中内存池的分配。 #define LWIP\_MEMPOOL(name,num,size,desc) u8\_t memp\_memory\_ ## name ## \_base \[((num) \* (MEMP\_SIZE + MEMP\_ALIGN\_SIZE(size)))\];
+* * ** **定义内存池：**在嵌入式系统中一般不用内存堆的动态分配，因为容易产生内存碎片导致大块内存分配不到（可以用带小块内存合并功能内存管理方式），或者是会因为某个模块把内存堆耗尽了导致其它模块不能工作。通常会使用内存池的方式，而且每个软件模块有自己的不同大小固定数量内存池，这样可以做到每个模块内存互不干扰。说白一点就是一系列的分配好空间的数组。这可以参考lwip中内存池的分配。 #define LWIP\_MEMPOOL(name,num,size,desc) u8\_t memp\_memory\_ ## name ## \_base \[((num) \* (MEMP\_SIZE + MEMP\_ALIGN\_SIZE(size)))\];
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">

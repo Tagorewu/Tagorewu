@@ -16,9 +16,9 @@
   只用ssh git 用户管理
 开一个git 用户，设定好权限，也比较方便。但是缺少管理issue 功能。
 参考：https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server
-  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host”  将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
-$ git clone git@IP:/srv/git/test.git 有几个注意点：
- 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILE git clean -n //演习 git ls-files git ls-files | xargs -n 1 dirname | uniq git diff master sync --name-only git config --global core." />
+  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host” 将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
+$ git clone git@IP:/srv/git/test.git有几个注意点：
+ 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILEgit clean -n //演习git ls-filesgit ls-files | xargs -n 1 dirname | uniqgit diff master sync --name-onlygit config --global core." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" />
 <meta property="article:published_time" content="2018-08-22T12:47:34+00:00" />
@@ -176,7 +176,7 @@ git config --global url.https://github.com/.insteadOf git://github.com/
 
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Tagore Wu avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+		<img alt="Tagore Wu avatar" src="/images/19644026.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Tagore Wu</span>

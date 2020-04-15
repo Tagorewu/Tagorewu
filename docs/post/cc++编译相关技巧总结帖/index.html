@@ -8,7 +8,7 @@
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<meta property="og:title" content="c/c&#43;&#43;编译相关技巧总结帖" />
-<meta property="og:description" content="链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test." />
+<meta property="og:description" content="链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/" />
 <meta property="article:published_time" content="2018-04-04T07:35:04+00:00" />
@@ -67,7 +67,7 @@
 			<ol>
 <li>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。</li>
 </ol>
-<p>For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:<code>-fdata-sections -ffunction-sections</code>Link the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):<code>-Wl,--gc-sections</code>So if you had one file called test.cpp that had two functions declared in it, but one of them was unused, you could omit the unused one with the following command to gcc(g++):```
+<p>For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:<code>-fdata-sections -ffunction-sections</code>Link the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):<code>-Wl,--gc-sections</code>So if you had one file called test.cpp that had two functions declared in it, but one of them was unused, you could omit the unused one with the following command to gcc(g++):```
 gcc -Os -fdata-sections -ffunction-sections test.cpp -o test -Wl,&ndash;gc-sections</p>
 <pre><code class="language-(Note" data-lang="(Note"></code></pre>
 		</div>
@@ -90,7 +90,7 @@ gcc -Os -fdata-sections -ffunction-sections test.cpp -o test -Wl,&ndash;gc-secti
 
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Tagore Wu avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+		<img alt="Tagore Wu avatar" src="/images/19644026.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Tagore Wu</span>

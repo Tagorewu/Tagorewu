@@ -42,10 +42,10 @@
       
       <guid>/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
       <description>传统开发步骤 基础设计
-# 使用Vidado 设计硬件工程，导出硬件设计 bitstream. $ File-&amp;gt; Export-&amp;gt; Export Hardware... # 使用SDK 生成 fsbl.elf # 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。 即: fsbl.elf + system_wrapper.bit + u-boot.elf 编译kernel
-$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage 编译device tree
-$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts 制作文件系统
-$ 基于RAM 的 ramdisk $ 基于Flash 的 jffs2 $ 基于network 的 NFS 将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
+# 使用Vidado 设计硬件工程，导出硬件设计 bitstream.$ File-&amp;gt; Export-&amp;gt; Export Hardware...# 使用SDK 生成 fsbl.elf# 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。即: fsbl.elf + system_wrapper.bit + u-boot.elf编译kernel
+$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage编译device tree
+$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts制作文件系统
+$ 基于RAM 的 ramdisk$ 基于Flash 的 jffs2$ 基于network 的 NFS将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@ v2.4
 https://blog.csdn.net/vacajk/article/details/84728062
 https://github.com/Xilinx/PYNQ/tree/image_v2.4/sdbuild
 https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
-准备工作  使用事先编译好的文件系统: bionic.aarch64.2.4.img ZCU102 BSP: xilinx-zcu102-v2018.3-final.bsp  如果非官方板子，比如黑金的AC7020, 没有BSP, 则可以从vivado 工程导出hdf 文件，给petalinux 生成一个bsp   安装好SDSoc2018.3, PetaLinux2018.3 系统环境 Ubuntu 1604-64  编译步骤 \# 下载 pynq $ git clone https://github.com/Xilinx/PYNQ.git $ cd PYNQ $ git checkout image\_v2.4 # 检查依赖环境，qemu，crosstool-ng $ cd .</description>
+准备工作  使用事先编译好的文件系统: bionic.aarch64.2.4.img ZCU102 BSP: xilinx-zcu102-v2018.3-final.bsp  如果非官方板子，比如黑金的AC7020, 没有BSP, 则可以从vivado 工程导出hdf 文件，给petalinux 生成一个bsp   安装好SDSoc2018.3, PetaLinux2018.3 系统环境 Ubuntu 1604-64  编译步骤 \# 下载 pynq$ git clone https://github.com/Xilinx/PYNQ.git$ cd PYNQ$ git checkout image\_v2.4# 检查依赖环境，qemu，crosstool-ng$ cd .</description>
     </item>
     
     <item>
@@ -93,7 +93,7 @@ https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
 然后使用条件变量来通知consumer 队列有新数据到来。条件变量同样是被多个线程调用，也是需要带一个mutex 来进行保护的。当条件不满足时，线程会解锁mutex 进入block状态等待消息，这样才不会一直占有CPU。当条件满足或者超时时，才继续执行下面的程序。
 例子中使用了pthread(POSIX thread) 的实现。其实各大操作系统都有自己的实现，FreeRTOS, Linux kernel等等，都可以拿代码过来看看学习。
 请看这个多线程的例子，可以在online gdb 中运行调试：
-#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;stdint.h&amp;gt; #include &amp;lt;string.h&amp;gt; #include &amp;lt;pthread.h&amp;gt; #include &amp;lt;stdbool.h&amp;gt; #include &amp;lt;assert.h&amp;gt; #include &amp;lt;sys/time.h&amp;gt; #include &amp;lt;errno.h&amp;gt; /\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/ typedef struct Node { void \*data; struct Node \*next; }queue\_node\_t; #define BUFFER\_POOL\_SIZE (640 \* 480) #define BUFFER\_POOL\_NUM 5 struct pbuf{ uint32\_t len; uint8\_t payload\[BUFFER\_POOL\_SIZE\]; }; typedef struct QueueList { int sizeOfQueue; uint16\_t memSize; queue\_node\_t \*head; queue\_node\_t \*tail; }queue\_t; /\* to inform consumer\_thread \*/ static pthread\_cond\_t cap\_cond; static pthread\_mutex\_t cap\_mutex; /\* stream queue for communicate between two threads \*/ static queue\_t strm\_queue; static pthread\_mutex\_t strmq\_mutex; int strm\_queue\_init(){ queue\_t \*q = &amp;amp;strm\_queue; q-&amp;gt;sizeOfQueue = 0; q-&amp;gt;memSize = 0; q-&amp;gt;head = q-&amp;gt;tail = NULL; if (pthread\_cond\_init(&amp;amp;cap\_cond, NULL) !</description>
+#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;stdint.h&amp;gt;#include &amp;lt;string.h&amp;gt;#include &amp;lt;pthread.h&amp;gt;#include &amp;lt;stdbool.h&amp;gt;#include &amp;lt;assert.h&amp;gt;#include &amp;lt;sys/time.h&amp;gt;#include &amp;lt;errno.h&amp;gt;/\*\*\*\*\*\*\*\*\*\*\*\* queue manage \*\*\*\*\*\*\*\*\*\*\*/typedef struct Node{void \*data;struct Node \*next;}queue\_node\_t;#define BUFFER\_POOL\_SIZE (640 \* 480)#define BUFFER\_POOL\_NUM 5struct pbuf{uint32\_t len;uint8\_t payload\[BUFFER\_POOL\_SIZE\];};typedef struct QueueList{int sizeOfQueue;uint16\_t memSize;queue\_node\_t \*head;queue\_node\_t \*tail;}queue\_t;/\* to inform consumer\_thread \*/static pthread\_cond\_t cap\_cond;static pthread\_mutex\_t cap\_mutex;/\* stream queue for communicate between two threads \*/static queue\_t strm\_queue;static pthread\_mutex\_t strmq\_mutex;int strm\_queue\_init(){queue\_t \*q = &amp;amp;strm\_queue;q-&amp;gt;sizeOfQueue = 0;q-&amp;gt;memSize = 0;q-&amp;gt;head = q-&amp;gt;tail = NULL;if (pthread\_cond\_init(&amp;amp;cap\_cond, NULL) !</description>
     </item>
     
     <item>
@@ -156,8 +156,8 @@ I have to spend some time to read《FPGA based hardware accelerator for Dash min
       <description>在 Ubuntu 中build kernel 参考如下：
  [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
  所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。
-   尝试使用 qemu 直接启动主机上的kernel   $ sudo qemu-system-x86\_64 -kernel /boot/vmlinuz-\`uname -r\`   这会提示缺少文件系统
- 可以使用 debootstrap 构建一个rootfs ``` IMG=qemu-image.img DIR=mount-point.dir qemu-img create $IMG 1g mkfs.ext2 $IMG mkdir $DIR sudo mount -o loop $IMG $DIR sudo debootstrap &amp;ndash;arch amd64 jessie $DIR sudo umount $DIR rmdir $DIR    这里最好用一下 chroot 和 passwd 更新一下文件系统里的密码，以免启动之后登不进去。</description>
+   尝试使用 qemu 直接启动主机上的kernel   $ sudo qemu-system-x86\_64 -kernel /boot/vmlinuz-\`uname -r\`  这会提示缺少文件系统
+ 可以使用 debootstrap 构建一个rootfs ``` IMG=qemu-image.img DIR=mount-point.dir qemu-img create $IMG 1g mkfs.ext2 $IMG mkdir $DIR sudo mount -o loop $IMG $DIR sudo debootstrap &amp;ndash;arch amd64 jessie $DIR sudo umount $DIR rmdir $DIR   这里最好用一下 chroot 和 passwd 更新一下文件系统里的密码，以免启动之后登不进去。</description>
     </item>
     
     <item>
@@ -174,9 +174,9 @@ I have to spend some time to read《FPGA based hardware accelerator for Dash min
   只用ssh git 用户管理
 开一个git 用户，设定好权限，也比较方便。但是缺少管理issue 功能。
 参考：https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server
-  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host”  将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
-$ git clone git@IP:/srv/git/test.git 有几个注意点：
- 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILE git clean -n //演习 git ls-files git ls-files | xargs -n 1 dirname | uniq git diff master sync --name-only git config --global core.</description>
+  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host” 将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
+$ git clone git@IP:/srv/git/test.git有几个注意点：
+ 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILEgit clean -n //演习git ls-filesgit ls-files | xargs -n 1 dirname | uniqgit diff master sync --name-onlygit config --global core.</description>
     </item>
     
     <item>
@@ -202,7 +202,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
       <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
       
       <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
-      <description>Samba server    \# apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user \[shuji\] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart   Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     nfs   \# vim /etc/exports /srv/nfs *(rw,sync,nosubtree_check)</description>
+      <description>Samba server    \# apt install samba samba-common# vim /etc/samba/smb.conf 添加：security = user\[shuji\]comment = share dirpath = /srv/sambabrowseable = yeswritable = yes# useradd public (不要用adduser, 否则还要禁用shell）# smbpasswd –a public # service smbd restart  Samba client   smbclient -L //192.168.1.10 -U devsmbclient //192.168.1.10 -U dev    nfs   \# vim /etc/exports/srv/nfs *(rw,sync,nosubtree_check)</description>
     </item>
     
     <item>
@@ -234,7 +234,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
       <pubDate>Wed, 04 Apr 2018 07:35:04 +0000</pubDate>
       
       <guid>/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</guid>
-      <description>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.</description>
+      <description>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.</description>
     </item>
     
     <item>
@@ -287,7 +287,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
       <description>看了一些源代码，这里总结几个不常见的，但是比较好用的C 用法。也许这些功能在C++中有扩展，但是个人基本不用C++。其实这些应该是属于预处理器的功能。若是之前没有见过，遇到时会感觉云里雾里的。
   直接定义字符串：  我们可以用#define 定义字符串常量，比如： #define HELLO &amp;ldquo;hello&amp;rdquo; 这样就相当于是： char *HELLO= &amp;ldquo;hello&amp;rdquo;; 而且使用#define 来定义的好处是可以直接拼接字符串，这些应该都是由预处理器来帮我们处理的（没有仔细考证，但想像其中原理应该是这样）。比如：``` #define HELLO &amp;ldquo;hello&amp;rdquo; #define WORLD &amp;ldquo;world&amp;rdquo;
 puts( HELLO WORLD );
- * * * * **定义内存池：** 在嵌入式系统中一般不用内存堆的动态分配，因为容易产生内存碎片导致大块内存分配不到（可以用带小块内存合并功能内存管理方式），或者是会因为某个模块把内存堆耗尽了导致其它模块不能工作。通常会使用内存池的方式，而且每个软件模块有自己的不同大小固定数量内存池，这样可以做到每个模块内存互不干扰。说白一点就是一系列的分配好空间的数组。这可以参考lwip中内存池的分配。 #define LWIP\_MEMPOOL(name,num,size,desc) u8\_t memp\_memory\_ ## name ## \_base \[((num) \* (MEMP\_SIZE + MEMP\_ALIGN\_SIZE(size)))\];</description>
+* * ** **定义内存池：**在嵌入式系统中一般不用内存堆的动态分配，因为容易产生内存碎片导致大块内存分配不到（可以用带小块内存合并功能内存管理方式），或者是会因为某个模块把内存堆耗尽了导致其它模块不能工作。通常会使用内存池的方式，而且每个软件模块有自己的不同大小固定数量内存池，这样可以做到每个模块内存互不干扰。说白一点就是一系列的分配好空间的数组。这可以参考lwip中内存池的分配。 #define LWIP\_MEMPOOL(name,num,size,desc) u8\_t memp\_memory\_ ## name ## \_base \[((num) \* (MEMP\_SIZE + MEMP\_ALIGN\_SIZE(size)))\];</description>
     </item>
     
     <item>
@@ -415,7 +415,7 @@ puts( HELLO WORLD );
       
       <guid>/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
       <description>Makefile 正如其名作为一个制作文件的工具，大大方便了进行大批量文件编译时的工作流程。这里简单的记录一个make 工具的基本使用规则。
-1. Makefile 基本规则：  target... : prerequisites ... command ... ... ------------------------------------------------------------------------------- target: 为目标文件，即所要生成的对象;
+1. Makefile 基本规则：  target... : prerequisites ...command......-------------------------------------------------------------------------------target: 为目标文件，即所要生成的对象;
 prerequisites : 为要生成target所需要的文件或是目标;
 command: 即make需要执行的命令，(任意的shell命令，即对应编译器或者平台的命令)。
 第一行表示依赖关系，第二行是规则。( 第二行必须由Tab键开头 )。
@@ -423,8 +423,8 @@ command: 即make需要执行的命令，(任意的shell命令，即对应编译�
 a. 只敲入make命令默认执行第一个target。
 b. command 要用Tab键缩进
 2. 比如有源文件：main.c api.c api.h 用gcc 作编译的过程：
-gcc -c main.c gcc -c api.c gcc -o main main.o api.o 写成Makefile的话就是:
- main: main.o api.o gcc -o main main.o api.o main.o: main.c gcc -c main.c api.o: api.c api.h gcc -c api.c 另外Makefile简化格式：</description>
+gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
+ main: main.o api.ogcc -o main main.o api.omain.o: main.cgcc -c main.capi.o: api.c api.hgcc -c api.c 另外Makefile简化格式：</description>
     </item>
     
     <item>
@@ -674,7 +674,7 @@ Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环
       <pubDate>Sun, 01 Dec 2013 15:50:13 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>一个本该好好玩音乐的年纪，选择了为人类智慧高楼添砖加瓦的工作。 由于个人大脑存储空间有限，本博客作为临时存储区，那如果你在浏览过程中能够有所收获，自然也是极好的。 #includes: Music，FPGA, verilog, C, Embedded systems, network, python, Vision, Image processing, Deep Learning.  欢迎多多交流</description>
+      <description>一个本该好好玩音乐的年纪，选择了为人类智慧高楼添砖加瓦的工作。 由于个人大脑存储空间有限，本博客作为临时存储区，那如果你在浏览过程中能够有所收获，自然也是极好的。 #include: Music，FPGA, verilog, C, Embedded systems, network, python, Vision, Image processing, Deep Learning.  欢迎多多交流</description>
     </item>
     
     <item>

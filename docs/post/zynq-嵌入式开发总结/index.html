@@ -9,10 +9,10 @@
 	<meta name="description" content="">
 	<meta property="og:title" content="zynq 嵌入式开发总结" />
 <meta property="og:description" content="传统开发步骤 基础设计
-# 使用Vidado 设计硬件工程，导出硬件设计 bitstream. $ File-&gt; Export-&gt; Export Hardware... # 使用SDK 生成 fsbl.elf # 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&gt;Create Boot Image 生成BOOT.BIN。 即: fsbl.elf &#43; system_wrapper.bit &#43; u-boot.elf 编译kernel
-$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage 编译device tree
-$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts 制作文件系统
-$ 基于RAM 的 ramdisk $ 基于Flash 的 jffs2 $ 基于network 的 NFS 将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。" />
+# 使用Vidado 设计硬件工程，导出硬件设计 bitstream.$ File-&gt; Export-&gt; Export Hardware...# 使用SDK 生成 fsbl.elf# 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&gt;Create Boot Image 生成BOOT.BIN。即: fsbl.elf &#43; system_wrapper.bit &#43; u-boot.elf编译kernel
+$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage编译device tree
+$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts制作文件系统
+$ 基于RAM 的 ramdisk$ 基于Flash 的 jffs2$ 基于network 的 NFS将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" />
 <meta property="article:published_time" content="2019-04-20T13:59:51+00:00" />
@@ -68,7 +68,7 @@ $ 基于RAM 的 ramdisk $ 基于Flash 的 jffs2 $ 基于network 的 NFS 将 BOOT
 	</span>
 </div></div>
 		</header><div class="content post__content clearfix">
-			<p><img src="http://www.wuquantai.com/wp-content/uploads/2018/04/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180413232224-1024x768.jpg" alt=""></p>
+			<p><img src="/images/uploads/2018/04/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180413232224-1024x768.jpg" alt=""></p>
 <h3 id="传统开发步骤">传统开发步骤</h3>
 <p><strong>基础设计</strong></p>
 <pre><code># 使用Vidado 设计硬件工程，导出硬件设计 bitstream.
@@ -112,7 +112,7 @@ $ 基于network 的 NFS
 
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Tagore Wu avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+		<img alt="Tagore Wu avatar" src="/images/19644026.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Tagore Wu</span>

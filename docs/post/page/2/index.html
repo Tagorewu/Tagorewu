@@ -79,9 +79,9 @@
   只用ssh git 用户管理
 开一个git 用户，设定好权限，也比较方便。但是缺少管理issue 功能。
 参考：https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server
-  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host”  将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
-$ git clone git@IP:/srv/git/test.git 有几个注意点：
- 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILE git clean -n //演习 git ls-files git ls-files | xargs -n 1 dirname | uniq git diff master sync --name-only git config --global core.
+  ssh git用户设置   ssh key证书生成  $ ssh-keygen –t rsa –C “user@host” 将id_rsa.pub 发给git服务器管理员添加进/home/git/.ssh/authorized_keys 即可，或者直接用 ssh-copy-id 到服务器即可。
+$ git clone git@IP:/srv/git/test.git有几个注意点：
+ 使用 ssh key 登陆 git 用户时，home目录只能是git 可写的，否则当git组包含多个用户时会出现不用能ssh key 登录的问题。具体debug ssh key 登录问题，可以查看 /var/log/auth 下的日志来解决。.ssh/ 的权限是700，.ssh/authorized_keys 权限是600。 最后用chsh 修改 git用户shell 为 git-shell，不让git 用户有其它多余的权限。 创建仓库可以用git 组的其它用户来创建。注意使用newgrp 将创建文件夹时用户的默认组改成git, 这样整个git 组的用户都有读写权限。  一些实用的git 命令记录 git checkout --patch BRANCH FILE git checkout --theirs PATH/FILEgit clean -n //演习git ls-filesgit ls-files | xargs -n 1 dirname | uniqgit diff master sync --name-onlygit config --global core.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -121,7 +121,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Samba server    \# apt install samba samba-common # vim /etc/samba/smb.conf 添加： security = user \[shuji\] comment = share dir path = /srv/samba browseable = yes writable = yes # useradd public (不要用adduser, 否则还要禁用shell） # smbpasswd –a public # service smbd restart   Samba client   smbclient -L //192.168.1.10 -U dev smbclient //192.168.1.10 -U dev     nfs   \# vim /etc/exports /srv/nfs *(rw,sync,nosubtree_check)
+		Samba server    \# apt install samba samba-common# vim /etc/samba/smb.conf 添加：security = user\[shuji\]comment = share dirpath = /srv/sambabrowseable = yeswritable = yes# useradd public (不要用adduser, 否则还要禁用shell）# smbpasswd –a public # service smbd restart  Samba client   smbclient -L //192.168.1.10 -U devsmbclient //192.168.1.10 -U dev    nfs   \# vim /etc/exports/srv/nfs *(rw,sync,nosubtree_check)
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -174,7 +174,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.
+		链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">

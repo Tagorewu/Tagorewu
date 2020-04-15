@@ -18,10 +18,10 @@
       
       <guid>/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
       <description>传统开发步骤 基础设计
-# 使用Vidado 设计硬件工程，导出硬件设计 bitstream. $ File-&amp;gt; Export-&amp;gt; Export Hardware... # 使用SDK 生成 fsbl.elf # 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。 即: fsbl.elf + system_wrapper.bit + u-boot.elf 编译kernel
-$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage 编译device tree
-$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts 制作文件系统
-$ 基于RAM 的 ramdisk $ 基于Flash 的 jffs2 $ 基于network 的 NFS 将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
+# 使用Vidado 设计硬件工程，导出硬件设计 bitstream.$ File-&amp;gt; Export-&amp;gt; Export Hardware...# 使用SDK 生成 fsbl.elf# 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。即: fsbl.elf + system_wrapper.bit + u-boot.elf编译kernel
+$ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage编译device tree
+$ dtc -I dts -O dtb devicetree.dtb ./arch/arm/boot/dts/AC7020.dts制作文件系统
+$ 基于RAM 的 ramdisk$ 基于Flash 的 jffs2$ 基于network 的 NFS将 BOOT.bin, devicetree.dtb, uImage 拷贝至SD卡的FAT 分区。文件系统拷贝至ext 分区即可。</description>
     </item>
     
   </channel>
