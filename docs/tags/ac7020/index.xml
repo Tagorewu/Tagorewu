@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AC7020 on Tagore&#39;s Studio</title>
-    <link>/tags/ac7020/</link>
+    <link>https://www.wuquantai.com/tags/ac7020/</link>
     <description>Recent content in AC7020 on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 05 Apr 2019 12:46:54 +0000</lastBuildDate>
     
-	<atom:link href="/tags/ac7020/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/ac7020/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>编译PYNQ 在ZCU102上的镜像</title>
-      <link>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</link>
+      <link>https://www.wuquantai.com/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</link>
       <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
       
-      <guid>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
+      <guid>https://www.wuquantai.com/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
       <description>由于PYNQ官方没有编译好的ZCU102的镜像，所以需要自己手动编译。这里记录一下编译过程。
 因为手头上的ZCU102 批次比较新，所以目前只能使用2018.3 版本的SDK才能BOOT起来。（应该是由于换了DDR型号了，所以老版本的镜像是BOOT不起来的。板子版本是REVISION 1.1的 新批号）
 PYNQ 版本Xilinx Tool 版本对应 Release version

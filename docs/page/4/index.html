@@ -11,7 +11,7 @@
 	<meta property="og:title" content="Tagore&#39;s Studio" />
 <meta property="og:description" content="Tagore&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
+<meta property="og:url" content="https://www.wuquantai.com/" />
 <meta property="og:updated_time" content="2013-12-01T15:50:13+00:00" />
 
 	
@@ -59,6 +59,22 @@
 	<article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
+			<a href="/post/some-notes-about-lwip/" rel="bookmark">
+			LwIP TCP Layer Simple analysis
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&gt;accept(pcb-&gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &hellip; else if (flags &amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;TCP connection request %&ldquo;U16_F&rdquo; -&gt; %&ldquo;U16_F&rdquo;.\n&rdquo;, tcphdr-&gt;src, tcphdr-&gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&gt;accepts_pending &gt;= pcb-&gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;tcp_listen_input: listen backlog exceeded for port %&ldquo;U16_F&rdquo;\n&rdquo;, tcphdr-&gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&gt;prio); &hellip; #if TCP_LISTEN_BACKLOG pcb-&gt;accepts_pending++; #endif &hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;tcp_listen_pcbs.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
 			<a href="/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/" rel="bookmark">
 			用ECS在云端搭建SVN服务
 			</a>
@@ -71,22 +87,6 @@
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		应用环境： ECS 云端系统：Ubuntu 14.04-x64 本地系统：window 使用工具：cygwin + ssh 原版文档： http://www.shayanderson.com/linux/install-and-setup-subversion-server-on-ubuntu-1210-server-with-multiple-repositories.htm 一、安装及目录配置 1. 登录云端服务器 ssh xxx@[IP] 2. 安装subversion apt-get install subversion 检查是否安装完成 svn --version 3. 先建立一个Repositories 目录放置工程 mkdir /home/repos 在目录底下再建立工程 svnadmin create /home/repos/project1 svnadmin create /home/repos/project2 注：删除则用 svnadmin deltify 4. 修改目录组权限让一用户组都可管理此目录 chmod -R g+rws /home/repos //设置组权限 sudo groupadd svn //添加组 chgrp -R svn /home/repos //修改group ownership usermod -a -G svn [username] //添加用户进组 groups // 检查用户是否被添加进组 二、云端上测试SVN服务 1. 新建一个文件夹 mkdir /home/tmp svn checkout file:///home/repos/project1 /home/tmp // checkout到目录tmp 2.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/%E9%98%BF%E9%87%8C%E4%BA%91ecs%E6%8E%A8%E8%8D%90%E7%A0%819%E6%8A%98-ceyo2p/" rel="bookmark">
-			阿里云ECS推荐码9折 : ceyo2p
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-06-01T14:58:03Z">June 01, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/others/" rel="category">Others</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		阿里云ECS云服务器推荐码9折 : ceyo2p
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -247,18 +247,18 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/" />
+		<input type="hidden" name="sitesearch" value="https://www.wuquantai.com" />
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/trojan-gfw-%E5%AE%89%E8%A3%85/">trojan-gfw 安装</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">又折腾网站迁移</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%9F%9F%E5%86%85%E7%9A%84pc-%E8%AE%BF%E9%97%AE%E9%9D%9E%E5%9F%9F%E5%86%85%E7%9A%84samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">域内的PC 访问非域内的samba服务器</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">zynq 嵌入式开发总结</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/">编译PYNQ 在ZCU102上的镜像</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
 		</ul>
 	</div>
 </div>
@@ -306,7 +306,6 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
@@ -357,6 +356,7 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/trojan-gfw/" title="trojan-gfw">trojan-gfw</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
@@ -370,7 +370,6 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
 	</div>
 </div>
 </aside>

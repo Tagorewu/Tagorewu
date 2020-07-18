@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>c 链接 on Tagore&#39;s Studio</title>
-    <link>/tags/c-%E9%93%BE%E6%8E%A5/</link>
+    <link>https://www.wuquantai.com/tags/c-%E9%93%BE%E6%8E%A5/</link>
     <description>Recent content in c 链接 on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 04 Apr 2018 07:35:04 +0000</lastBuildDate>
     
-	<atom:link href="/tags/c-%E9%93%BE%E6%8E%A5/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/c-%E9%93%BE%E6%8E%A5/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>c/c&#43;&#43;编译相关技巧总结帖</title>
-      <link>/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</link>
+      <link>https://www.wuquantai.com/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</link>
       <pubDate>Wed, 04 Apr 2018 07:35:04 +0000</pubDate>
       
-      <guid>/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</guid>
+      <guid>https://www.wuquantai.com/post/cc&#43;&#43;%E7%BC%96%E8%AF%91%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%E5%B8%96/</guid>
       <description>链接时忽略文件中未用到的函数或者对象。这在移植代码过程中很有用, 我们就不需要去删除或者注释掉那些大量没用到的对象或者不需要去链接的对象。  For GCC, this is accomplished in two stages: First compile the data but tell the compiler to separate the code into separate sections within the translation unit. This will be done for functions, classes, and external variables by using the following two compiler flags:-fdata-sections -ffunction-sectionsLink the translation units together using the linker optimization flag (this causes the linker to discard unreferenced sections):-Wl,--gc-sectionsSo if you had one file called test.</description>
     </item>
     

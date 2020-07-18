@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>shtm on Tagore&#39;s Studio</title>
-    <link>/tags/shtm/</link>
+    <link>https://www.wuquantai.com/tags/shtm/</link>
     <description>Recent content in shtm on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 12 Apr 2016 03:00:09 +0000</lastBuildDate>
     
-	<atom:link href="/tags/shtm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/shtm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>SSI Tag的使用</title>
-      <link>/post/ssi-tag%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://www.wuquantai.com/post/ssi-tag%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 12 Apr 2016 03:00:09 +0000</pubDate>
       
-      <guid>/post/ssi-tag%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://www.wuquantai.com/post/ssi-tag%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>这里先说最原始的使用SSI tag的方式，因为这样做在C开发中最简单。跟后来通用的web服务器的SSI有点不一样，因为后来为了使上层开发更方便，又进行了一些封装。 最原始的SSI是这样规定的，如在html中嵌入SSI tag。使用 [code]&amp;lt;&amp;ndash;#tagname&amp;ndash;&amp;gt;[/code] ;，则当Web服务器生成网页时，会将当前的标签后插入所指定的内容。这就是SSI Tag的作用。 SSI可以说是最初动态生成网页的方法，不仅仅是用来插入一些变量也可以直接插入javascript、json等等你想要发送给客户端的内容！一般用SSI来插入静态变量比较方便，如果是插入input框的当前值的话，可以往SSI中插入一段javascript代码或者是json格式的数据，再用javascript把这些实时的值加载进input框。 [html] Name:IP Address:MAC Address:[/html] 其Tag 在Web 服务端代码中作如下定义,并定义其序号的宏。 [c] static const char *g_pcConfigSSITags[] = { &amp;ldquo;ipaddr&amp;rdquo;, // SSI_INDEX_IPADDR &amp;ldquo;macaddr&amp;rdquo;, // SSI_INDEX_MACADDR &amp;ldquo;p0br&amp;rdquo;, // SSI_INDEX_P0BR &amp;ldquo;p0sb&amp;rdquo;, // SSI_INDEX_P0SB &amp;ldquo;p0p&amp;rdquo;, // SSI_INDEX_P0P &amp;ldquo;p0bc&amp;rdquo;, // SSI_INDEX_P0BC &amp;ldquo;p0fc&amp;rdquo;, // SSI_INDEX_P0FC &amp;ldquo;p0tt&amp;rdquo;, // SSI_INDEX_P0TT &amp;ldquo;p0tlp&amp;rdquo;, // SSI_INDEX_P0TLP &amp;ldquo;p0trp&amp;rdquo;, // SSI_INDEX_P0TRP &amp;ldquo;p0tip&amp;rdquo;, // SSI_INDEX_P0TIP &amp;ldquo;p0tip1&amp;rdquo;, // SSI_INDEX_P0TIP1 &amp;ldquo;p0tip2&amp;rdquo;, // SSI_INDEX_P0TIP2 &amp;ldquo;p0tip3&amp;rdquo;, // SSI_INDEX_P0TIP3 &amp;ldquo;p0tip4&amp;rdquo;, // SSI_INDEX_P0TIP4 &amp;ldquo;p0tnm&amp;rdquo;, // SSI_INDEX_P0TNM &amp;ldquo;p1br&amp;rdquo;, // SSI_INDEX_P1BR &amp;ldquo;p1sb&amp;rdquo;, // SSI_INDEX_P1SB &amp;ldquo;p1p&amp;rdquo;, // SSI_INDEX_P1P &amp;ldquo;p1bc&amp;rdquo;, // SSI_INDEX_P1BC &amp;ldquo;p1fc&amp;rdquo;, // SSI_INDEX_P1FC &amp;ldquo;p1tt&amp;rdquo;, // SSI_INDEX_P1TT &amp;ldquo;p1tlp&amp;rdquo;, // SSI_INDEX_P1TLP &amp;ldquo;p1trp&amp;rdquo;, // SSI_INDEX_P1TRP &amp;ldquo;p1tip&amp;rdquo;, // SSI_INDEX_P1TIP &amp;ldquo;p1tip1&amp;rdquo;, // SSI_INDEX_P1TIP1 &amp;ldquo;p1tip2&amp;rdquo;, // SSI_INDEX_P1TIP2 &amp;ldquo;p1tip3&amp;rdquo;, // SSI_INDEX_P1TIP3 &amp;ldquo;p1tip4&amp;rdquo;, // SSI_INDEX_P1TIP4 &amp;ldquo;p1tnm&amp;rdquo;, // SSI_INDEX_P1TNM &amp;ldquo;modname&amp;rdquo;, // SSI_INDEX_MODNAME &amp;ldquo;pnpport&amp;rdquo;, // SSI_INDEX_PNPPORT &amp;ldquo;disable&amp;rdquo;, // SSI_INDEX_DISABLE &amp;hellip; }; [/c] 然后在SSIHandler里如下解析,当每次serving a page with a ``.</description>
     </item>
     

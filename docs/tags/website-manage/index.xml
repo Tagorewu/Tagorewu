@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Website Manage on Tagore&#39;s Studio</title>
-    <link>/tags/website-manage/</link>
+    <link>https://www.wuquantai.com/tags/website-manage/</link>
     <description>Recent content in Website Manage on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 02 Feb 2018 12:27:24 +0000</lastBuildDate>
     
-	<atom:link href="/tags/website-manage/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/website-manage/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>网站迁移笔记</title>
-      <link>/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</link>
+      <link>https://www.wuquantai.com/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 02 Feb 2018 12:27:24 +0000</pubDate>
       
-      <guid>/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://www.wuquantai.com/post/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB%E7%AC%94%E8%AE%B0/</guid>
       <description>迁移参考：
  https://www.digitalocean.com/community/tutorials/how-to-move-an-apache-web-root-to-a-new-location-on-ubuntu-16-04    Ubuntu1604 安装php5.6
  由于Ubuntu1604 默认安装的是php7。由于网站兼容性问题，需要装php5。 步骤参考：https://phpraxis.wordpress.com/2016/05/16/install-php-5-6-or-5-5-in-ubuntu-16-04-lts-xenial-xerus/ &amp;gt; add-apt-repository ppa:ondrej/php &amp;gt; apt-get update &amp;gt; apt-get install php5.6 php5.6-mbstring php5.6-mysql php5.6-sqlite3 &amp;gt; 还有这些按需要装 php5.6-cli php5.6-curl php5.6-json php5.6-mcrypt php5.6-curl php-xdebug libapache2-mod-php5.6 libapache2-mod-php7.0 mysql-server-5.7 apache2 # php 版本切换方法2 &amp;gt; sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart ; echo 1 | sudo update-alternatives &amp;ndash;config php &amp;gt; sudo a2dismod php5.6 ; sudo a2enmod php7.</description>
@@ -24,46 +24,37 @@
     
     <item>
       <title>用ECS在云端搭建SVN服务</title>
-      <link>/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/</link>
+      <link>https://www.wuquantai.com/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Thu, 02 Jun 2016 08:08:41 +0000</pubDate>
       
-      <guid>/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>https://www.wuquantai.com/post/%E7%94%A8ecs%E5%9C%A8%E4%BA%91%E7%AB%AF%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1/</guid>
       <description>应用环境： ECS 云端系统：Ubuntu 14.04-x64 本地系统：window 使用工具：cygwin + ssh 原版文档： http://www.shayanderson.com/linux/install-and-setup-subversion-server-on-ubuntu-1210-server-with-multiple-repositories.htm 一、安装及目录配置 1. 登录云端服务器 ssh xxx@[IP] 2. 安装subversion apt-get install subversion 检查是否安装完成 svn --version 3. 先建立一个Repositories 目录放置工程 mkdir /home/repos 在目录底下再建立工程 svnadmin create /home/repos/project1 svnadmin create /home/repos/project2 注：删除则用 svnadmin deltify 4. 修改目录组权限让一用户组都可管理此目录 chmod -R g+rws /home/repos //设置组权限 sudo groupadd svn //添加组 chgrp -R svn /home/repos //修改group ownership usermod -a -G svn [username] //添加用户进组 groups // 检查用户是否被添加进组 二、云端上测试SVN服务 1. 新建一个文件夹 mkdir /home/tmp svn checkout file:///home/repos/project1 /home/tmp // checkout到目录tmp 2.</description>
     </item>
     
     <item>
-      <title>阿里云ECS推荐码9折 : ceyo2p</title>
-      <link>/post/%E9%98%BF%E9%87%8C%E4%BA%91ecs%E6%8E%A8%E8%8D%90%E7%A0%819%E6%8A%98-ceyo2p/</link>
-      <pubDate>Wed, 01 Jun 2016 14:58:03 +0000</pubDate>
-      
-      <guid>/post/%E9%98%BF%E9%87%8C%E4%BA%91ecs%E6%8E%A8%E8%8D%90%E7%A0%819%E6%8A%98-ceyo2p/</guid>
-      <description>阿里云ECS云服务器推荐码9折 : ceyo2p</description>
-    </item>
-    
-    <item>
       <title>[转]Apache与Tomcat有什么关系和区别</title>
-      <link>/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/</link>
+      <link>https://www.wuquantai.com/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/</link>
       <pubDate>Sun, 21 Jun 2015 09:36:55 +0000</pubDate>
       
-      <guid>/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/</guid>
+      <guid>https://www.wuquantai.com/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/</guid>
       <description>经常在用apache和tomcat等这些服务器，可是总感觉还是不清楚他们之间有什么关系，在用tomcat的时候总出现apache，总感到迷惑，到底谁是主谁是次，因此特意在网上查询了一些这方面的资料，总结了一下： 一 apache支持静态页，tomcat支持动态的，比如servlet等，一般使用apache+tomcat的话，apache只是作为一个转发，对jsp的处理是由tomcat来处理的。 apache可以支持php\cgi\perl,但是要使用java的话，你需要tomcat在apache后台支撑，将java请求由apache转发给tomcat处理。 apache是web服务器,Tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 这两个有以下几点可以比较的： 1、两者都是apache组织开发的 2、两者都有HTTP服务的功能 3、两者都是免费的 不同点： Apache是专门用了提供HTTP服务的，以及相关配置的（例如虚拟主机、URL转发等等） Tomcat是Apache组织在符合J2EE的JSP、Servlet标准下开发的一个JSP服务器 二： APACHE是一个web服务器环境程序 启用他可以作为web服务器使用 不过只支持静态网页 如(asp,php,cgi,jsp)等动态网页的就不行 如果要在APACHE环境下运行jsp 的话就需要一个解释器来执行jsp网页 而这个jsp解释器就是TOMCAT, 为什么还要JDK呢？因为jsp需要连接数据库的话 就要jdk来提供连接数据库的驱程，所以要运行jsp的web服务器平台就需要APACHE+TOMCAT+JDK 整合的好处是： 如果客户端请求的是静态页面，则只需要Apache服务器响应请求 如果客户端请求动态页面，则是Tomcat服务器响应请求 因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 三： apache:侧重于http server tomcat:侧重于servlet引擎，如果以standalone方式运行，功能上与apache等效 ， 支持JSP，但对静态网页不太理想； apache是web服务器，tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 换句话说，apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），而这个桶也可以不放在卡车上。</description>
     </item>
     
     <item>
       <title>Web 开发环境搭建</title>
-      <link>/post/web-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>https://www.wuquantai.com/post/web-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Sun, 21 Jun 2015 03:37:16 +0000</pubDate>
       
-      <guid>/post/web-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://www.wuquantai.com/post/web-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>1.安装eclipse。 2. TOMCAT依赖JDK运行，必须安装JDK，光有JRE不行。 JDK的环境变量配置： （1）先配置 JAVA_HOME = C:\Program Files\Java\jdk1.8.0_77; （2）然后 PATH 里添加 %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;这两个目录，以便命令行里能直接寻到这里。 注意: 安装 JDK时会默认在外部安装一个JRE，这里TOMCAT是依赖JDK运行的，所以JRE的环境变量目录要用JDK文件夹里的那个JRE，不要配置成外部的JRE目录了。 运行java -version 不出现java版本的一般是这里没配置好。 （2）最后是 CLASSPATH = .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar; 注意：这里有三个目录，第一个是.; //表示当前工作目录，别丢了。运行TOMCAT时一闪而过一般是这个环境变量没设置好。 3. 安装 tomcat ，直接解压即可。 添加环境变量： CATALINA_HOME = D:\WebDev\apache-tomcat-6.0.45-windows-x64\apache-tomcat-6.0.45; //是你的tomcat目录。 PATH 里添加：%CATALINA_HOME%\bin; 点 bin/startup.bat直接可运行tomcat。或者命令行里打startup即可，若不行则是TOMCAT的 PATH变量没设置好。 尝试访问 http://localhost:8080，出现示例页说明配置成功。可以关闭控制台。 平时有要调试的网页文件可以拷到 webapps/ 底下，浏览器输入 http://localhost:8080/foldername/ 即可访问。 3.安装mysql。 eclipse 配置tomacat 路径方法. Window-&amp;gt;Preference-&amp;gt;Server-&amp;gt;Runtime Environments Add : 添加 Tomecat 路径，即可。</description>
     </item>
     
     <item>
       <title>Wordpress 修改域名后修改图片路径</title>
-      <link>/post/wordpress-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%90%8D%E5%90%8E%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84/</link>
+      <link>https://www.wuquantai.com/post/wordpress-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%90%8D%E5%90%8E%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84/</link>
       <pubDate>Sun, 08 Mar 2015 15:08:52 +0000</pubDate>
       
-      <guid>/post/wordpress-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%90%8D%E5%90%8E%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84/</guid>
+      <guid>https://www.wuquantai.com/post/wordpress-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%90%8D%E5%90%8E%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84/</guid>
       <description>[hermit auto=&amp;quot;1&amp;rdquo; loop=&amp;quot;0&amp;rdquo; unexpand=&amp;quot;0&amp;rdquo;]netease_songs#:65538[/hermit] WordPress更换域名 主页和图片路径错误 解决办法 首先介绍下SQL替换命令 UPDATE 表名 SET 字段 = REPLACE(字段,’替换内容’,&amp;lsquo;替换值’); eg： UPDATE wp_options SET option_value = REPLACE(option_value,&amp;lsquo;www.59a.cn&amp;rsquo;,&amp;lsquo;m59a.cn&amp;rsquo;); 其中wp_options就是表名，option_value就是表wp_options里的一个字段，wp_options里有siteurl和home的值。 一般只要执行以下命令，就可完成域名的修改： 1.修改option_value里的站点url和主页地址： UPDATE wp_options SET option_value = replace(option_value, &amp;lsquo;http://www.59a.cn&amp;rsquo;, &amp;lsquo;http://www.new-59a.cn&amp;rsquo;) WHERE option_name = &amp;lsquo;home&amp;rsquo; OR option_name = &amp;lsquo;siteurl&amp;rsquo;; 2.更正文章中内部链接及附件的地址, 主要是一些图片路径： UPDATE wp_posts SET post_content = replace(post_content, &amp;lsquo;http://www.59a.cn&amp;rsquo;, &amp;lsquo;http://www.new-59a.cn&amp;rsquo;); 3.更正wordpress文章默认的永久链接： UPDATE wp_posts SET guid = replace(guid, &amp;lsquo;http://www.59a.cn&amp;rsquo;,&amp;lsquo;http://www.new-59a.cn&amp;rsquo;);</description>
     </item>
     

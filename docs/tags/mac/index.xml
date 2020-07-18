@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mac on Tagore&#39;s Studio</title>
-    <link>/tags/mac/</link>
+    <link>https://www.wuquantai.com/tags/mac/</link>
     <description>Recent content in mac on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 03 Mar 2016 01:57:48 +0000</lastBuildDate>
     
-	<atom:link href="/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ethernet、IP、TCP、UDP帧头格式、详解</title>
-      <link>/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</link>
+      <link>https://www.wuquantai.com/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Thu, 03 Mar 2016 01:57:48 +0000</pubDate>
       
-      <guid>/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>https://www.wuquantai.com/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</guid>
       <description>引用：http://zoufengfu168.blog.163.com/blog/static/5461055200991333616451/ 一、MAC帧头定义 [c] typedef struct _MAC_FRAME_HEADER { char m_cDstMacAddress[6]; //目的mac地址 char m_cSrcMacAddress[6]; //源mac地址 /* 如0x0800代表上一层是IP协议，0x0806为arp, 0x88a4为Ethercat */ short m_cType; //上一层协议类型， }__attribute__((packed))MAC_FRAME_HEADER,*PMAC_FRAME_HEADER; Etherne II 长度为14 byte; typedef struct _MAC_FRAME_TAIL { unsigned int m_sCheckSum; //数据帧尾校验和 }__attribute__((packed))MAC_FRAME_TAIL, *PMAC_FRAME_TAIL; [/c] 补充VLAN 和ARP： [c] // #define ETHTYPE_ARP 0x0806U #define ETHTYPE_IP 0x0800U #define ETHTYPE_VLAN 0x8100U #define ETHTYPE_PPPOEDISC 0x8863U /* PPP Over Ethernet Discovery Stage */ #define ETHTYPE_PPPOE 0x8864U /* PPP Over Ethernet Session Stage */ /** VLAN header inserted between ethernet header and payload * if &amp;lsquo;type&amp;rsquo; in ethernet header is ETHTYPE_VLAN.</description>
     </item>
     

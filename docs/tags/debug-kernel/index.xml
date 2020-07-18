@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>debug kernel on Tagore&#39;s Studio</title>
-    <link>/tags/debug-kernel/</link>
+    <link>https://www.wuquantai.com/tags/debug-kernel/</link>
     <description>Recent content in debug kernel on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 22 Aug 2018 03:12:29 +0000</lastBuildDate>
     
-	<atom:link href="/tags/debug-kernel/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/debug-kernel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>petalinux use guide summarize</title>
-      <link>/post/petalinux-use-guide-summarize/</link>
+      <link>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</link>
       <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
       
-      <guid>/post/petalinux-use-guide-summarize/</guid>
+      <guid>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</guid>
       <description>petalinux 是针对 Xilinx FPGA-based SOC designs 的 embedded linux system development kit 。 包含了:
  Yocto Extensible SDK Minimal downloads XSCT and tool chains PetaLinux CLI tools  详情参考 PetaLinux Tools Reference Guide。
  **版本： v2018.2 June 6, 2018 **

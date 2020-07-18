@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MCU on Tagore&#39;s Studio</title>
-    <link>/tags/mcu/</link>
+    <link>https://www.wuquantai.com/tags/mcu/</link>
     <description>Recent content in MCU on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 15 Aug 2016 00:57:44 +0000</lastBuildDate>
     
-	<atom:link href="/tags/mcu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/mcu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>IAR sprintf() 输出不正常的问题</title>
-      <link>/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <link>https://www.wuquantai.com/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Mon, 15 Aug 2016 00:57:44 +0000</pubDate>
       
-      <guid>/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://www.wuquantai.com/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
       <description>前几天调试了一程序，用到sprintf函数，输出结果一直不正常，同样的输出格式用printf打印则没有问题。然后同样的程序在gcc下sprintf也是正常的。怀疑IAR的sprintf函数有问题。后来发现原因是IAR把sprintf函数简化了，在project-options-general options 里面的Library options 的Tabs里有个printf formatter，默认是选成tiny的选项，结果就不支持一些复杂的输出格式。把它设置成auto，输出结果就正常了，o yeah!</description>
     </item>
     
     <item>
       <title>从PC的总线到ARM内部总线</title>
-      <link>/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</link>
+      <link>https://www.wuquantai.com/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</link>
       <pubDate>Mon, 09 Mar 2015 04:51:50 +0000</pubDate>
       
-      <guid>/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</guid>
       <description>从PC的总线到ARM内部总线
 来源: ChinaUnix博客 日期： 2009.07.18 23:45
 从PC的总线到ARM内部总线 我在学习《Linux设备驱动程序（第3版）》的 第九章 与硬件通信 时，对 I\O总线的概念 不是很清晰，所以查找了有关资料。现在总结如下： 本文的参考资料： 1、 《AMBA、AHB、APB总线简介》 作者 adamzhao 日期 2006-11-16 19:33:00 转载网址： http://www.openhard.org/myspace/blog/show.php?id=75802 2、 《Introduction to AMBA Bus System 》台湾 工研院 / 系統晶片技術中心工程師 吳欣龍，PDF格式 下载地址： http://tpe-wh3.dwins.net/download/member_file/2002/soc/2002-5-1.pdf 3、 《PC架构系列：CPU/RAM/IO总线的发展历史！》 转载网址： http://blog.csdn.net/xport/archive/2006/11/16/1387928.aspx 4、 《认识物理I/O构件- 主机I/O总线(1)》作者：IT168存储频道 2007-04-10 原文网址： http://storage.it168.com/g/2007-04-10/200704101424234.shtml 总线的演变 首先应该讲讲总线的演变历史，这方面《PC架构系列：CPU/RAM/IO总线的发展历史！》这篇文章写得很好！感谢文章的作者！以下内容大量来自这篇文章，可以说是这篇文章的缩减转载。 [#toggle Title=&amp;quot;继续阅读&amp;rdquo;] 公共总线 早期PC中，CPU/RAM/IO都是挂在一条总线上，所有的部件都必须在同步的模式下工作。这样就带来一个&amp;quot;互锁&amp;rdquo; （locked to each other ）效应：所有设备都被限定在一个通用时钟频率（Clock Frequency）上面，整个系统的速度会被系统中最慢的设备限制，系统的整体性能无法提高。 南桥诞生（I\O总线诞生） 1987年，康柏（Compaq）公司想到一个办法: 将系统总线与I/O总线分开，使得2个不同的总线工作在不同的时钟频率上。CPU和内存工作在系统总线上（the System Bus），独立于所有的I/O设备。这样高速的CPU/RAM组件就摆脱了低速I/O设备的束缚。这里的Bridge，就是现在的南桥（South Bridge）芯片的前身，而它实际起到了降频的作用。 倍频出世 从80486开始，CPU的发展迅猛，频率大幅攀升。内存开始变得跟不上CPU的发展步伐了。Intel 于是决定在80486中引入倍频（Clock Doubler）的概念。内存依旧工作在系统总线上，与系统总线保持同样的工作频率，而CPU的内部工作频率（CPU主频）是： CPU 主频 = 外频（系统总线频率System Bus Frequency）* 倍频 (Clock doubler) 北桥和前端总线的诞生 PC结构的变化趋势是把低速设备与高速设备用隔离总线的方法进行隔离。而发展到后来，就演变出了北桥（North Bridge）芯片。内存与北桥间的总线称为内存总线，把CPU与北桥间连接的这段总线成为前端总线**(Front Side Bus，FSB），**也就是系统总线（System Bus）！ **PC中的I\O总线** 通过上面的文章，我们知道的总线的演变过程。现在专门来讲讲I\O总线。 总线：用来传送信号或能量的构造器。 系统 I/O 总线将指令从内存传导至与输入\输出处理器(IOP) [url=http://publib.</description>
@@ -33,10 +33,10 @@
     
     <item>
       <title>keil 5.0： pack installer Reading one or more Pack discriptions failed 报错的问题</title>
-      <link>/post/keil-5.0-pack-installer-reading-one-or-more-pack/</link>
+      <link>https://www.wuquantai.com/post/keil-5.0-pack-installer-reading-one-or-more-pack/</link>
       <pubDate>Fri, 27 Dec 2013 13:31:52 +0000</pubDate>
       
-      <guid>/post/keil-5.0-pack-installer-reading-one-or-more-pack/</guid>
+      <guid>https://www.wuquantai.com/post/keil-5.0-pack-installer-reading-one-or-more-pack/</guid>
       <description>http://www.keil.com/support/docs/3646.htm 按照链接所说的是Keil5.0不支持这些新版本的DFP，需要换Keil5.01. http://www.keil.com/dd2/pack/ 有点奇怪这里有V1.0版本的DFP为什么导进去也不成功呢？ http://www2.keil.com/mdk5/legacy 后来下载了legacy support，包括Cortex M系列和ARM7和ARM9的在Keil4.73版本里面的两个Device 包，这个是Keil5.0支持的。 然后，果断升级了keil5.1. 发现了一个规律，只要在之前破解版的基础上覆盖安装到V5.01都是不需要再破解的直接就是标准版的了，再加上那两个包就能完全兼容老版本支持的设备。。</description>
     </item>
     

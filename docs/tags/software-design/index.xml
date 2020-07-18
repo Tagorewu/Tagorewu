@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software Design on Tagore&#39;s Studio</title>
-    <link>/tags/software-design/</link>
+    <link>https://www.wuquantai.com/tags/software-design/</link>
     <description>Recent content in Software Design on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 27 Jan 2019 12:37:31 +0000</lastBuildDate>
     
-	<atom:link href="/tags/software-design/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/software-design/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</title>
-      <link>/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/</link>
+      <link>https://www.wuquantai.com/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/</link>
       <pubDate>Sun, 27 Jan 2019 12:37:31 +0000</pubDate>
       
-      <guid>/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/</guid>
       <description>前段时间有朋友想要了解一下多线程编程，正好有个项目上有这么个例子可以抽出来讲一讲。只要搞清楚这个例子，就一下子掌握了线程间同步、互斥量、条件变量、队列、内存池的概念和使用。
 首先，线程间同步的概念。
 比如，学过数字电路的人都知道，两个时钟域的信号如果没有经过同步直接接到一起的话，会引起亚稳态。原因是如果恰好输入信号在时钟边沿附近变化的话（不满足建立保持时间的情况下），信号可能处于一个中间电平，这样会导致触发器处于一个振荡状态，引起整块数字电路的不稳定。这就是数字电路中异步的概念，两个时钟都是各自free running，彼此没有关系。
@@ -32,10 +32,10 @@
     
     <item>
       <title>H.264 codec Note</title>
-      <link>/post/h-264-codec-note/</link>
+      <link>https://www.wuquantai.com/post/h-264-codec-note/</link>
       <pubDate>Mon, 19 Nov 2018 05:47:12 +0000</pubDate>
       
-      <guid>/post/h-264-codec-note/</guid>
+      <guid>https://www.wuquantai.com/post/h-264-codec-note/</guid>
       <description>• Elements of a video Sequence
 o Frames
 o Slices
@@ -53,10 +53,10 @@ o Entropy Coding</description>
     
     <item>
       <title>git 中心服务搭建</title>
-      <link>/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</link>
+      <link>https://www.wuquantai.com/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Wed, 22 Aug 2018 12:47:34 +0000</pubDate>
       
-      <guid>/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://www.wuquantai.com/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/</guid>
       <description>中心服务方式选择 git 本身是一个分布式的版本管理系统，但如果要设置一个中心库方便很多开发者同步，或者像SVN 一样使用它，就需要搭建一个中心库。有几种方式可以选择：
   gitosis ：
 这个是比较老的方式。不推荐
@@ -72,28 +72,28 @@ $ git clone git@IP:/srv/git/test.git有几个注意点：
     
     <item>
       <title>嵌入式系统分层（转自电子发烧友）</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</link>
+      <link>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</link>
       <pubDate>Thu, 26 Dec 2013 15:36:37 +0000</pubDate>
       
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</guid>
       <description>一、嵌入式系统的分层与专业的分类。 嵌入式系统分为4层，硬件层、驱动层、操作系统层和应用层。 1、硬件层，是整个嵌入式系统的根本，如果现在单片机及接口这块很熟悉，并且能用C和汇编语言来编程的话，从嵌入式系统的硬件层走起来相对容易，硬件 层也是驱动层的基础，一个优秀的驱动工程师是要能够看懂硬件的电路图和自行完成CPLD的逻辑设计的，同时还要对操作系统内核及其调度性相当的熟悉的。但 硬件平台是基础，增值还要靠软件。 硬件层比较适合于，电子、通信、自动化、机电一体、信息工程类专业的人来搞，需要掌握的专业基础知识有，单片机原理及接口技术、微机原理及接口技术、C语言。 2、 驱动层，这部分比较难，驱动工程师不仅要能看懂电路图还要能对操作系统内核十分的精通，以便其所写的驱动程序在系统调用时，不会独占操作系统时间片，而导 至其它任务不能动行，不懂操作系统内核架构和实时调度性，没有良好的驱动编写风格，按大多数书上所说添加的驱动的方式，很多人都能做到，但可能连个初级的 驱动工程师的水平都达不到，这样所写的驱动在应用调用时就如同windows下我们打开一个程序运行后，再打开一个程序时，要不就是中断以前的程序，要不 就是等上一会才能运行后来打开的程序。想做个好的驱动人员没有三、四年功底，操作系统内核不研究上几编，不是太容易成功的，但其工资在嵌入式系统四层中可 是最高的。 驱动层比较适合于电子、通信、自动化、机电一体、信息工程类专业尤其是计算机偏体系结构类专业的人来搞，除硬件层所具备的基础学科外，还要对数据结构与算法、操作系统原理、编译原理都要十分精通了解。 3、操作系统层，对于操作系统层目前可能只能说是简单的移植，而很少有人来自已写操作系统，或者写出缺胳膊少腿的操作系统来，这部分工作大都由驱动工 程师来完成。操作系统是负责系统任务的调试、磁盘和文件的管理，而嵌入式系统的实时性十分重要。据说，XP操作系统是微软投入300人用两年时间才搞定 的，总时工时是600人年，中科院软件所自己的女娲Hopen操作系统估计也得花遇几百人年才能搞定。因此这部分工作相对来讲没有太大意义。 4、应用层，相对来讲较为容易的，如果会在windows下如何进行编程接口函数调用，到操作系统下只是编译和开发环 境有相应的变化而已。如果涉及Jave方面的编程也是如此的。嵌入式系统中涉及算法的由专业算法的人来处理的，不必归结到嵌入式系统范畴内。但如果涉及嵌 入式系统下面嵌入式数据库、基于嵌入式系统的网络编程和基于某此应用层面的协议应用开发（比如基于SIP、H.323、Astrisk）方面又较为复杂， 并且有难度了。</description>
     </item>
     
     <item>
       <title>关于ADS V1.2开发环境</title>
-      <link>/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+      <link>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
       <pubDate>Sun, 15 Dec 2013 15:42:59 +0000</pubDate>
       
-      <guid>/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
       <description>从开始用freescale 的CodeWarrior起到这个ADS V1.2 ,一直认为这个开发环境做得不好。有几个问题。 1.当make完之后在xx.o文件报错有不明物体，双击这条error, 它没帮你定位到xx.c里。以至于你还得打开xx.c CTRL+F，找出这个不明物体。这很烦，有时候会觉得这个编译器很无语。 2.ADS V1.2的工程管理不能靠边？dock，至今没找到这个功能。。以至于窗口管理乱糟糟的。</description>
     </item>
     
     <item>
       <title>嵌入式开学-先认识硬件</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</link>
+      <link>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</link>
       <pubDate>Sun, 15 Dec 2013 15:28:03 +0000</pubDate>
       
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</guid>
       <description>这里使用的是TQ2440开发板，CPU 一般运行在400M的时钟频率。核心板载有两片Hynix(海力士,又叫现代内存)256Mb的SDRAM合64MB的内存，256MB SAMSUNG 的Nand flash，2MB 的Eon（宜扬） 的Nor flash。 首先，Nor flash 和 Nand flash 的区别？ Nor flash的有自己的地址线和数据线，操作以字为单位，可以采用类似于memory的随机访问方式，在nor flash上可以直接运行程序，所以nor flash可以直接用来做boot，采用nor flash启动的时候会把地址映射到0x00上。类似于计算机内BIOS的存放位置。 Nand flash是IO设备，类似于计算机的硬盘，数据、地址、控制线都是共用的，需要软件区控制读取时序，更**无法挂在ARM的程序空间，**所以不能像nor flash、内存一样随机访问，不能EIP（片上运行），因此不能直接作为boot。一般Nand flash 用来存储系统程序，系统上电后由Nor flash中的BootLoader将系统加载进RAM中的可执行地址中运行，然后跳到主程序中运行。（这有点像冯.诺伊曼架构，程序和数据都在RAM中）。Nand flash在读取数据量较大的成块数据时，速度较快。</description>
     </item>
     

@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Network basis on Tagore&#39;s Studio</title>
-    <link>/tags/network-basis/</link>
+    <link>https://www.wuquantai.com/tags/network-basis/</link>
     <description>Recent content in Network basis on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Aug 2016 15:28:48 +0000</lastBuildDate>
     
-	<atom:link href="/tags/network-basis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/network-basis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ubuntu 上部署OpenVPN服务</title>
-      <link>/post/ubuntu-%E4%B8%8A%E9%83%A8%E7%BD%B2openvpn%E6%9C%8D%E5%8A%A1/</link>
+      <link>https://www.wuquantai.com/post/ubuntu-%E4%B8%8A%E9%83%A8%E7%BD%B2openvpn%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Fri, 19 Aug 2016 15:28:48 +0000</pubDate>
       
-      <guid>/post/ubuntu-%E4%B8%8A%E9%83%A8%E7%BD%B2openvpn%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>https://www.wuquantai.com/post/ubuntu-%E4%B8%8A%E9%83%A8%E7%BD%B2openvpn%E6%9C%8D%E5%8A%A1/</guid>
       <description>缘起： 最近家里的长城宽带通往海外的线路堵得厉害(感觉长城宽带就是GFW的实验场)，用ss翻墙都难连上服务器，apple store也难连上。于是不得不在国内阿里云的服务器上搭一个VPN。不仅可以解决长城宽带的问题，平时手机在外面连接不安全的wifi时也不用担心信息会泄漏了。另外VPN还可以将分布在各处的内网主机组成局域网，VPN服务就相当于是在中间的虚拟路由器。 参考了以上几个链接的博客总结一下安装过程。 http://www.linuxidc.com/Linux/2014-08/105925p2.htm http://www.linuxidc.com/Linux/2012-01/51702.htm https://help.ubuntu.com/lts/serverguide/openvpn.html http://blog.csdn.net/joyous/article/details/8034132 OpenVPN 是在TCP/UDP 端口上建立一个安全IP网络通道，支持SSL/TLS 对数据加密、授权等。简单点理解就是在传输层上建立一个虚拟线路，作IP包的交换，相当于一个虚拟网卡。原文是这么说的： * OpenVPN &amp;ndash; An application to securely tunnel IP networks * over a single TCP/UDP port, with support for SSL/TLS-based * session authentication and key exchange, * packet encryption, packet authentication, and * packet compression. 一、安装OpenVPN [bash] ~$ apt-get install openvpn dnsmasq [/bash] dnsmasq 在用来在vpn路由器功能里面充当域名服务器的作用。有的版本openvpn包含了 easy-rsa ，不用再安装easy-rsa。如果没有再自行安装easy-rsa，它包含生成密钥用的脚本文件。 注：更新本地仓库：apt-get update 安装完查看openvpn相关安装包位置的命令： [bash] ~$ dpkg -L openvpn |more [/bash] 找到 easy-rsa 所在的文件夹，把它拷到/etc/openvpn/底下。如果没有就另行安装 easy-rsa。 [bash] ~$ cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.</description>
     </item>
     
     <item>
       <title>Ethernet、IP、TCP、UDP帧头格式、详解</title>
-      <link>/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</link>
+      <link>https://www.wuquantai.com/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Thu, 03 Mar 2016 01:57:48 +0000</pubDate>
       
-      <guid>/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>https://www.wuquantai.com/post/ethernetiptcpudp%E5%B8%A7%E5%A4%B4%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3/</guid>
       <description>引用：http://zoufengfu168.blog.163.com/blog/static/5461055200991333616451/ 一、MAC帧头定义 [c] typedef struct _MAC_FRAME_HEADER { char m_cDstMacAddress[6]; //目的mac地址 char m_cSrcMacAddress[6]; //源mac地址 /* 如0x0800代表上一层是IP协议，0x0806为arp, 0x88a4为Ethercat */ short m_cType; //上一层协议类型， }__attribute__((packed))MAC_FRAME_HEADER,*PMAC_FRAME_HEADER; Etherne II 长度为14 byte; typedef struct _MAC_FRAME_TAIL { unsigned int m_sCheckSum; //数据帧尾校验和 }__attribute__((packed))MAC_FRAME_TAIL, *PMAC_FRAME_TAIL; [/c] 补充VLAN 和ARP： [c] // #define ETHTYPE_ARP 0x0806U #define ETHTYPE_IP 0x0800U #define ETHTYPE_VLAN 0x8100U #define ETHTYPE_PPPOEDISC 0x8863U /* PPP Over Ethernet Discovery Stage */ #define ETHTYPE_PPPOE 0x8864U /* PPP Over Ethernet Session Stage */ /** VLAN header inserted between ethernet header and payload * if &amp;lsquo;type&amp;rsquo; in ethernet header is ETHTYPE_VLAN.</description>
     </item>
     
     <item>
       <title>Ethernet 的类型</title>
-      <link>/post/ethernet-%E7%9A%84%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://www.wuquantai.com/post/ethernet-%E7%9A%84%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Sun, 21 Jun 2015 08:51:44 +0000</pubDate>
       
-      <guid>/post/ethernet-%E7%9A%84%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://www.wuquantai.com/post/ethernet-%E7%9A%84%E7%B1%BB%E5%9E%8B/</guid>
       <description>通过学习以太网的类型，可以更好的了解以太网的工作原理。 共享式以太网 共享式以太网的典型代表是使用10Base2/10Base5的总线型网络和以集线器为核心的星型网络。在使用集线器的以太网中，集线器将很多以太网设备集中到一台中心设备上，这些设备都连接到集线器中的同一物理总线结构中。从本质上讲，以集线器为核心的以太网同原先的总线型以太网无根本区别。 集线器的工作原理： 集线器并不处理或检查其上的通信量，仅通过将一个端口接收的信号重复分发给其他端口来扩展物理介质。所有连接到集线器的设备共享同一介质，其结果是它们也共享同一冲突域、广播和带宽。因此集线器和它所连接的设备组成了一个单一的冲突域。如果一个节点发出一个广播信息，集线器会将这个广播传播给所有同它相连 的节点，因此它也是一个单一的广播域。 集线器的工作特点： 集线器多用于小规模的以太网，由于集线器一般使用外接电源（有源），对其接收的信号有放大处理。在某些场合，集线器也被称为“多端口中继器”。 集线器同中继器一样都是工作在物理层的网络设备。 共享式以太网存在的弊端：由于所有的节点都接在同一冲突域中，不管一个帧从哪里来或到哪里去，所有的节点都能接受到这个帧。随着节点的增加，大量的冲突将导致网络性能急剧下降。而且集线器同时只能传输一个数据帧，这意味着集线器所 有端口都要共享同一带宽。 交换式以太网 交换式结构： 在交换式以太网中，交换机根据收到的数据帧中的MAC地址决定数据帧应发向交换机的哪个端口。因为端口间的帧传输彼此屏蔽，因此节点就不担心自己发送的帧在通过交换机时是否会与其他节点发送的帧产生冲突。 为什么要用交换式网络替代共享式网络： ·减少冲突：交换机将冲突隔绝在每一个端口（每个端口都是一个冲突域），避免了冲突的扩散。 ·提升带宽：接入交换机的每个节点都可以使用全部的带宽，而不是各个节点共享带宽。</description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>H264 structure on Tagore&#39;s Studio</title>
-    <link>/tags/h264-structure/</link>
+    <link>https://www.wuquantai.com/tags/h264-structure/</link>
     <description>Recent content in H264 structure on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 19 Nov 2018 05:47:12 +0000</lastBuildDate>
     
-	<atom:link href="/tags/h264-structure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/h264-structure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>H.264 codec Note</title>
-      <link>/post/h-264-codec-note/</link>
+      <link>https://www.wuquantai.com/post/h-264-codec-note/</link>
       <pubDate>Mon, 19 Nov 2018 05:47:12 +0000</pubDate>
       
-      <guid>/post/h-264-codec-note/</guid>
+      <guid>https://www.wuquantai.com/post/h-264-codec-note/</guid>
       <description>• Elements of a video Sequence
 o Frames
 o Slices

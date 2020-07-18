@@ -11,7 +11,7 @@
 	<meta property="og:title" content="Tagore&#39;s Studio" />
 <meta property="og:description" content="Tagore&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
+<meta property="og:url" content="https://www.wuquantai.com/" />
 <meta property="og:updated_time" content="2013-12-01T15:50:13+00:00" />
 
 	
@@ -57,6 +57,24 @@
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E5%85%B3%E4%BA%8Eapache-httpd-%E7%9A%84ssi%E5%92%8Ccgi%E4%BD%BF%E7%94%A8%E5%92%8C%E6%80%9D%E8%80%83/" rel="bookmark">
+			关于Apache httpd 的SSI和cgi使用和思考
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-12-14T14:25:28Z">December 14, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		因为在单片机上的web服务是使用删减版的httpd服务器，只保留最原始的扩展功能，SSI和CGI。无法像pc上的服务器可以使用php,jsp之类的引擎。 SSI主要是为了往网页里面插入实时的变量，CGI主要是处理客户端发送来的请求。这样即使是最古老的浏览器也不会有什么兼容性问题。 但是这样的做法的结果是服务端的编程变繁琐了。作为单片机这种嵌入式web应用，应该尽可能工作量放在客户端来完成，减少服务端的复杂度。而且不需要太考虑兼容古老的浏览器，因为落后的东西就应该被淘汰。 早期的浏览器作为通用的客户端只拥有简单的功能，比如实现get和post等几个方法。大量的跳转和内容生成是在服务端运行的，就造成服务器的负载较大。自从javascript成为浏览器端标准的脚本语言后，各种网站的内容交互方式就变得更加自由了。我这里感受最深的就是使用客户端脚本把动态网页的生成工作放在浏览器端来做，数据由ajax 单独请求更新。嵌入式web经常需要显示一些实时的数据，把单独的数据请求放在后台实时更新，然后由脚本把它填写至网页。不像早期的技术使用SSI，服务端需要检索整个网页的SSI tag，然后查找变量，将数据实时更新至网页，然后发送整张网页。可以想服务端的压力有多大。其实这种思维模式就像网站程序和网站数据分开放一个道理。好处多多！ 因为用单片机的web服务器调试前端代码会比较繁琐，要转码要下载，频繁修改就不方便。所以直接在pc的web服务器上调试前端代码，并且使用SSI和CGI，模仿单片机C后台的动作，这里要有一些技巧。 在Apache httpd web服务器上使用SSI和cgi，可以参考服务器主页上的帮助文档 http://httpd.apache.org/docs/current/howto/ssi.html。这里简单做个记录。
+ SSI 按照官方介绍把SSI功能打开。怎么设置httpd.conf就不多说。这里简单记录下其使用规则。 想设置某个SSI tag时，可以使用 [html] [/html] 在需要调用它的地方使用 [html] [/html] 就可以显示出 xxxx 了。 仅仅是这样使用，跟我们在使用最原始的SSI还是有点不一样。 为了方便调试，我们可以在页面上头加上 [html] [/html] 重定义这个未找到SSI时的提示语言，原本的提示语言很长，不方便调试。
+ CGI有几个要点： 1. CGI开启后，默认设置ScriptAlias是只执行cgi-bin下的脚本。你可以将自己的web目录添加进去，因为实际请求的路径不一定是/cgi-bin。 2. 这里可以用perl、python或者bash脚本来模仿单片机c的后端应答动作。这样调试好前端代码后，下进单片机后再慢慢调试后端代码就方便了。注意在perl前面要设置好perl.exe的路径。同时可以修改.pl后缀为我们想要的.cgi它也可以得到执行。完美模仿单片机后端逻辑！ Get!
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/post/%E6%80%BB%E7%BB%93%E5%87%A0%E4%B8%AAc-%E8%AF%AD%E8%A8%80%E6%AF%94%E8%BE%83%E9%AB%98%E7%BA%A7%E7%9A%84%E7%BC%96%E5%86%99%E6%8A%80%E5%B7%A7/" rel="bookmark">
@@ -203,22 +221,6 @@ puts( HELLO WORLD );
 	<div class="content list__excerpt post__content clearfix">
 		这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。 [c] &ldquo;sys_arch.c&rdquo; /* An array to hold the memory for the available semaphores. */ static sem_t sems[SYS_SEM_MAX]; /* An array to hold the memory for the available mailboxes. */ static mbox_t mboxes[SYS_MBOX_MAX]; &ldquo;sys_arch.h&rdquo; ///* A structure to hold the variables for a sys_sem_t. */ typedef struct { xQueueHandle queue; signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES]; } sem_t; /* A structure to hold the variables for a sys_mbox_t. */ typedef struct { xQueueHandle queue; signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES]; } mbox_t; [/c] 这里创建了两个全局结构体数组来管理semaphores and mailboxes.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/some-notes-about-lwip/" rel="bookmark">
-			LwIP TCP Layer Simple analysis
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-07-06T10:07:02Z">July 06, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/embedded/" rel="category">Embedded</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&gt;accept(pcb-&gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &hellip; else if (flags &amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;TCP connection request %&ldquo;U16_F&rdquo; -&gt; %&ldquo;U16_F&rdquo;.\n&rdquo;, tcphdr-&gt;src, tcphdr-&gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&gt;accepts_pending &gt;= pcb-&gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&ldquo;tcp_listen_input: listen backlog exceeded for port %&ldquo;U16_F&rdquo;\n&rdquo;, tcphdr-&gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&gt;prio); &hellip; #if TCP_LISTEN_BACKLOG pcb-&gt;accepts_pending++; #endif &hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;tcp_listen_pcbs.
-	</div>
 </article>
 </main>
 
@@ -235,18 +237,18 @@ puts( HELLO WORLD );
 			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/" />
+		<input type="hidden" name="sitesearch" value="https://www.wuquantai.com" />
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/trojan-gfw-%E5%AE%89%E8%A3%85/">trojan-gfw 安装</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">又折腾网站迁移</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%9F%9F%E5%86%85%E7%9A%84pc-%E8%AE%BF%E9%97%AE%E9%9D%9E%E5%9F%9F%E5%86%85%E7%9A%84samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">域内的PC 访问非域内的samba服务器</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">zynq 嵌入式开发总结</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/">编译PYNQ 在ZCU102上的镜像</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
 		</ul>
 	</div>
 </div>
@@ -294,7 +296,6 @@ puts( HELLO WORLD );
 		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
@@ -345,6 +346,7 @@ puts( HELLO WORLD );
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/trojan-gfw/" title="trojan-gfw">trojan-gfw</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
@@ -358,7 +360,6 @@ puts( HELLO WORLD );
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
 	</div>
 </div>
 </aside>

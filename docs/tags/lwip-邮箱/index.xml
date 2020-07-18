@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lwip 邮箱 on Tagore&#39;s Studio</title>
-    <link>/tags/lwip-%E9%82%AE%E7%AE%B1/</link>
+    <link>https://www.wuquantai.com/tags/lwip-%E9%82%AE%E7%AE%B1/</link>
     <description>Recent content in Lwip 邮箱 on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 12 Jul 2016 01:42:53 +0000</lastBuildDate>
     
-	<atom:link href="/tags/lwip-%E9%82%AE%E7%AE%B1/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/lwip-%E9%82%AE%E7%AE%B1/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Lwip 里的信号量、邮箱、线程</title>
-      <link>/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://www.wuquantai.com/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Tue, 12 Jul 2016 01:42:53 +0000</pubDate>
       
-      <guid>/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://www.wuquantai.com/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</guid>
       <description>这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。 [c] &amp;ldquo;sys_arch.c&amp;rdquo; /* An array to hold the memory for the available semaphores. */ static sem_t sems[SYS_SEM_MAX]; /* An array to hold the memory for the available mailboxes. */ static mbox_t mboxes[SYS_MBOX_MAX]; &amp;ldquo;sys_arch.h&amp;rdquo; ///* A structure to hold the variables for a sys_sem_t. */ typedef struct { xQueueHandle queue; signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES]; } sem_t; /* A structure to hold the variables for a sys_mbox_t. */ typedef struct { xQueueHandle queue; signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES]; } mbox_t; [/c] 这里创建了两个全局结构体数组来管理semaphores and mailboxes.</description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>image process on Tagore&#39;s Studio</title>
-    <link>/tags/image-process/</link>
+    <link>https://www.wuquantai.com/tags/image-process/</link>
     <description>Recent content in image process on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 22 Aug 2018 12:05:34 +0000</lastBuildDate>
     
-	<atom:link href="/tags/image-process/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/image-process/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>YUV 图像格式</title>
-      <link>/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</link>
+      <link>https://www.wuquantai.com/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</link>
       <pubDate>Wed, 22 Aug 2018 12:05:34 +0000</pubDate>
       
-      <guid>/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</guid>
+      <guid>https://www.wuquantai.com/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</guid>
       <description>Y：亮度分量 UV：色度分量
 Y与RGB的演算关系为：Y = 0.2126 R + 0.7152 G + 0.0722 B
 YUV4:2:2或4：2：0都是指的Y分量和UV分量在一个像素点中占有的平均比例。

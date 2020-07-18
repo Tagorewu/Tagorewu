@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kernel debug on Tagore&#39;s Studio</title>
-    <link>/tags/kernel-debug/</link>
+    <link>https://www.wuquantai.com/tags/kernel-debug/</link>
     <description>Recent content in kernel debug on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 04 Sep 2018 11:06:50 +0000</lastBuildDate>
     
-	<atom:link href="/tags/kernel-debug/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/kernel-debug/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用 qemu 调试 linux kernel</title>
-      <link>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
+      <link>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
       <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
       
-      <guid>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
       <description>在 Ubuntu 中build kernel 参考如下：
  [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
  所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。

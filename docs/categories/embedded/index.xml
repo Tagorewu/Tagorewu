@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Embedded on Tagore&#39;s Studio</title>
-    <link>/categories/embedded/</link>
+    <link>https://www.wuquantai.com/categories/embedded/</link>
     <description>Recent content in Embedded on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 20 Apr 2019 13:59:51 +0000</lastBuildDate>
     
-	<atom:link href="/categories/embedded/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/categories/embedded/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>zynq 嵌入式开发总结</title>
-      <link>/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</link>
+      <link>https://www.wuquantai.com/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 20 Apr 2019 13:59:51 +0000</pubDate>
       
-      <guid>/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://www.wuquantai.com/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
       <description>传统开发步骤 基础设计
 # 使用Vidado 设计硬件工程，导出硬件设计 bitstream.$ File-&amp;gt; Export-&amp;gt; Export Hardware...# 使用SDK 生成 fsbl.elf# 编译U-boot $ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- zynq_ac7020_defconfig # 使用SDK， Xilinx Tools-&amp;gt;Create Boot Image 生成BOOT.BIN。即: fsbl.elf + system_wrapper.bit + u-boot.elf编译kernel
 $ make ARCH=arm CROSS_COMPILE=arm-xilinx-linux-gnueabi- uImage LOADADDR=0x00008000 # 生成 /arch/arm/boot/uImage编译device tree
@@ -26,10 +26,10 @@ $ 基于RAM 的 ramdisk$ 基于Flash 的 jffs2$ 基于network 的 NFS将 BOOT
     
     <item>
       <title>编译PYNQ 在ZCU102上的镜像</title>
-      <link>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</link>
+      <link>https://www.wuquantai.com/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</link>
       <pubDate>Fri, 05 Apr 2019 12:46:54 +0000</pubDate>
       
-      <guid>/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
+      <guid>https://www.wuquantai.com/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
       <description>由于PYNQ官方没有编译好的ZCU102的镜像，所以需要自己手动编译。这里记录一下编译过程。
 因为手头上的ZCU102 批次比较新，所以目前只能使用2018.3 版本的SDK才能BOOT起来。（应该是由于换了DDR型号了，所以老版本的镜像是BOOT不起来的。板子版本是REVISION 1.1的 新批号）
 PYNQ 版本Xilinx Tool 版本对应 Release version
@@ -55,10 +55,10 @@ https://pynq.readthedocs.io/en/latest/pynq_sd_card.html#pynq-sd-card
     
     <item>
       <title>ARM NEON Usage Note</title>
-      <link>/post/arm-neon-usage-note/</link>
+      <link>https://www.wuquantai.com/post/arm-neon-usage-note/</link>
       <pubDate>Fri, 07 Dec 2018 08:02:10 +0000</pubDate>
       
-      <guid>/post/arm-neon-usage-note/</guid>
+      <guid>https://www.wuquantai.com/post/arm-neon-usage-note/</guid>
       <description>简介 SIMD, 即Single Instruction Multiple Data（单指令多数据）的并行操作。CPU 在处理向量数据时有它的局限性。CPU的优势在于处理复杂多变的指令，而对于那种大数据量的重复性操作，ARM 为了增加处理效率，增加了这种并行处理模块, 即NEON(Advanced SIMD)。主要是在ARMv7 架构后的处理器使用。
 NEON 的主要 components：
  NEON register file NEON integer execute pipeline NEON single-precision floating-point execute pipeline NEON load/store and permute pipeline  NEON 指令和 floating-point 指令使用的是相同的 register file。不同于ARM core的register file。此 register file 可以以 32-bit, 64-bit, 128-bit 方式访问。 The contents of the NEON registers are vectors of elements of the same data type. A vector is divided into lanes and each lane contains a data value called an element.</description>
@@ -66,10 +66,10 @@ NEON 的主要 components：
     
     <item>
       <title>YUV 图像格式</title>
-      <link>/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</link>
+      <link>https://www.wuquantai.com/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</link>
       <pubDate>Wed, 22 Aug 2018 12:05:34 +0000</pubDate>
       
-      <guid>/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</guid>
+      <guid>https://www.wuquantai.com/post/yuv-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/</guid>
       <description>Y：亮度分量 UV：色度分量
 Y与RGB的演算关系为：Y = 0.2126 R + 0.7152 G + 0.0722 B
 YUV4:2:2或4：2：0都是指的Y分量和UV分量在一个像素点中占有的平均比例。
@@ -83,19 +83,19 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
     
     <item>
       <title>嵌入式linux 开发中常用工具安装笔记</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</link>
+      <link>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 22 Aug 2018 11:25:05 +0000</pubDate>
       
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</guid>
       <description>Samba server    \# apt install samba samba-common# vim /etc/samba/smb.conf 添加：security = user\[shuji\]comment = share dirpath = /srv/sambabrowseable = yeswritable = yes# useradd public (不要用adduser, 否则还要禁用shell）# smbpasswd –a public # service smbd restart  Samba client   smbclient -L //192.168.1.10 -U devsmbclient //192.168.1.10 -U dev    nfs   \# vim /etc/exports/srv/nfs *(rw,sync,nosubtree_check)</description>
     </item>
     
     <item>
       <title>petalinux use guide summarize</title>
-      <link>/post/petalinux-use-guide-summarize/</link>
+      <link>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</link>
       <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
       
-      <guid>/post/petalinux-use-guide-summarize/</guid>
+      <guid>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</guid>
       <description>petalinux 是针对 Xilinx FPGA-based SOC designs 的 embedded linux system development kit 。 包含了:
  Yocto Extensible SDK Minimal downloads XSCT and tool chains PetaLinux CLI tools  详情参考 PetaLinux Tools Reference Guide。
  **版本： v2018.2 June 6, 2018 **
@@ -105,84 +105,84 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
     
     <item>
       <title>recent new tech need to analysis and learn</title>
-      <link>/post/recent-new-tech-need-to-analysis-and-learn/</link>
+      <link>https://www.wuquantai.com/post/recent-new-tech-need-to-analysis-and-learn/</link>
       <pubDate>Fri, 01 Jun 2018 02:44:51 +0000</pubDate>
       
-      <guid>/post/recent-new-tech-need-to-analysis-and-learn/</guid>
+      <guid>https://www.wuquantai.com/post/recent-new-tech-need-to-analysis-and-learn/</guid>
       <description>reverse ssh tunnel nohup ssh -NfR 2222:localhost:22 root@106.12.13.xxx -p22 expect script strip command Some useful line editing key bindings provided by the Readline library:
  Ctrl-A: go to the beginning of line Ctrl-E: go to the end of line Alt-B: skip one word backward Alt-F: skip one word forward Ctrl-U: delete to the beginning of line Ctrl-K: delete to the end of line Alt-D: delete to the end of word  https://askubuntu.</description>
     </item>
     
     <item>
       <title>gdb 简记</title>
-      <link>/post/gdb-%E7%AE%80%E8%AE%B0/</link>
+      <link>https://www.wuquantai.com/post/gdb-%E7%AE%80%E8%AE%B0/</link>
       <pubDate>Wed, 21 Dec 2016 09:41:23 +0000</pubDate>
       
-      <guid>/post/gdb-%E7%AE%80%E8%AE%B0/</guid>
+      <guid>https://www.wuquantai.com/post/gdb-%E7%AE%80%E8%AE%B0/</guid>
       <description>常用命令如下：（详情可以用 help 命令查看）
  r (run, restart) s (step into) n (next state, step over) finish (step out) q (quit) p (print anything you want) l (list) b (breakpoint) #设置断点： (gdb) b fileName.c:lineNumber 或者 (gdb) b function u (until) #运行到指定行 call #调用函数 set #设置变量 set args #设置main 的输入参数 bt (backtrace) #查看堆栈 x #examine memory, (gdb)/FMT ADDRESS info # show things, (gdb) info break d # delete somthing (gdb) delete break xx 或者 (gdb) clean lineNumber 如果print 的内容比较长导致后面的内容是&amp;hellip;，可以重新设置print长度的上限，或者无限制： set print element 0 如果要生成带调试信息的程序，在gcc时要加上-g参数。 target remote 192.</description>
     </item>
     
     <item>
       <title>Lwip 内存管理</title>
-      <link>/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://www.wuquantai.com/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 17 Aug 2016 08:01:24 +0000</pubDate>
       
-      <guid>/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://www.wuquantai.com/post/lwip-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>Lwip 用它自己的动态内存分配方式替代了标准C的malloc(); 它可以使用MEM_POOL的方式分配内存，即开辟几个不同尺寸的缓冲池，给数据分配合适的缓冲区来存放，就类似于使用数组的方式，可能会比较浪费空间，但是可以有效避免内存碎片产生, 这在第二部分讲。两种方式分别在mem.c memp.c里面实现，下面先总结一般的内存堆分配方式。 (一) 内存堆动态分配方式 [c] //mem.h /** Align a memory pointer to the alignment defined by MEM_ALIGNMENT * so that ADDR % MEM_ALIGNMENT == 0 */ #ifndef LWIP_MEM_ALIGN #define LWIP_MEM_ALIGN(addr) ((void *)(((mem_ptr_t)(addr) + MEM_ALIGNMENT - 1) &amp;amp; ~(mem_ptr_t)(MEM_ALIGNMENT-1))) #endif [/c] 首先是内存对齐，这里用到的MCU是按4字节对齐的。这一语句功能是将addr 调整成最靠近addr的且能被4整除的值，其实就是(addr+3)&amp;amp;(~(u32)(0x03))，+3之后有余数的自然就进位了然后再舍掉余数。其实也可以用 addr = (addr&amp;amp;0x03)?(addr+1):addr; 这样应该也可以，更容易理解一些，但是没有上面的简便。 [c] #ifndef LWIP_RAM_HEAP_POINTER /** the heap. we need one struct mem at the end and some room for alignment */ u8_t ram_heap[MEM_SIZE_ALIGNED + (2*SIZEOF_STRUCT_MEM) + MEM_ALIGNMENT]; #define LWIP_RAM_HEAP_POINTER ram_heap #endif /* LWIP_RAM_HEAP_POINTER */ &amp;hellip; /** * The heap is made up as a list of structs of this type.</description>
     </item>
     
     <item>
       <title>IAR sprintf() 输出不正常的问题</title>
-      <link>/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <link>https://www.wuquantai.com/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Mon, 15 Aug 2016 00:57:44 +0000</pubDate>
       
-      <guid>/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://www.wuquantai.com/post/iar-sprintf-%E8%BE%93%E5%87%BA%E4%B8%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
       <description>前几天调试了一程序，用到sprintf函数，输出结果一直不正常，同样的输出格式用printf打印则没有问题。然后同样的程序在gcc下sprintf也是正常的。怀疑IAR的sprintf函数有问题。后来发现原因是IAR把sprintf函数简化了，在project-options-general options 里面的Library options 的Tabs里有个printf formatter，默认是选成tiny的选项，结果就不支持一些复杂的输出格式。把它设置成auto，输出结果就正常了，o yeah!</description>
     </item>
     
     <item>
       <title>methods of handling multiple connections as lwip</title>
-      <link>/post/methods-of-handling-multiple-connections-as-lwip/</link>
+      <link>https://www.wuquantai.com/post/methods-of-handling-multiple-connections-as-lwip/</link>
       <pubDate>Thu, 21 Jul 2016 09:37:59 +0000</pubDate>
       
-      <guid>/post/methods-of-handling-multiple-connections-as-lwip/</guid>
+      <guid>https://www.wuquantai.com/post/methods-of-handling-multiple-connections-as-lwip/</guid>
       <description>这里分享一些一个服务handle多client连接的经验。 (1) 多线程/进程方法 每accept并创建一个新连接之后，就create一个task来处理这个连接的事务。linux使用fork()来创建分支线程。freertos 不支持fork方法，只能创建新的线程来管理连接。此方法内存开销较大。 (2) non-blocking socket 和 select 此方法由单线程处理并发事务，即最原始的轮询方式。在系统不支持fork()的情况下经常用到。首先，accpet/recv函数都必须的non-blocking的，需立即返回，否则其它任务就得不到轮询。这种模式在跑单片机裸机程序时经常是这样的，另外在labview里面也经常是这样的轮询的方式。这个例程可以在lwip 1.4.1 contrib下app demo:chargen 里可以学习到。这种方式会占用很多cpu资源，这样的任务优先级要放低，并设置一定的轮询间隔(类比在labview里，while循环通常会插入一个等待时间)。否则 freertos 中低优先级任务就得不到运行，同优先级的任务也只能分时间片轮流运行。 这里简单总结下 select方法。 协议栈内核在每次有accept 或 recv事件到达后都会调用 event_callback(); 增加一个事件记录。在上层接收后都会减掉一个记录。select 函数通过查询socket的对应event来置位fd_set对应的比特位。本质就类似查询一个计数信号量。 (3) 使用 raw api， 基于事件触发(基于回调)方式。 此方式适合编写只进行简单处理的应用，每次接收到包就会调用相应的回调函数。多连接是由协议栈的active_pcb_lists直接管理，每个连接都创建属于自己的state argument。如果需要运算量比较大占用时间较长的服务则不适合此方式，会影响的协议栈对其它服务的响应速度。 后记，从事务的角度来看，一个tcp连接代表一个session，一句udp 请求也代表一个session。一个session从接收到返回就是一条事务线。若不能一气呵成，则就必须用一条线程去管理它，或者说维护一个工作现场，等待它的后台任务完成再回来应答这个事务。一条线程就对应一个事务现场，多任务操作系统就是在不同的工作现场的中交替工作，模拟多个人工作的情况，每一个工作现场都保存的对应工作事务的进展情况和所有需要用到的工具。 或者还有一种做法，就是一件事做完一部分后丢给后台，让它处理完之后调用我给它的办法帮我把剩下的事处理完，节省了任务之间信息传递和任务切换带来的开销。 其实一个session对应一个任务确实有点浪费，我想一般handle几百上千万个连接的服务应该不会这样做的，每个连接只需将它当前的状态变量连同数据包传给每个部门来做就可以了，毕竟每个连接的状态的数据量不是很多，没必要开辟一个专门的任务去Handle.</description>
     </item>
     
     <item>
       <title>Lwip Netconn</title>
-      <link>/post/lwip-netconn/</link>
+      <link>https://www.wuquantai.com/post/lwip-netconn/</link>
       <pubDate>Tue, 12 Jul 2016 11:19:36 +0000</pubDate>
       
-      <guid>/post/lwip-netconn/</guid>
+      <guid>https://www.wuquantai.com/post/lwip-netconn/</guid>
       <description>从Lwip Netconn接口的代码中，我们可以学到与Lwip 协议栈规范的交互方式和这种接口的封装方法。 这里总结出一个看代码的技巧，第一步先是只看正常处理的流程，忽略异常处理的部分，这样代码就可以非常简洁，可以很快把代码流程搞清楚，第二步再看重要的异常情况的处理过程。 连接的建立过程前面已经简单总结过，这里就只说我们比较关心的recv_xxx()过程。 recv_xxx() 函数是在accept_func里注册的,并且pcb-&amp;gt;callback_arg = new_netconn。 其回调原型： [c] #define TCP_EVENT_RECV(pcb,p,err,ret) \ do { \ if((pcb)-&amp;gt;recv != NULL) { \ (ret) = (pcb)-&amp;gt;recv((pcb)-&amp;gt;callback_arg,(pcb),(p),(err));\ } else { \ &amp;hellip; \ } \ } while (0) [/c] 函数原型： recv_tcp(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err) { struct netconn *conn; u16_t len; conn = (struct netconn *)arg; if (sys_mbox_trypost(&amp;amp;conn-&amp;gt;recvmbox, p) != ERR_OK) { &amp;hellip; } 这里从tcpip_thread抛出的是pbuf。 netconn 接收部分如下： [c] netconn_recv_data(struct netconn *conn, void **new_buf) { void *buf = NULL; if (sys_arch_mbox_fetch(&amp;amp;conn-&amp;gt;recvmbox, &amp;amp;buf, conn-&amp;gt;recv_timeout) == SYS_ARCH_TIMEOUT) &amp;hellip; } [/c] 这里buf 是void 类型的指针，因为上头可能会用pbuf类型或者netbuf类型来接收邮箱里的pbuf。 netbuf的封装方式：</description>
     </item>
     
     <item>
       <title>Lwip 里的信号量、邮箱、线程</title>
-      <link>/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://www.wuquantai.com/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Tue, 12 Jul 2016 01:42:53 +0000</pubDate>
       
-      <guid>/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://www.wuquantai.com/post/lwip-%E9%87%8C%E7%9A%84%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%82%AE%E7%AE%B1%E7%BA%BF%E7%A8%8B/</guid>
       <description>这里简单分析总结一下Lwip sys_arch.c 中的信号量、邮箱、进程相关的内容。系统用的是FreeRTOS。 [c] &amp;ldquo;sys_arch.c&amp;rdquo; /* An array to hold the memory for the available semaphores. */ static sem_t sems[SYS_SEM_MAX]; /* An array to hold the memory for the available mailboxes. */ static mbox_t mboxes[SYS_MBOX_MAX]; &amp;ldquo;sys_arch.h&amp;rdquo; ///* A structure to hold the variables for a sys_sem_t. */ typedef struct { xQueueHandle queue; signed char buffer[sizeof(void *) + portQUEUE_OVERHEAD_BYTES]; } sem_t; /* A structure to hold the variables for a sys_mbox_t. */ typedef struct { xQueueHandle queue; signed char buffer[(sizeof(void *) * MBOX_MAX) + portQUEUE_OVERHEAD_BYTES]; } mbox_t; [/c] 这里创建了两个全局结构体数组来管理semaphores and mailboxes.</description>
     </item>
     
     <item>
       <title>LwIP TCP Layer Simple analysis</title>
-      <link>/post/some-notes-about-lwip/</link>
+      <link>https://www.wuquantai.com/post/some-notes-about-lwip/</link>
       <pubDate>Wed, 06 Jul 2016 10:07:02 +0000</pubDate>
       
-      <guid>/post/some-notes-about-lwip/</guid>
+      <guid>https://www.wuquantai.com/post/some-notes-about-lwip/</guid>
       <description>LwIP Version : 1.4.1; 这里分享一些阅读LwIP协议栈的心得。 有个经验: 源代码才是最权威的资料。 若想用raw api编程，可以参考httpd_raw的代码。若涉及进程间通讯，请参考netconn接口，避免在其它进程内调用非Thead-Safe的函数。 下面说说对一些函数及过程的认识。 (1) xxx_accept(void *arg, struct tcp_pcb *pcb, err_t err); 这个函数的参数注意点: 回调原型：pcb-&amp;gt;accept(pcb-&amp;gt;callback_arg, pcb, err); @*arg: 这里协议栈传递过来的是lpcb，即监听pcb，不要认为和第二个参数相同。因为在tcp_listen_input()里，当有新连接请求到达时会新建一个npcb并将其加入到tcp_active_list里，在初始化npcb时，继承的是lpcb的callback_arg, 而这个callback_arg在新建监听链接时将其赋为lpcb。 @*pcb: 这里是传递进新创建的pcb。在创建APP过程中，需给其分配新的argument, 指定xxx_recv(),xxx_err(), xxx_poll(), xxx_sent()等函数。 (2) struct tcp_pcb *tcp_listen( struct tcp_pcb *pcb); 这里传入了一个original pcb，返回一个lpcb，因为listening状态的pcb 只需包含更少的信息。函数内新分配了一个 lpcb, 拷贝必要信息后，将original pcb释放。 对于SO_REUSE选项，在此函数内对比已经在监听List 中的pcb, 允许本地端口号相同，但本地IP号不同的连接可再次监听。 (3) 服务端口监听过程分析 TCP_LISTEN_BACKLOG 选项 此选项使能 TCP 对监听列表允许监听的数量控制。在tcp_listen_input()函数内， [c] &amp;hellip; else if (flags &amp;amp; TCP_SYN) { LWIP_DEBUGF(TCP_DEBUG, (&amp;ldquo;TCP connection request %&amp;ldquo;U16_F&amp;rdquo; -&amp;gt; %&amp;ldquo;U16_F&amp;rdquo;.\n&amp;rdquo;, tcphdr-&amp;gt;src, tcphdr-&amp;gt;dest)); #if TCP_LISTEN_BACKLOG if (pcb-&amp;gt;accepts_pending &amp;gt;= pcb-&amp;gt;backlog) { LWIP_DEBUGF(TCP_DEBUG, (&amp;ldquo;tcp_listen_input: listen backlog exceeded for port %&amp;ldquo;U16_F&amp;rdquo;\n&amp;rdquo;, tcphdr-&amp;gt;dest)); return ERR_ABRT; } #endif /* TCP_LISTEN_BACKLOG */ npcb = tcp_alloc(pcb-&amp;gt;prio); &amp;hellip; #if TCP_LISTEN_BACKLOG pcb-&amp;gt;accepts_pending++; #endif &amp;hellip; [/c] 当收到SYN帧时，此处对比并限制已经pending 状态的数量，即未被上层accept的连接数量。接下来新建立一个npcb, 并加入active_pcbs 的list中。 tcp_process() 主要处理 active_pcbs 的状态机。经过三次握手协议之后就进入了ESTABLISHED状态。 这里着重分析下tcp_input(pbuf *p, netif *inp);函数。 函数传入的是一个pbuf和netif，传入的参数并无连接的概念，接着在这里就进入了tcp层。tcp层维护着几个list: [c] /** An array with all (non-temporary) PCB lists, mainly used for smaller code size */ struct tcp_pcb ** const tcp_pcb_lists[] = {&amp;amp;tcp_listen_pcbs.</description>
     </item>
     
     <item>
       <title>make工具使用</title>
-      <link>/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+      <link>https://www.wuquantai.com/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 28 Mar 2016 11:58:59 +0000</pubDate>
       
-      <guid>/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://www.wuquantai.com/post/make%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
       <description>Makefile 正如其名作为一个制作文件的工具，大大方便了进行大批量文件编译时的工作流程。这里简单的记录一个make 工具的基本使用规则。
 1. Makefile 基本规则：  target... : prerequisites ...command......-------------------------------------------------------------------------------target: 为目标文件，即所要生成的对象;
 prerequisites : 为要生成target所需要的文件或是目标;
@@ -198,20 +198,20 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
     
     <item>
       <title>Eclipse ARM IDE 开发环境搭建</title>
-      <link>/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>https://www.wuquantai.com/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Sat, 12 Dec 2015 15:02:24 +0000</pubDate>
       
-      <guid>/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://www.wuquantai.com/post/eclipse-arm-ide-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>一、Eclipse Eclipse的本身只是一个框架平台，但是众多插件的支持，使得Eclipse拥有较好的灵活性。依托于Java 环境运行，所以必须安装 Jre。 二、CDT CDT是Eclipse用于扩展Eclipse支持C/C++开发的插件。可直接下载带CDT的Eclipse。 三、Zylin CDT 支持Eclipse用于嵌入式C/C++开发和远程调试的插件。 四、Yagarto Yagarto是整合了GNU arm的交叉编译工具链，是一个跨平台的 ARM 架构开发平台。他们说了，由于基于MinGW的ToolChain 的GDB 跟Eclipse 配合不是很好，所以Yagarto 出现了。目前Yagarto 项目已经完结。此外Yagrato 建议使用免费的
  emIDE (free Visual Studio Style IDE including GNU Tools for ARM) 。其集成了GNU Tools。  五、J-LINK GDB Server A JTAG GDB Debug agent run on Host 六、IDE整体结构框图 安装： 1、安装Java SE 下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jre-7u3-download-1501631.html 设置环境变量: 如果只安装Jre的话就添加 : JAVA_HOME = C:\Program Files\Java\jre1.8.0_65; 若是安装JDK的话就添加 : JAVA_HOME = C:\Program Files\Java\jdk1.8.0_65; Path = %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin; //安装JDK时，JDK内部有个jre目录，外部也默认安装了一个jre目录。一般配置jre环境为内部jre目录。 CLASSPATH = .</description>
     </item>
     
     <item>
       <title>从PC的总线到ARM内部总线</title>
-      <link>/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</link>
+      <link>https://www.wuquantai.com/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</link>
       <pubDate>Mon, 09 Mar 2015 04:51:50 +0000</pubDate>
       
-      <guid>/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%BB%8Epc%E7%9A%84%E6%80%BB%E7%BA%BF%E5%88%B0arm%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF/</guid>
       <description>从PC的总线到ARM内部总线
 来源: ChinaUnix博客 日期： 2009.07.18 23:45
 从PC的总线到ARM内部总线 我在学习《Linux设备驱动程序（第3版）》的 第九章 与硬件通信 时，对 I\O总线的概念 不是很清晰，所以查找了有关资料。现在总结如下： 本文的参考资料： 1、 《AMBA、AHB、APB总线简介》 作者 adamzhao 日期 2006-11-16 19:33:00 转载网址： http://www.openhard.org/myspace/blog/show.php?id=75802 2、 《Introduction to AMBA Bus System 》台湾 工研院 / 系統晶片技術中心工程師 吳欣龍，PDF格式 下载地址： http://tpe-wh3.dwins.net/download/member_file/2002/soc/2002-5-1.pdf 3、 《PC架构系列：CPU/RAM/IO总线的发展历史！》 转载网址： http://blog.csdn.net/xport/archive/2006/11/16/1387928.aspx 4、 《认识物理I/O构件- 主机I/O总线(1)》作者：IT168存储频道 2007-04-10 原文网址： http://storage.it168.com/g/2007-04-10/200704101424234.shtml 总线的演变 首先应该讲讲总线的演变历史，这方面《PC架构系列：CPU/RAM/IO总线的发展历史！》这篇文章写得很好！感谢文章的作者！以下内容大量来自这篇文章，可以说是这篇文章的缩减转载。 [#toggle Title=&amp;quot;继续阅读&amp;rdquo;] 公共总线 早期PC中，CPU/RAM/IO都是挂在一条总线上，所有的部件都必须在同步的模式下工作。这样就带来一个&amp;quot;互锁&amp;rdquo; （locked to each other ）效应：所有设备都被限定在一个通用时钟频率（Clock Frequency）上面，整个系统的速度会被系统中最慢的设备限制，系统的整体性能无法提高。 南桥诞生（I\O总线诞生） 1987年，康柏（Compaq）公司想到一个办法: 将系统总线与I/O总线分开，使得2个不同的总线工作在不同的时钟频率上。CPU和内存工作在系统总线上（the System Bus），独立于所有的I/O设备。这样高速的CPU/RAM组件就摆脱了低速I/O设备的束缚。这里的Bridge，就是现在的南桥（South Bridge）芯片的前身，而它实际起到了降频的作用。 倍频出世 从80486开始，CPU的发展迅猛，频率大幅攀升。内存开始变得跟不上CPU的发展步伐了。Intel 于是决定在80486中引入倍频（Clock Doubler）的概念。内存依旧工作在系统总线上，与系统总线保持同样的工作频率，而CPU的内部工作频率（CPU主频）是： CPU 主频 = 外频（系统总线频率System Bus Frequency）* 倍频 (Clock doubler) 北桥和前端总线的诞生 PC结构的变化趋势是把低速设备与高速设备用隔离总线的方法进行隔离。而发展到后来，就演变出了北桥（North Bridge）芯片。内存与北桥间的总线称为内存总线，把CPU与北桥间连接的这段总线成为前端总线**(Front Side Bus，FSB），**也就是系统总线（System Bus）！ **PC中的I\O总线** 通过上面的文章，我们知道的总线的演变过程。现在专门来讲讲I\O总线。 总线：用来传送信号或能量的构造器。 系统 I/O 总线将指令从内存传导至与输入\输出处理器(IOP) [url=http://publib.</description>
@@ -219,28 +219,28 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
     
     <item>
       <title>keil 5.0： pack installer Reading one or more Pack discriptions failed 报错的问题</title>
-      <link>/post/keil-5.0-pack-installer-reading-one-or-more-pack/</link>
+      <link>https://www.wuquantai.com/post/keil-5.0-pack-installer-reading-one-or-more-pack/</link>
       <pubDate>Fri, 27 Dec 2013 13:31:52 +0000</pubDate>
       
-      <guid>/post/keil-5.0-pack-installer-reading-one-or-more-pack/</guid>
+      <guid>https://www.wuquantai.com/post/keil-5.0-pack-installer-reading-one-or-more-pack/</guid>
       <description>http://www.keil.com/support/docs/3646.htm 按照链接所说的是Keil5.0不支持这些新版本的DFP，需要换Keil5.01. http://www.keil.com/dd2/pack/ 有点奇怪这里有V1.0版本的DFP为什么导进去也不成功呢？ http://www2.keil.com/mdk5/legacy 后来下载了legacy support，包括Cortex M系列和ARM7和ARM9的在Keil4.73版本里面的两个Device 包，这个是Keil5.0支持的。 然后，果断升级了keil5.1. 发现了一个规律，只要在之前破解版的基础上覆盖安装到V5.01都是不需要再破解的直接就是标准版的了，再加上那两个包就能完全兼容老版本支持的设备。。</description>
     </item>
     
     <item>
       <title>嵌入式系统分层（转自电子发烧友）</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</link>
+      <link>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</link>
       <pubDate>Thu, 26 Dec 2013 15:36:37 +0000</pubDate>
       
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E8%BD%AC%E8%87%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B/</guid>
       <description>一、嵌入式系统的分层与专业的分类。 嵌入式系统分为4层，硬件层、驱动层、操作系统层和应用层。 1、硬件层，是整个嵌入式系统的根本，如果现在单片机及接口这块很熟悉，并且能用C和汇编语言来编程的话，从嵌入式系统的硬件层走起来相对容易，硬件 层也是驱动层的基础，一个优秀的驱动工程师是要能够看懂硬件的电路图和自行完成CPLD的逻辑设计的，同时还要对操作系统内核及其调度性相当的熟悉的。但 硬件平台是基础，增值还要靠软件。 硬件层比较适合于，电子、通信、自动化、机电一体、信息工程类专业的人来搞，需要掌握的专业基础知识有，单片机原理及接口技术、微机原理及接口技术、C语言。 2、 驱动层，这部分比较难，驱动工程师不仅要能看懂电路图还要能对操作系统内核十分的精通，以便其所写的驱动程序在系统调用时，不会独占操作系统时间片，而导 至其它任务不能动行，不懂操作系统内核架构和实时调度性，没有良好的驱动编写风格，按大多数书上所说添加的驱动的方式，很多人都能做到，但可能连个初级的 驱动工程师的水平都达不到，这样所写的驱动在应用调用时就如同windows下我们打开一个程序运行后，再打开一个程序时，要不就是中断以前的程序，要不 就是等上一会才能运行后来打开的程序。想做个好的驱动人员没有三、四年功底，操作系统内核不研究上几编，不是太容易成功的，但其工资在嵌入式系统四层中可 是最高的。 驱动层比较适合于电子、通信、自动化、机电一体、信息工程类专业尤其是计算机偏体系结构类专业的人来搞，除硬件层所具备的基础学科外，还要对数据结构与算法、操作系统原理、编译原理都要十分精通了解。 3、操作系统层，对于操作系统层目前可能只能说是简单的移植，而很少有人来自已写操作系统，或者写出缺胳膊少腿的操作系统来，这部分工作大都由驱动工 程师来完成。操作系统是负责系统任务的调试、磁盘和文件的管理，而嵌入式系统的实时性十分重要。据说，XP操作系统是微软投入300人用两年时间才搞定 的，总时工时是600人年，中科院软件所自己的女娲Hopen操作系统估计也得花遇几百人年才能搞定。因此这部分工作相对来讲没有太大意义。 4、应用层，相对来讲较为容易的，如果会在windows下如何进行编程接口函数调用，到操作系统下只是编译和开发环 境有相应的变化而已。如果涉及Jave方面的编程也是如此的。嵌入式系统中涉及算法的由专业算法的人来处理的，不必归结到嵌入式系统范畴内。但如果涉及嵌 入式系统下面嵌入式数据库、基于嵌入式系统的网络编程和基于某此应用层面的协议应用开发（比如基于SIP、H.323、Astrisk）方面又较为复杂， 并且有难度了。</description>
     </item>
     
     <item>
       <title>S3C2440外围设备（peripherals）</title>
-      <link>/post/s3c2440%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87peripherals/</link>
+      <link>https://www.wuquantai.com/post/s3c2440%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87peripherals/</link>
       <pubDate>Sun, 22 Dec 2013 15:08:09 +0000</pubDate>
       
-      <guid>/post/s3c2440%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87peripherals/</guid>
+      <guid>https://www.wuquantai.com/post/s3c2440%E5%A4%96%E5%9B%B4%E8%AE%BE%E5%A4%87peripherals/</guid>
       <description>1.它与单片机有啥区别呢？ 比我们常见的单片机多了这些东西： External memory controller, LCD controller, AC‘97 CODEC interface, USB Host, Camera interface. 
 图1 S3C2440外围
 
@@ -249,40 +249,29 @@ gcc -c main.c gcc -c api.c gcc -o main main.o api.o写成Makefile的话就是:
     
     <item>
       <title>关于冯.诺伊曼架构和哈佛架构</title>
-      <link>/post/%E5%85%B3%E4%BA%8E%E5%86%AF.%E8%AF%BA%E4%BC%8A%E6%9B%BC%E6%9E%B6%E6%9E%84%E5%92%8C%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84/</link>
+      <link>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8E%E5%86%AF.%E8%AF%BA%E4%BC%8A%E6%9B%BC%E6%9E%B6%E6%9E%84%E5%92%8C%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Mon, 16 Dec 2013 15:03:08 +0000</pubDate>
       
-      <guid>/post/%E5%85%B3%E4%BA%8E%E5%86%AF.%E8%AF%BA%E4%BC%8A%E6%9B%BC%E6%9E%B6%E6%9E%84%E5%92%8C%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8E%E5%86%AF.%E8%AF%BA%E4%BC%8A%E6%9B%BC%E6%9E%B6%E6%9E%84%E5%92%8C%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84/</guid>
       <description>典型的冯.诺伊曼架CPU是x86的CPU。pc机cpu在运行的时候程序是存储在RAM即内存中的，需要运行的程序从硬盘、U盘等外存读取加载进内存中供CPU高速运行（CPU不可能从外存中直接读取指令），所以程序和数据都是放在内存中的。取指令和取操作数都在同一总线上，通过分时复用的方式进行的。缺点是在高速运行时，不能达到同时取指令和取操作数，从而形成了传输过程的瓶颈。 而大多数单片机等嵌入式系统则是存于flash中，flash逐步取代较古老ROM。单片机的程序是固化在flash中，cpu运行时直接从flash中读取程序，从RAM中读取数据。即程序和数据分开存储，而且单片的片内RAM资源是相当有限的，内部的RAM过大会带来成本的大幅度提高。 哈佛总线技术应用是以DSP和ARM为代表的。采用哈佛总线体系结构的芯片内部程序空间和数据空间是分开的，这就允许同时取指令和取操作数，从而大大提高了运算能力。它们都有独立的程序地址总线（PAB），数据地址读总线（DRAB）和数据地址写总线（DWRB）。</description>
     </item>
     
     <item>
       <title>关于ADS V1.2开发环境</title>
-      <link>/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+      <link>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
       <pubDate>Sun, 15 Dec 2013 15:42:59 +0000</pubDate>
       
-      <guid>/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%85%B3%E4%BA%8Eads-v1.2%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
       <description>从开始用freescale 的CodeWarrior起到这个ADS V1.2 ,一直认为这个开发环境做得不好。有几个问题。 1.当make完之后在xx.o文件报错有不明物体，双击这条error, 它没帮你定位到xx.c里。以至于你还得打开xx.c CTRL+F，找出这个不明物体。这很烦，有时候会觉得这个编译器很无语。 2.ADS V1.2的工程管理不能靠边？dock，至今没找到这个功能。。以至于窗口管理乱糟糟的。</description>
     </item>
     
     <item>
       <title>嵌入式开学-先认识硬件</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</link>
+      <link>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</link>
       <pubDate>Sun, 15 Dec 2013 15:28:03 +0000</pubDate>
       
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</guid>
+      <guid>https://www.wuquantai.com/post/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%AD%A6-%E5%85%88%E8%AE%A4%E8%AF%86%E7%A1%AC%E4%BB%B6/</guid>
       <description>这里使用的是TQ2440开发板，CPU 一般运行在400M的时钟频率。核心板载有两片Hynix(海力士,又叫现代内存)256Mb的SDRAM合64MB的内存，256MB SAMSUNG 的Nand flash，2MB 的Eon（宜扬） 的Nor flash。 首先，Nor flash 和 Nand flash 的区别？ Nor flash的有自己的地址线和数据线，操作以字为单位，可以采用类似于memory的随机访问方式，在nor flash上可以直接运行程序，所以nor flash可以直接用来做boot，采用nor flash启动的时候会把地址映射到0x00上。类似于计算机内BIOS的存放位置。 Nand flash是IO设备，类似于计算机的硬盘，数据、地址、控制线都是共用的，需要软件区控制读取时序，更**无法挂在ARM的程序空间，**所以不能像nor flash、内存一样随机访问，不能EIP（片上运行），因此不能直接作为boot。一般Nand flash 用来存储系统程序，系统上电后由Nor flash中的BootLoader将系统加载进RAM中的可执行地址中运行，然后跳到主程序中运行。（这有点像冯.诺伊曼架构，程序和数据都在RAM中）。Nand flash在读取数据量较大的成块数据时，速度较快。</description>
-    </item>
-    
-    <item>
-      <title>嵌入式 GUI 设计心得</title>
-      <link>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-gui-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/%E5%B5%8C%E5%85%A5%E5%BC%8F-gui-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/</guid>
-      <description>GUI，（Graphic User Interface) 为图形用户接口。其从用户角度出发进行程序设计。主要包括输入事件，如：按键、触屏、定时触发事件、动作事件等。输出接口，如显示、振动等。
-emWin GUI, GUI 主任务负责检查处理输入事件、更新对应输出。其核心是给用户显示出其当前操作的状态结果。相对其它实时性要求很高的任务，GUI的任务优先级应该是最低的。
-嵌入式系统裁剪的是代码，增加的是开发者呕心沥血的工作量。若不是量特别大，是不建议深入开发的，只能停留在Demo 阶段，玩玩是可以。因为开发者良苦用心的工作，等几年后硬件升级了，这些工作全部都没有价值了。当时费心费力的省内存，省空间，优化CPU，这些价值全部归零。想想当年的51单片机就是这样。所以觉得做嵌入式一直不被开发者看好。能坚持下去的都是一些有独特爱好的玩家。</description>
     </item>
     
   </channel>

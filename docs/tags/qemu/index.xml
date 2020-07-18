@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>qemu on Tagore&#39;s Studio</title>
-    <link>/tags/qemu/</link>
+    <link>https://www.wuquantai.com/tags/qemu/</link>
     <description>Recent content in qemu on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 04 Sep 2018 11:06:50 +0000</lastBuildDate>
     
-	<atom:link href="/tags/qemu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/tags/qemu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用 qemu 调试 linux kernel</title>
-      <link>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
+      <link>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
       <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
       
-      <guid>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
       <description>在 Ubuntu 中build kernel 参考如下：
  [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
  所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。
@@ -26,10 +26,10 @@
     
     <item>
       <title>petalinux use guide summarize</title>
-      <link>/post/petalinux-use-guide-summarize/</link>
+      <link>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</link>
       <pubDate>Wed, 22 Aug 2018 03:12:29 +0000</pubDate>
       
-      <guid>/post/petalinux-use-guide-summarize/</guid>
+      <guid>https://www.wuquantai.com/post/petalinux-use-guide-summarize/</guid>
       <description>petalinux 是针对 Xilinx FPGA-based SOC designs 的 embedded linux system development kit 。 包含了:
  Yocto Extensible SDK Minimal downloads XSCT and tool chains PetaLinux CLI tools  详情参考 PetaLinux Tools Reference Guide。
  **版本： v2018.2 June 6, 2018 **

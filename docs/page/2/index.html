@@ -11,7 +11,7 @@
 	<meta property="og:title" content="Tagore&#39;s Studio" />
 <meta property="og:description" content="Tagore&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
+<meta property="og:url" content="https://www.wuquantai.com/" />
 <meta property="og:updated_time" content="2013-12-01T15:50:13+00:00" />
 
 	
@@ -57,6 +57,26 @@
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/" rel="bookmark">
+			使用 qemu 调试 linux kernel
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-09-04T11:06:50Z">September 04, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		在 Ubuntu 中build kernel 参考如下：
+ [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
+ 所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。
+   尝试使用 qemu 直接启动主机上的kernel   $ sudo qemu-system-x86\_64 -kernel /boot/vmlinuz-\`uname -r\`  这会提示缺少文件系统
+ 可以使用 debootstrap 构建一个rootfs ``` IMG=qemu-image.img DIR=mount-point.dir qemu-img create $IMG 1g mkfs.ext2 $IMG mkdir $DIR sudo mount -o loop $IMG $DIR sudo debootstrap &ndash;arch amd64 jessie $DIR sudo umount $DIR rmdir $DIR   这里最好用一下 chroot 和 passwd 更新一下文件系统里的密码，以免启动之后登不进去。
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/post/git-%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" rel="bookmark">
@@ -226,24 +246,6 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 		常用命令如下：（详情可以用 help 命令查看）
  r (run, restart) s (step into) n (next state, step over) finish (step out) q (quit) p (print anything you want) l (list) b (breakpoint) #设置断点： (gdb) b fileName.c:lineNumber 或者 (gdb) b function u (until) #运行到指定行 call #调用函数 set #设置变量 set args #设置main 的输入参数 bt (backtrace) #查看堆栈 x #examine memory, (gdb)/FMT ADDRESS info # show things, (gdb) info break d # delete somthing (gdb) delete break xx 或者 (gdb) clean lineNumber 如果print 的内容比较长导致后面的内容是&hellip;，可以重新设置print长度的上限，或者无限制： set print element 0 如果要生成带调试信息的程序，在gcc时要加上-g参数。 target remote 192.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/%E5%85%B3%E4%BA%8Eapache-httpd-%E7%9A%84ssi%E5%92%8Ccgi%E4%BD%BF%E7%94%A8%E5%92%8C%E6%80%9D%E8%80%83/" rel="bookmark">
-			关于Apache httpd 的SSI和cgi使用和思考
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-12-14T14:25:28Z">December 14, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/web/" rel="category">Web</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		因为在单片机上的web服务是使用删减版的httpd服务器，只保留最原始的扩展功能，SSI和CGI。无法像pc上的服务器可以使用php,jsp之类的引擎。 SSI主要是为了往网页里面插入实时的变量，CGI主要是处理客户端发送来的请求。这样即使是最古老的浏览器也不会有什么兼容性问题。 但是这样的做法的结果是服务端的编程变繁琐了。作为单片机这种嵌入式web应用，应该尽可能工作量放在客户端来完成，减少服务端的复杂度。而且不需要太考虑兼容古老的浏览器，因为落后的东西就应该被淘汰。 早期的浏览器作为通用的客户端只拥有简单的功能，比如实现get和post等几个方法。大量的跳转和内容生成是在服务端运行的，就造成服务器的负载较大。自从javascript成为浏览器端标准的脚本语言后，各种网站的内容交互方式就变得更加自由了。我这里感受最深的就是使用客户端脚本把动态网页的生成工作放在浏览器端来做，数据由ajax 单独请求更新。嵌入式web经常需要显示一些实时的数据，把单独的数据请求放在后台实时更新，然后由脚本把它填写至网页。不像早期的技术使用SSI，服务端需要检索整个网页的SSI tag，然后查找变量，将数据实时更新至网页，然后发送整张网页。可以想服务端的压力有多大。其实这种思维模式就像网站程序和网站数据分开放一个道理。好处多多！ 因为用单片机的web服务器调试前端代码会比较繁琐，要转码要下载，频繁修改就不方便。所以直接在pc的web服务器上调试前端代码，并且使用SSI和CGI，模仿单片机C后台的动作，这里要有一些技巧。 在Apache httpd web服务器上使用SSI和cgi，可以参考服务器主页上的帮助文档 http://httpd.apache.org/docs/current/howto/ssi.html。这里简单做个记录。
- SSI 按照官方介绍把SSI功能打开。怎么设置httpd.conf就不多说。这里简单记录下其使用规则。 想设置某个SSI tag时，可以使用 [html] [/html] 在需要调用它的地方使用 [html] [/html] 就可以显示出 xxxx 了。 仅仅是这样使用，跟我们在使用最原始的SSI还是有点不一样。 为了方便调试，我们可以在页面上头加上 [html] [/html] 重定义这个未找到SSI时的提示语言，原本的提示语言很长，不方便调试。
- CGI有几个要点： 1. CGI开启后，默认设置ScriptAlias是只执行cgi-bin下的脚本。你可以将自己的web目录添加进去，因为实际请求的路径不一定是/cgi-bin。 2. 这里可以用perl、python或者bash脚本来模仿单片机c的后端应答动作。这样调试好前端代码后，下进单片机后再慢慢调试后端代码就方便了。注意在perl前面要设置好perl.exe的路径。同时可以修改.pl后缀为我们想要的.cgi它也可以得到执行。完美模仿单片机后端逻辑！ Get!
-	</div>
 </article>
 </main>
 
@@ -260,18 +262,18 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/" />
+		<input type="hidden" name="sitesearch" value="https://www.wuquantai.com" />
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/trojan-gfw-%E5%AE%89%E8%A3%85/">trojan-gfw 安装</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">又折腾网站迁移</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%9F%9F%E5%86%85%E7%9A%84pc-%E8%AE%BF%E9%97%AE%E9%9D%9E%E5%9F%9F%E5%86%85%E7%9A%84samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">域内的PC 访问非域内的samba服务器</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">zynq 嵌入式开发总结</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/">编译PYNQ 在ZCU102上的镜像</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
 		</ul>
 	</div>
 </div>
@@ -319,7 +321,6 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
@@ -370,6 +371,7 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/trojan-gfw/" title="trojan-gfw">trojan-gfw</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
@@ -383,7 +385,6 @@ YUV 4:2:0采样，每四个Y共用一组UV分量。 eg: YUYVYUYV YYYY
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
 	</div>
 </div>
 </aside>

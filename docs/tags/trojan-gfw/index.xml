@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trojan-gfw on Tagore&#39;s Studio</title>
+    <link>https://www.wuquantai.com/tags/trojan-gfw/</link>
+    <description>Recent content in trojan-gfw on Tagore&#39;s Studio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 18 Jul 2020 22:42:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wuquantai.com/tags/trojan-gfw/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>trojan-gfw 安装</title>
+      <link>https://www.wuquantai.com/post/trojan-gfw-%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 18 Jul 2020 22:42:21 +0800</pubDate>
+      
+      <guid>https://www.wuquantai.com/post/trojan-gfw-%E5%AE%89%E8%A3%85/</guid>
+      <description>trojan-gfw 是一种科学上网代理软件，在外部看来它是一个正常的https网站，然而加密流量会伪装在其中。trojan 现在用的人还比较少，不容易被针对。不过很多时候服务器的443端口也容易被gfw 封锁。
+本文简要记录trojan-gfw 的部署过程。
+reference:
+https://trojan-tutor.github.io/2019/04/10/p41.html
+原理图 简要说明下原理，外部https 流量通过443端口输入，trojan 监听443端口，若是正常https 流量则转发至127.0.0.1:80 端口的 nginx 服务器。若是trojan 流量则由trojan 进行代理。
+外部访问80 端口的流量由 nginx 转成https 请求，跟正常https 网站一样。
+ 由于我的服务器只用来科学上网，安全性要求不是很高，方便起见安装时全用root 账户，这样可以省去很多权限引起的问题。 系统版本 ubuntu1604. 以下域名用 &amp;lt;example.com&amp;gt;表示 ，请替换成你的域名。  nginx 安装   把/etc/nginx/sites-enable/default 这个默认网站删掉。
+  创建伪装网站
+vim /etc/nginx/sites-available/&amp;lt;example.com&amp;gt; 网站配置文件  @line 4 &amp;amp; 17 : 把&amp;lt;example.com&amp;gt; 改成你的域名。 @line 7 : proxy_pass 指向一个没有敏感信息的网站, 这里用了 ieee.org。(原作者用的是ietf.org，好像现在网站禁止转发了。。) @line 15 : 把&amp;lt;10.10.10.10&amp;gt; 改成你的服务器IP。    server {listen 127.</description>
+    </item>
+    
+  </channel>
+</rss>

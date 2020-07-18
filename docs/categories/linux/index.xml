@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Tagore&#39;s Studio</title>
-    <link>/categories/linux/</link>
+    <link>https://www.wuquantai.com/categories/linux/</link>
     <description>Recent content in Linux on Tagore&#39;s Studio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 09 Dec 2018 15:06:59 +0000</lastBuildDate>
     
-	<atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.wuquantai.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Linux 网络设置相关</title>
-      <link>/post/linux-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/</link>
+      <link>https://www.wuquantai.com/post/linux-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Sun, 09 Dec 2018 15:06:59 +0000</pubDate>
       
-      <guid>/post/linux-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/</guid>
+      <guid>https://www.wuquantai.com/post/linux-%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/</guid>
       <description>参考</description>
     </item>
     
     <item>
       <title>使用 qemu 调试 linux kernel</title>
-      <link>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
+      <link>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</link>
       <pubDate>Tue, 04 Sep 2018 11:06:50 +0000</pubDate>
       
-      <guid>/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
+      <guid>https://www.wuquantai.com/post/%E4%BD%BF%E7%94%A8-qemu-%E8%B0%83%E8%AF%95-linux-kernel/</guid>
       <description>在 Ubuntu 中build kernel 参考如下：
  [Ref] https://wiki.ubuntu.com/KernelTeam/GitKernelBuild   可以直接在宿主机调试kernel, 但是当发生崩溃之后，工作环境又要重新配置。
  所以考虑用 qemu，因为它有个option: -kernel， 可以直接引导kernel。比 VirtualBox 等虚拟机更快速更方便。
@@ -35,19 +35,19 @@
     
     <item>
       <title>linux bash shell 像cmd.exe 一样的滚动补齐功能</title>
-      <link>/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</link>
+      <link>https://www.wuquantai.com/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Sun, 19 Nov 2017 14:40:14 +0000</pubDate>
       
-      <guid>/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</guid>
+      <guid>https://www.wuquantai.com/post/linux-bash-shell-%E5%83%8Fcmd.exe-%E4%B8%80%E6%A0%B7%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%A1%A5%E9%BD%90%E5%8A%9F%E8%83%BD/</guid>
       <description>有些情况下，比如我们遇到文件名含有一些字符不容易输入时就很着急了，这时候就需要让linux shell像windows cmd.exe 一样自动补全部的文件名，且可自动按顺序一个个滚动切换。方法如下： 在用户目录创建 ~/.inputrc (若不存在则自己创建) 文件里添加一行： [code]TAB: menu-complete[/code] 。 登出再登陆用户就可以了。 For more details see the READLINE section in man bash .</description>
     </item>
     
     <item>
       <title>linux 常用命令笔记</title>
-      <link>/post/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/</link>
+      <link>https://www.wuquantai.com/post/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 20 Nov 2015 06:33:12 +0000</pubDate>
       
-      <guid>/post/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://www.wuquantai.com/post/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/</guid>
       <description>1. 修改文件夹所有者  chown -R [owner] .. ; 修改当前目录下所有文件夹的所有都为owner, -R表示递归调用。
  2. 解压命令  tar -zxvf xxx;
 -c: 建立压缩档案 -x：解压 -t：查看内容 -r：向压缩归档文件末尾追加文件 -u：更新原压缩包中的文件 这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。 -z：有gzip属性的 -j：有bz2属性的 -Z：有compress属性的 -v：显示所有过程 -O：将文件解开到标准输出 下面的参数-f是必须的 -f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。

@@ -10,7 +10,7 @@
 	<meta property="og:title" content="[转]Apache与Tomcat有什么关系和区别" />
 <meta property="og:description" content="经常在用apache和tomcat等这些服务器，可是总感觉还是不清楚他们之间有什么关系，在用tomcat的时候总出现apache，总感到迷惑，到底谁是主谁是次，因此特意在网上查询了一些这方面的资料，总结了一下： 一 apache支持静态页，tomcat支持动态的，比如servlet等，一般使用apache&#43;tomcat的话，apache只是作为一个转发，对jsp的处理是由tomcat来处理的。 apache可以支持php\cgi\perl,但是要使用java的话，你需要tomcat在apache后台支撑，将java请求由apache转发给tomcat处理。 apache是web服务器,Tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 这两个有以下几点可以比较的： 1、两者都是apache组织开发的 2、两者都有HTTP服务的功能 3、两者都是免费的 不同点： Apache是专门用了提供HTTP服务的，以及相关配置的（例如虚拟主机、URL转发等等） Tomcat是Apache组织在符合J2EE的JSP、Servlet标准下开发的一个JSP服务器 二： APACHE是一个web服务器环境程序 启用他可以作为web服务器使用 不过只支持静态网页 如(asp,php,cgi,jsp)等动态网页的就不行 如果要在APACHE环境下运行jsp 的话就需要一个解释器来执行jsp网页 而这个jsp解释器就是TOMCAT, 为什么还要JDK呢？因为jsp需要连接数据库的话 就要jdk来提供连接数据库的驱程，所以要运行jsp的web服务器平台就需要APACHE&#43;TOMCAT&#43;JDK 整合的好处是： 如果客户端请求的是静态页面，则只需要Apache服务器响应请求 如果客户端请求动态页面，则是Tomcat服务器响应请求 因为jsp是服务器端解释代码的，这样整合就可以减少Tomcat的服务开销 三： apache:侧重于http server tomcat:侧重于servlet引擎，如果以standalone方式运行，功能上与apache等效 ， 支持JSP，但对静态网页不太理想； apache是web服务器，tomcat是应用（java）服务器，它只是一个servlet(jsp也翻译成servlet)容器，可以认为是apache的扩展，但是可以独立于apache运行。 换句话说，apache是一辆卡车，上面可以装一些东西如html等。但是不能装水，要装水必须要有容器（桶），而这个桶也可以不放在卡车上。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/" />
+<meta property="og:url" content="https://www.wuquantai.com/post/%E8%BD%ACapache%E4%B8%8Etomcat%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/" />
 <meta property="article:published_time" content="2015-06-21T09:36:55+00:00" />
 <meta property="article:modified_time" content="2015-06-21T09:36:55+00:00" />
 
@@ -123,18 +123,18 @@
 			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="/" />
+		<input type="hidden" name="sitesearch" value="https://www.wuquantai.com" />
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/trojan-gfw-%E5%AE%89%E8%A3%85/">trojan-gfw 安装</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%8F%88%E6%8A%98%E8%85%BE%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">又折腾网站迁移</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E5%9F%9F%E5%86%85%E7%9A%84pc-%E8%AE%BF%E9%97%AE%E9%9D%9E%E5%9F%9F%E5%86%85%E7%9A%84samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">域内的PC 访问非域内的samba服务器</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/zynq-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">zynq 嵌入式开发总结</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/%E7%BC%96%E8%AF%91pynq-%E5%9C%A8zcu102%E4%B8%8A%E7%9A%84%E9%95%9C%E5%83%8F/">编译PYNQ 在ZCU102上的镜像</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%AE%B2%E6%B8%85%E6%A5%9A%E7%BA%BF%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E4%BA%92%E6%96%A5%E9%87%8F%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E9%98%9F%E5%88%97%E5%86%85%E5%AD%98%E6%B1%A0/">一个例子讲清楚线程间同步、互斥量、条件变量、队列、内存池</a></li>
 		</ul>
 	</div>
 </div>
@@ -182,7 +182,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ecs/" title="ECS">ECS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/embeded-system/" title="Embeded system">Embeded system</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/emide/" title="emIDE">emIDE</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ethercatmaster/" title="ethercatmaster">ethercatmaster</a>
@@ -233,6 +232,7 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp-multi-connections/" title="tcp multi-connections">tcp multi-connections</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tcp/ip/" title="tcp/ip">tcp/ip</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tomcat/" title="Tomcat">Tomcat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/trojan-gfw/" title="trojan-gfw">trojan-gfw</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu16-php5/" title="ubuntu16 php5">ubuntu16 php5</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/udp/" title="udp">udp</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web-develop/" title="Web Develop">Web Develop</a>
@@ -246,7 +246,6 @@
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/" title="网站迁移">网站迁移</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F/" title="表单格式">表单格式</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E6%8E%A8%E8%8D%90%E7%A0%81/" title="阿里云推荐码">阿里云推荐码</a>
 	</div>
 </div>
 </aside>
