@@ -142,25 +142,6 @@ I have to spend some time to read《FPGA based hardware accelerator for Dash min
 </article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
-			<a href="/post/%E6%80%BB%E7%BB%93%E5%87%A0%E4%B8%AAc-%E8%AF%AD%E8%A8%80%E6%AF%94%E8%BE%83%E9%AB%98%E7%BA%A7%E7%9A%84%E7%BC%96%E5%86%99%E6%8A%80%E5%B7%A7/" rel="bookmark">
-			总结几个C 语言比较高级的编写技巧
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-11-25T08:51:40Z">November 25, 2016</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/software/" rel="category">Software</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		看了一些源代码，这里总结几个不常见的，但是比较好用的C 用法。也许这些功能在C++中有扩展，但是个人基本不用C++。其实这些应该是属于预处理器的功能。若是之前没有见过，遇到时会感觉云里雾里的。
-  直接定义字符串：  我们可以用#define 定义字符串常量，比如： #define HELLO &ldquo;hello&rdquo; 这样就相当于是： char *HELLO= &ldquo;hello&rdquo;; 而且使用#define 来定义的好处是可以直接拼接字符串，这些应该都是由预处理器来帮我们处理的（没有仔细考证，但想像其中原理应该是这样）。比如：``` #define HELLO &ldquo;hello&rdquo; #define WORLD &ldquo;world&rdquo;
-puts( HELLO WORLD );
-* * ** **定义内存池：**在嵌入式系统中一般不用内存堆的动态分配，因为容易产生内存碎片导致大块内存分配不到（可以用带小块内存合并功能内存管理方式），或者是会因为某个模块把内存堆耗尽了导致其它模块不能工作。通常会使用内存池的方式，而且每个软件模块有自己的不同大小固定数量内存池，这样可以做到每个模块内存互不干扰。说白一点就是一系列的分配好空间的数组。这可以参考lwip中内存池的分配。 #define LWIP\_MEMPOOL(name,num,size,desc) u8\_t memp\_memory\_ ## name ## \_base \[((num) \* (MEMP\_SIZE + MEMP\_ALIGN\_SIZE(size)))\];
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
 			<a href="/post/ss%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" rel="bookmark">
 			ss安装笔记
 			</a>
@@ -224,6 +205,24 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 	<div class="content list__excerpt post__content clearfix">
 		Beremiz 是一各为自动化技术提供开放性源代码的软件，它的PLC平台可以支持IEC61131-3 五种开发语言，Beremiz 提供的子项目：
  PLCOpen 编辑器 : 提供自动化技术所需要的多平台 IDE （Integrated Development Environment） ； MatPLC&rsquo;s IEC 编译器 : IEC 61131-3 编译器， 可以将结构化文本和指令表120 直接编译为 C 语言； CanFestival : CANOpen 接口服务于物理的输入/ 输出； SVGUI : 以 SVG为基础的自动化 HMI 工具； 所有软件都是提供源代码的， 使用了 PYTHON MINGW 等语言或者平台。  Beremiz软PLC 开发流程: MatIEC包含两个工具: 1. IEC2IEC工具将标准的IEC61131-3的5种语言统一转成ST格式， 2. IEC2C工具将ST格式用户代码转ANSI-C代码。 然后将所有代码通过GCC 工具编译成机器码运行。 
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/profinet-%E7%AE%80%E4%BB%8B/" rel="bookmark">
+			Profinet 简介
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2015-10-27T06:39:04Z">October 27, 2015</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Profinet 主要包括8个主要模块：实时通信、分布式现场设备、运动控制、分布式自动化、网络安装、IT标准和信息安全、故障安全和过程自动化。  Profinet 实时通信  PROFINET提供适应各种类型 设备的三种通信通道，而且在同 一个网络或设备上能够同时运行。 1.1 TCP/IP 标准通讯; 标准通道适用于具有100ms典型响应时间的简单设备。它能够用于设备的参数化和组态，例如用于读取诊断数据。 1.2 实时(RT)通讯; 对于典型循环时间低于10ms的场合，RT通道具有与最新现场总线系统相同级别的性能，在设备中RT通道能够采用软件方案实现，通道支持用户数据、事件驱动报文和报警等高性能周期传输。 传感器与执行器之间， 5~10ms。 1.3 同步实时(IRT)通讯; 循环时间小于1ms和抖动低于1μs的IRT通道用于高动态的驱动应用。IRT基于一个以太网芯片，用它在IRT网络中创建高动态特性。 运动控制， 响应时间&lt; 1ms, 抖动误差&lt;1us。
+ 兼容“开放的以太网 世界” 为了实现制造过程最佳化，可直接访问控制和生产级的所有自动化数据应该是生产计划管理系统最重要的因素。PROFINET使用以太网标准通信技术和IT技术，如OPC、XML、COM/DCOM、DHCP、SNMP、FTP或HTTP，与TCP/IP和RT技术一起共同将上述需求付诸实践。 Profinet 分布式现场设备  可以通过代理服务器将其它现场总线网络接入到Profinet中。
+Profinet 运动控制  IRT中将通讯周期分成两个部分，一个是循环的、确定的实时通道；另外一个是标准通道，标准的TCP/IP数据通过这个通道传输。 。。。
 	</div>
 </article>
 </main>
@@ -297,6 +296,7 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 		<a class="widget-taglist__link widget__link btn" href="/tags/apache/" title="Apache">Apache</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/arm/" title="ARM">ARM</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/beremiz/" title="Beremiz">Beremiz</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E7%BC%96%E7%A8%8B/" title="C 编程">C 编程</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/c-%E9%93%BE%E6%8E%A5/" title="c 链接">c 链接</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/debug-kernel/" title="debug kernel">debug kernel</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/eclipse/" title="Eclipse">Eclipse</a>
@@ -372,7 +372,7 @@ PROFINET是适用于不同需求的完整解决方案，其功能包括8个主�
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2020 Tagore&#39;s Studio.
+			&copy; 2021 Tagore&#39;s Studio.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
